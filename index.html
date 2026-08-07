@@ -23,6 +23,7 @@
             color: white;
             scroll-behavior: smooth;
             scroll-padding-top: 80px; 
+            overflow-x: hidden; /* Evita cualquier desbordamiento horizontal accidental */
         }
 
         /* 2. ENCABEZADO FIJO */
@@ -108,21 +109,6 @@
             display: block;
         }
         /* ----------------------------------------------------------------- */
-
-        /* Responsividad para celulares del menú */
-        @media (max-width: 900px) {
-            .nav-links {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .dropdown-content {
-                position: static; 
-                transform: none;
-                min-width: 100%;
-                text-align: center;
-            }
-        }
 
         /* 3. VIDEO DE FONDO FIJO */
         .video-background {
@@ -313,6 +299,62 @@
             max-width: 800px;
             margin: 0 auto;
             line-height: 1.5;
+        }
+
+        /* =========================================
+           9. DISEÑO RESPONSIVO (MÓVILES)
+           ========================================= */
+        @media (max-width: 768px) {
+            /* Achicar el título principal para que quepa en la pantalla */
+            .contenido-central h1 {
+                font-size: 2.8rem;
+            }
+            .contenido-central p {
+                font-size: 1.1rem;
+            }
+
+            /* Ajustar el header y menú superior */
+            .header-fijo {
+                padding: 10px 2%;
+            }
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-links a {
+                font-size: 0.95rem;
+            }
+            
+            /* Ajustar menú desplegable en celulares */
+            .dropdown-content {
+                position: static; 
+                transform: none;
+                min-width: 100%;
+                text-align: center;
+            }
+
+            /* Ajustar el padding lateral de las secciones */
+            .seccion-contenido {
+                padding: 60px 5%;
+            }
+            .titulo-seccion {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            /* Forzar a que las tarjetas ocupen 1 sola columna ajustada */
+            .grid-tarjetas {
+                grid-template-columns: 1fr;
+            }
+
+            /* Botón de sonido un poco más pequeño para que no estorbe */
+            .boton-sonido {
+                bottom: 20px;
+                right: 20px;
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
         }
     </style>
 </head>

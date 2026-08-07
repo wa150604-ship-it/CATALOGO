@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velatorios IMSS - Propuesta</title>
+    
+<!------------------------------ PESTAÑA DEL NAVEGADOR ------------------------------>
+    <link rel="icon" href="MULTIMEDIA/IMAGENES/lgprovisional.png" type="image/png">
+    
+    <style>
+        /* 1. RESET Y AJUSTES GENERALES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body, html {
+            height: 100%;
+            background-color: transparent; 
+            color: white;
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px; 
+        }
+
+        /* 2. ENCABEZADO FIJO */
+        .header-fijo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center; 
+            padding: 15px 5%;
+            background-color: rgba(20, 20, 20, 0.95); 
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* ------------------ MENÚ DESPLEGABLE (DROPDOWN) ------------------ */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(20, 20, 20, 0.95);
+            min-width: 180px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+            border-radius: 8px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .dropdown-content a {
+            color: #ddd;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 1rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #4CAF50;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        /* ----------------------------------------------------------------- */
+
+        /* Responsividad para celulares del menú */
+        @media (max-width: 900px) {
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .dropdown-content {
+                position: static; 
+                transform: none;
+                min-width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* 3. VIDEO DE FONDO FIJO */
+        .video-background {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+        
+        .overlay {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.15); 
+            z-index: -1;
+        }
+    
+        /* 4. CONTENEDOR DE INICIO */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contenido-central {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 8%;
+        }
+        
+        .contenido-central h1 {
+            font-size: 4.5rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.9);
+        }
+
+        .contenido-central p {
+            font-size: 1.3rem;
+            color: #ffffff;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.9);
+        }
+
+        /* 5. SECCIONES DE CONTENIDO */
+        .seccion-contenido {
+            padding: 80px 8%;
+            background-color: rgba(20, 20, 20, 0.75); 
+            backdrop-filter: blur(10px); 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative; 
+            z-index: 1;
+        }
+
+        .titulo-seccion {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+        /* 6. TARJETAS */
+        .grid-tarjetas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .tarjeta-centrada {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .tarjeta {
+            background: rgba(255, 255, 255, 0.05); 
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tarjeta h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #4CAF50; 
+        }
+
+        .tarjeta p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+            color: #ddd;
+        }
+
+        .info-asesoria {
+            color: #4CAF50 !important;
+            font-weight: 600;
+            font-size: 0.95rem !important;
+        }
+
+        .btn-accion {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #25D366; 
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn-accion:hover {
+            background-color: #1EBE53;
+        }
+
+        /* 7. BOTÓN DE SONIDO FLOTANTE */
+        .boton-sonido {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(5px);
+            color: #111; 
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .boton-sonido:hover {
+            background-color: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        /* 8. PIE DE PÁGINA */
+        .footer-disclaimer {
+            background-color: rgba(10, 10, 10, 0.95);
+            padding: 40px 5% 30px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .btn-facebook {
+            background-color: #1877F2; 
+            color: white !important;
+            padding: 10px 25px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-facebook:hover {
+            background-color: #166FE5;
+            transform: scale(1.05);
+        }
+
+        .footer-disclaimer p {
+            font-size: 0.85rem;
+            color: #aaa;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<!------------------------------ ENCABEZADO FIJO CON MENÚ DESPLEGABLE ------------------------------>
+    <header class="header-fijo">
+        <nav class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <div class="dropdown">
+                <a href="javascript:void(0);" class="dropbtn">Catálogo ▾</a>
+                <div class="dropdown-content">
+                    <a href="#paquetes">Paquetes</a>
+                    <a href="#cremaciones">Cremaciones</a>
+                    <a href="#salas">Salas de Velación</a>
+                </div>
+            </div>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="#contactos">Contactos</a>
+        </nav>
+    </header>
+
+<!------------------------------ VIDEO DE FONDO FIJO ------------------------------>
+    <video id="videoFondo" autoplay loop muted playsinline class="video-background">
+        <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay"></div>
+
+<!------------------------------ BOTÓN FLOTANTE PARA EL SONIDO ------------------------------>
+    <button id="btnSonido" class="boton-sonido">🔊 Activar Sonido</button>
+
+<!------------------------------ SECCIÓN DE INICIO ------------------------------>
+    <div id="inicio" class="hero-section">
+        <div class="contenido-central">
+            <h1>VELATORIOS<br>IMSS</h1>
+            <p>Atención Integral y Solidaria</p>
+        </div>
+    </div>
+
+<!------------------------------ 1. SECCIÓN: PAQUETES ------------------------------>
+    <div id="paquetes" class="seccion-contenido">
+        <h2 class="titulo-seccion">Nuestros Paquetes</h2>
+        <div class="grid-tarjetas tarjeta-centrada">
+            
+            <div class="tarjeta">
+                <h3>Paquete Económico</h3>
+                <p>Uso de capilla por 24 horas, ataúd básico, arreglo estético y servicio de carroza al panteón.</p>
+                <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+            </div>
+
+        </div>
+    </div>
+
+<!------------------------------ 2. SECCIÓN: CREMACIONES ------------------------------>
+    <div id="cremaciones" class="seccion-contenido" style="border-top: none;">
+        <h2 class="titulo-seccion">Servicios de Cremación</h2>
+        <div class="grid-tarjetas tarjeta-centrada">
+            
+            <div class="tarjeta">
+                <h3>Cremación Directa</h3>
+                <p>Recolección, servicio de cremación y urna básica estandarizada.</p>
+                <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+            </div>
+
+        </div>
+    </div>
+
+<!------------------------------ 3. SECCIÓN: SALAS DE VELACIÓN ------------------------------>
+    <div id="salas" class="seccion-contenido" style="border-top: none;">
+        <h2 class="titulo-seccion">Nuestras Salas de Velación</h2>
+        <div class="grid-tarjetas tarjeta-centrada">
+            
+            <div class="tarjeta">
+                <h3>Salas de Velación</h3>
+                <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
+                <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+            </div>
+
+        </div>
+    </div>
+
+<!------------------------------ 4. SECCIÓN: UBICACIÓN ------------------------------>
+    <div id="ubicacion" class="seccion-contenido">
+        <h2 class="titulo-seccion">Nuestra Ubicación</h2>
+        
+        <div style="max-width: 900px; margin: 0 auto; width: 100%;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15040.500383069857!2d-99.062996!3d19.536242200000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f083e49ea975%3A0x465a653b61961aeb!2sVELATORIO%20IMSS%20No.20%20ECATEPEC!5e0!3m2!1ses-419!2smx!4v1785873850974!5m2!1ses-419!2smx" 
+                width="100%" 
+                height="450" 
+                style="border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="strict-origin-when-cross-origin">
+            </iframe>
+        </div>
+    </div>
+
+<!------------------------------ 5. DIRECTORIO  ------------------------------>
+    <div id="contactos" class="seccion-contenido">
+        <h2 class="titulo-seccion">Directorio de Promotores</h2>
+        <div class="grid-tarjetas">
+            
+            <div class="tarjeta">
+                <h3>Marisol Flores Luna</h3>
+                <p>Administradora del Velatorio Ecatepec.</p>
+                <a href="https://wa.me/525539393560" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
+
+            <div class="tarjeta">
+                <h3>Benita Andrea Juaréz Trejo</h3>
+                <p>Promotora</p>
+                <a href="https://wa.me/525645507653" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
+
+        </div>
+    </div>
+
+<!------------------------------ PIE DE PÁGINA ------------------------------>
+    <footer class="footer-disclaimer">
+        <a href="https://www.facebook.com" target="_blank" class="btn-facebook">Visitar Facebook</a>
+        <p>Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social.</p>
+    </footer>
+
+<!------------------------------ CONTROLAR EL SONIDO ------------------------------>
+    <script>
+        const video = document.getElementById("videoFondo");
+        const botonSonido = document.getElementById("btnSonido");
+
+        botonSonido.addEventListener("click", () => {
+            if (video.muted) {
+                video.muted = false;
+                botonSonido.innerHTML = "🔇 Silenciar";
+                botonSonido.style.backgroundColor = "rgba(37, 211, 102, 0.95)"; 
+                botonSonido.style.color = "white";
+            } else {
+                video.muted = true;  
+                botonSonido.innerHTML = "🔊 Activar Sonido";
+                botonSonido.style.backgroundColor = "rgba(255, 255, 255, 0.85)";
+                botonSonido.style.color = "#111";
+            }
+        });
+    </script>
+</body>
+</html>

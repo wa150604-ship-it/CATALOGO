@@ -23,7 +23,7 @@
             color: white;
             scroll-behavior: smooth;
             scroll-padding-top: 80px; 
-            overflow-x: hidden; /* Evita cualquier desbordamiento horizontal accidental */
+            overflow-x: hidden; 
         }
 
         /* 2. ENCABEZADO FIJO */
@@ -68,6 +68,14 @@
         .dropbtn {
             cursor: pointer;
             padding: 10px 0;
+            color: #ddd;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .dropdown:hover .dropbtn {
+            color: #4CAF50;
         }
 
         .dropdown-content {
@@ -83,7 +91,7 @@
             transform: translateX(-50%); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 5px;
         }
 
         .dropdown-content a {
@@ -105,6 +113,7 @@
             color: #4CAF50;
         }
 
+        /* Mostrar en hover para escritorio */
         .dropdown:hover .dropdown-content {
             display: block;
         }
@@ -305,7 +314,6 @@
            9. DISEÑO RESPONSIVO (MÓVILES)
            ========================================= */
         @media (max-width: 768px) {
-            /* Achicar el título principal para que quepa en la pantalla */
             .contenido-central h1 {
                 font-size: 2.8rem;
             }
@@ -313,28 +321,26 @@
                 font-size: 1.1rem;
             }
 
-            /* Ajustar el header y menú superior */
+            /* --- CORRECCIÓN DEL ENCABEZADO PARA MÓVILES --- */
             .header-fijo {
-                padding: 10px 2%;
-            }
-            .nav-links {
-                gap: 12px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .nav-links a {
-                font-size: 0.95rem;
+                padding: 12px 2%;
             }
             
-            /* Ajustar menú desplegable en celulares */
-            .dropdown-content {
-                position: static; 
-                transform: none;
-                min-width: 100%;
-                text-align: center;
+            .nav-links {
+                gap: 5px; /* Reducimos la brecha para que quepan */
+                width: 100%;
+                justify-content: space-evenly; /* Distribución uniforme en 1 sola línea */
+            }
+            
+            .nav-links a, .dropbtn {
+                font-size: 0.9rem; /* Letra ligeramente más compacta */
             }
 
-            /* Ajustar el padding lateral de las secciones */
+            .dropdown-content {
+                min-width: 160px; /* Ancho ajustado para evitar que se desborde la pantalla */
+            }
+            /* ----------------------------------------------- */
+
             .seccion-contenido {
                 padding: 60px 5%;
             }
@@ -343,12 +349,10 @@
                 margin-bottom: 30px;
             }
 
-            /* Forzar a que las tarjetas ocupen 1 sola columna ajustada */
             .grid-tarjetas {
                 grid-template-columns: 1fr;
             }
 
-            /* Botón de sonido un poco más pequeño para que no estorbe */
             .boton-sonido {
                 bottom: 20px;
                 right: 20px;
@@ -480,8 +484,9 @@
         <p>Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social.</p>
     </footer>
 
-<!------------------------------ CONTROLAR EL SONIDO ------------------------------>
+<!------------------------------ SCRIPTS ------------------------------>
     <script>
+        // 1. Control del botón de sonido
         const video = document.getElementById("videoFondo");
         const botonSonido = document.getElementById("btnSonido");
 
@@ -497,6 +502,23 @@
                 botonSonido.style.backgroundColor = "rgba(255, 255, 255, 0.85)";
                 botonSonido.style.color = "#111";
             }
+        });
+
+        // 2. Control del menú desplegable para celulares (Forzar cierre al hacer clic)
+        const enlacesDropdown = document.querySelectorAll('.dropdown-content a');
+        
+        enlacesDropdown.forEach(enlace => {
+            enlace.addEventListener('click', function() {
+                // Al tocar una opción, ocultamos forzosamente la caja del submenú
+                const cajaSubmenu = this.closest('.dropdown-content');
+                cajaSubmenu.style.display = 'none'; 
+                
+                // Unos instantes después, limpiamos el estilo en línea 
+                // para que el comportamiento CSS vuelva a funcionar normalmente.
+                setTimeout(() => {
+                    cajaSubmenu.style.display = '';
+                }, 300);
+            });
         });
     </script>
 </body>

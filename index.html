@@ -53,6 +53,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-links a:hover {
@@ -72,9 +73,10 @@
             font-size: 1.1rem;
             font-weight: 500;
             transition: color 0.3s;
+            user-select: none;
         }
 
-        .dropdown:hover .dropbtn {
+        .dropdown:hover .dropbtn, .dropdown.active .dropbtn {
             color: #4CAF50;
         }
 
@@ -114,7 +116,14 @@
         }
 
         /* Mostrar en hover para escritorio */
-        .dropdown:hover .dropdown-content {
+        @media (min-width: 769px) {
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+        }
+
+        /* Clase para controlar la apertura táctil en celulares */
+        .dropdown.active .dropdown-content {
             display: block;
         }
         /* ----------------------------------------------------------------- */
@@ -321,25 +330,23 @@
                 font-size: 1.1rem;
             }
 
-            /* --- CORRECCIÓN DEL ENCABEZADO PARA MÓVILES --- */
             .header-fijo {
                 padding: 12px 2%;
             }
             
             .nav-links {
-                gap: 5px; /* Reducimos la brecha para que quepan */
+                gap: 5px; 
                 width: 100%;
-                justify-content: space-evenly; /* Distribución uniforme en 1 sola línea */
+                justify-content: space-evenly; 
             }
             
             .nav-links a, .dropbtn {
-                font-size: 0.9rem; /* Letra ligeramente más compacta */
+                font-size: 0.9rem; 
             }
 
             .dropdown-content {
-                min-width: 160px; /* Ancho ajustado para evitar que se desborde la pantalla */
+                min-width: 160px; 
             }
-            /* ----------------------------------------------- */
 
             .seccion-contenido {
                 padding: 60px 5%;
@@ -367,17 +374,17 @@
 <!------------------------------ ENCABEZADO FIJO CON MENÚ DESPLEGABLE ------------------------------>
     <header class="header-fijo">
         <nav class="nav-links">
-            <a href="#inicio">Inicio</a>
-            <div class="dropdown">
-                <a href="javascript:void(0);" class="dropbtn">Catálogo ▾</a>
+            <a href="#inicio" class="enlace-interno">Inicio</a>
+            <div class="dropdown" id="dropdownMenu">
+                <span class="dropbtn" id="btnCatalogo">Catálogo ▾</span>
                 <div class="dropdown-content">
-                    <a href="#paquetes">Paquetes</a>
-                    <a href="#cremaciones">Cremaciones</a>
-                    <a href="#salas">Salas de Velación</a>
+                    <a href="#paquetes" class="enlace-interno">Paquetes</a>
+                    <a href="#cremaciones" class="enlace-interno">Cremaciones</a>
+                    <a href="#salas" class="enlace-interno">Salas de Velación</a>
                 </div>
             </div>
-            <a href="#ubicacion">Ubicación</a>
-            <a href="#contactos">Contactos</a>
+            <a href="#ubicacion" class="enlace-interno">Ubicación</a>
+            <a href="#contactos" class="enlace-interno">Contactos</a>
         </nav>
     </header>
 
@@ -392,10 +399,12 @@
     <button id="btnSonido" class="boton-sonido">🔊 Activar Sonido</button>
 
 <!------------------------------ SECCIÓN DE INICIO ------------------------------>
-    <div id="inicio" class="hero-section">
-        <div class="contenido-central">
-            <h1>VELATORIOS<br>IMSS</h1>
-            <p>Atención Integral y Solidaria</p>
+    <div id="inicio" class="seccion-inicio-ancla" style="position: relative;">
+        <div class="hero-section">
+            <div class="contenido-central">
+                <h1>VELATORIOS<br>IMSS</h1>
+                <p>Atención Integral y Solidaria</p>
+            </div>
         </div>
     </div>
 
@@ -504,20 +513,43 @@
             }
         });
 
-        // 2. Control del menú desplegable para celulares (Forzar cierre al hacer clic)
-        const enlacesDropdown = document.querySelectorAll('.dropdown-content a');
-        
-        enlacesDropdown.forEach(enlace => {
-            enlace.addEventListener('click', function() {
-                // Al tocar una opción, ocultamos forzosamente la caja del submenú
-                const cajaSubmenu = this.closest('.dropdown-content');
-                cajaSubmenu.style.display = 'none'; 
-                
-                // Unos instantes después, limpiamos el estilo en línea 
-                // para que el comportamiento CSS vuelva a funcionar normalmente.
-                setTimeout(() => {
-                    cajaSubmenu.style.display = '';
-                }, 300);
+        // 2. Control inteligente del menú desplegable táctil
+        const dropdownMenu = document.getElementById("dropdownMenu");
+        const btnCatalogo = document.getElementById("btnCatalogo");
+
+        btnCatalogo.addEventListener("click", (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle("active");
+        });
+
+        // Cerrar el menú si se toca cualquier otra parte de la pantalla
+        document.addEventListener("click", () => {
+            dropdownMenu.classList.remove("active");
+        });
+
+        // 3. Navegación fluida corregida para evitar bloqueos de anclas repetidas en móviles
+        const enlacesInternos = document.querySelectorAll('.enlace-interno');
+
+        enlacesInternos.forEach(enlace => {
+            enlace.addEventListener('click', function(e) {
+                e.preventDefault();
+                const destinoId = this.getAttribute('href');
+                const seccionDestino = document.querySelector(destinoId);
+
+                if (seccionDestino) {
+                    // Cierra el menú desplegable por si estaba abierto
+                    dropdownMenu.classList.remove("active");
+
+                    // Desplazamiento limpio calculado por coordenadas
+                    const headerAltura = document.querySelector('.header-fijo').offsetHeight;
+                    const elementoPosicion = seccionDestino.getBoundingClientRect().top;
+                    const offsetPosition = elementoPosicion + window.pageYOffset - headerAltura;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
             });
         });
     </script>

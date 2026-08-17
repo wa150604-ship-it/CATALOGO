@@ -121,24 +121,26 @@
 
         /* 3. VIDEO DE FONDO FIJO */
         .video-background {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            object-fit: cover;
-            z-index: -2;
-        }
-        
-        .overlay {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.15); 
-            z-index: -1;
-        }
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+        z-index: -2;
+        pointer-events: none; 
+    }
+    
+    .overlay {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.15); 
+        z-index: -1;
+        pointer-events: none; 
+    }
     
         /* 4. CONTENEDOR DE INICIO */
         .hero-section {
@@ -235,15 +237,17 @@
         }
 
         .btn-accion {
-            display: inline-block;
-            padding: 12px 25px;
-            background-color: #25D366; 
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
+        display: inline-block;
+        padding: 12px 25px;
+        background-color: #25D366; 
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.3s;
+        position: relative; 
+        z-index: 10;        
+    }
 
         .btn-accion:hover {
             background-color: #1EBE53;

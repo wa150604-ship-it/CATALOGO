@@ -360,21 +360,30 @@
 
             /* --- CORRECCIÓN DEL ENCABEZADO PARA MÓVILES --- */
             .header-fijo {
-                padding: 12px 2%;
+                padding: 10px 2%;
             }
             
             .nav-links {
-                gap: 5px; /* Reducimos la brecha para que quepan */
+                gap: 8px;
                 width: 100%;
-                justify-content: space-evenly; /* Distribución uniforme en 1 sola línea */
+                justify-content: space-around;
+                align-items: center;
+                overflow-x: auto; /* Permite deslizar si la pantalla es muy estrecha */
+                white-space: nowrap; /* Impide que los textos se rompan en 2 líneas */
+                scrollbar-width: none; /* Oculta la barra de scroll en Firefox */
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none; /* Oculta la barra de scroll en Chrome y Safari */
             }
             
             .nav-links a, .dropbtn {
-                font-size: 0.9rem; /* Letra ligeramente más compacta */
+                font-size: 0.82rem; /* Tamaño de letra ajustado para celulares */
+                white-space: nowrap;
             }
 
             .dropdown-content {
-                min-width: 160px; /* Ancho ajustado para evitar que se desborde la pantalla */
+                min-width: 150px;
             }
             /* ----------------------------------------------- */
 

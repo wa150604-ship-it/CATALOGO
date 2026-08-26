@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velatorios IMSS - Propuesta</title>
     
-<!------------------------------ PESTAÑA DEL NAVEGADOR ------------------------------>
+<!-- PESTAÑA DEL NAVEGADOR -------------------------------------------------------------------------------------------------------------->
     <link rel="icon" href="MULTIMEDIA/IMAGENES/lgprovisional.png" type="image/png">
     
     <style>
@@ -59,7 +59,7 @@
             color: #4CAF50;
         }
 
-        /* ------------------ MENÚ DESPLEGABLE (DROPDOWN) ------------------ */
+        /*  MENÚ DESPLEGABLE (DROPDOWN)  */
         .dropdown {
             position: relative;
             display: inline-block;
@@ -284,8 +284,6 @@
             width: 65px; 
             height: 65px;
             object-fit: contain;
-            /* Si tu icono necesita un fondo sólido blanco, descomenta la siguiente línea: */
-            /* background-color: #ffffff; border-radius: 50%; */
         }
 
         /* 7. BOTÓN DE SONIDO FLOTANTE */
@@ -351,7 +349,7 @@
 
         /* =========================================
            9. DISEÑO RESPONSIVO (MÓVILES)
-           ========================================= */
+        ========================================= */
         @media (max-width: 768px) {
             .contenido-central h1 {
                 font-size: 2.8rem;
@@ -399,10 +397,137 @@
                 padding: 8px 16px;
             }
         }
+        /* --- ESTILOS PARA EL CATÁLOGO CON FILTRO Y CARRUSEL --- */
+        .filtros-catalogo {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn-filtro {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #ddd;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-filtro:hover, .btn-filtro.activo {
+            background-color: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        /* Carrusel dentro de la tarjeta */
+        .carrusel-tarjeta {
+    position: relative;
+    width: 100%;
+    height: 240px; /* Altura optimizada para la vista */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro uniforme para encuadrar */
+}
+
+        .carrusel-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .carrusel-img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene la imagen completa SIEMPRE sin recortar ni deformar */
+    padding: 8px; /* Margen interno sutil para que la imagen respire */
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+        .carrusel-img:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-carrusel {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+            z-index: 2;
+        }
+
+        .btn-carrusel:hover {
+            background: #4CAF50;
+        }
+
+        .btn-prev { left: 10px; }
+        .btn-next { right: 10px; }
+
+        /* Estilo del Modal Lightbox para ampliar imagen */
+        .modal-lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .cerrar-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .cerrar-modal:hover {
+            color: #4CAF50;
+        }
+
+        /* Limite de ancho para tarjetas filtradas */
+        .tarjeta-catalogo, .tarjeta-cremacion {
+           max-width: 420px;
+           width: 100%;
+           justify-self: center;
+        }
     </style>
 </head>
-<body>
 
+
+
+<body>
 <!------------------------------ ENCABEZADO FIJO CON MENÚ DESPLEGABLE ------------------------------>
     <header class="header-fijo">
         <nav class="nav-links">
@@ -411,10 +536,11 @@
                 <a href="javascript:void(0);" class="dropbtn">Catálogo ▾</a>
                 <div class="dropdown-content">
                     <a href="#paquetes">Paquetes</a>
-                    <a href="#cremaciones">Cremaciones</a>
-                    <a href="#salas">Salas de Velación</a>
+                    <a href="#ataudes">Ataúdes</a>
+                    <a href="#cremaciones">Urnas</a>
                 </div>
             </div>
+            <a href="#salas">Salas de Velación</a>
             <a href="#ubicacion">Ubicación</a>
             <a href="#contactos">Contactos</a>
         </nav>
@@ -447,20 +573,135 @@
                 <h3>Paquete Económico</h3>
                 <p>Uso de capilla por 24 horas, ataúd básico, arreglo estético y servicio de carroza al panteón.</p>
                 <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
             </div>
 
         </div>
     </div>
 
-<!------------------------------ 2. SECCIÓN: CREMACIONES ------------------------------>
-    <div id="cremaciones" class="seccion-contenido" style="border-top: none;">
-        <h2 class="titulo-seccion">Servicios de Cremación</h2>
-        <div class="grid-tarjetas tarjeta-centrada">
+<!------------------------------ 2. SECCIÓN: ATAÚDES ------------------------------>
+    <div id="ataudes" class="seccion-contenido" style="border-top: none;">
+        <h2 class="titulo-seccion">Catálogo de Ataúdes</h2>
+        
+        <!-- Botones de Filtro -->
+        <div class="filtros-catalogo">
+            <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
+            <button class="btn-filtro-ataud btn-filtro" data-filtro="alta">Gama Alta</button>
+            <button class="btn-filtro-ataud btn-filtro" data-filtro="media">Gama Media</button>
+            <button class="btn-filtro-ataud btn-filtro" data-filtro="baja">Gama Baja</button>
+        </div>
+
+        <!-- Contenedor de Tarjetas con Clases de Gama -->
+        <div class="grid-tarjetas">
             
-            <div class="tarjeta">
-                <h3>Cremación Directa</h3>
-                <p>Recolección, servicio de cremación y urna básica estandarizada.</p>
-                <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+            <!-- Tarjeta Gama Alta -->
+            <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
+                <div class="carrusel-tarjeta">
+                    <button class="btn-carrusel btn-prev">❮</button>
+                    <div class="carrusel-track">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta 1" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png" alt="Ataúd Gama Alta 2" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png" alt="Ataúd Gama Alta 3" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png" alt="Ataúd Gama Alta 4" class="carrusel-img">
+                    </div>
+                    <button class="btn-carrusel btn-next">❯</button>
+                </div>
+                <h3>Ataúd de Gama Alta</h3>
+                <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
+            </div>
+
+            <!-- Tarjeta Gama Media -->
+            <div class="tarjeta tarjeta-catalogo" data-categoria="media">
+                <div class="carrusel-tarjeta">
+                    <button class="btn-carrusel btn-prev">❮</button>              
+                    <div class="carrusel-track">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png" alt="Ataúd Gama media 1" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-2.png" alt="Ataúd Gama media 2" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-3.png" alt="Ataúd Gama media 3" class="carrusel-img"> 
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-4.png" alt="Ataúd Gama media 4" class="carrusel-img">
+                    </div>
+                    <button class="btn-carrusel btn-next">❯</button>
+                </div>
+                <h3>Ataúd de Gama Media</h3>
+                <p>Diseño tradicional sólido con excelentes acabados y confort visual.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
+            </div>
+
+            <!-- Tarjeta Gama Baja -->
+            <div class="tarjeta tarjeta-catalogo" data-categoria="baja">
+                <div class="carrusel-tarjeta">
+                    <button class="btn-carrusel btn-prev">❮</button>
+                    <div class="carrusel-track">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-1.png" alt="Ataúd Gama baja 1" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-2.png" alt="Ataúd Gama baja 2" class="carrusel-img">
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-3.png" alt="Ataúd Gama baja 3" class="carrusel-img"> 
+                        <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-4.png" alt="Ataúd Gama baja 4" class="carrusel-img">
+                    </div>
+                    <button class="btn-carrusel btn-next">❯</button>
+                </div>
+                <h3>Ataúd Económico / Baja</h3>
+                <p>Opción accesible y digna, cumpliendo con los estándares esenciales.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
+            </div>
+
+        </div>
+    </div>
+<!------------------------------ 2. SECCIÓN: URNAS CREMATORIAS ------------------------------>
+    <div id="cremaciones" class="seccion-contenido" style="border-top: none;">
+        <h2 class="titulo-seccion">Catálogo de Urnas</h2>
+        
+        <!-- Botones de Filtro para Urnas -->
+        <div class="filtros-catalogo">
+            <button class="btn-filtro-cremacion btn-filtro activo" data-filtro="todos">Todos</button>
+            <button class="btn-filtro-cremacion btn-filtro" data-filtro="alta">Gama Alta</button>
+            <button class="btn-filtro-cremacion btn-filtro" data-filtro="media">Gama Media</button>
+            <button class="btn-filtro-cremacion btn-filtro" data-filtro="baja">Gama Baja</button>
+        </div>
+
+        <!-- Contenedor de Tarjetas de Urnas -->
+        <div class="grid-tarjetas">
+            
+            <!-- Tarjeta: Gama Alta -->
+            <div class="tarjeta tarjeta-cremacion" data-categoria="alta">
+                <div class="carrusel-tarjeta">
+                    <div class="carrusel-track">
+                    <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" alt="Urna Alta 1" class="carrusel-img">
+                    </div>
+                </div>
+                <h3>Urna de Gama Alta</h3>
+                <p>Diseño exclusivo en materiales finos, acabados detallados y máxima elegancia.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
+            </div>
+
+            <!-- Tarjeta: Gama Media -->
+            <div class="tarjeta tarjeta-cremacion" data-categoria="media">
+                <div class="carrusel-tarjeta">
+                    <div class="carrusel-track">
+                        <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" alt="Urna Media 1" class="carrusel-img">
+                    </div>
+                </div>
+                <h3>Urna de Gama Media</h3>
+                <p>Estilo tradicional y sobrio con excelentes acabados y gran durabilidad.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
+            </div>
+
+            <!-- Tarjeta: Gama Baja -->
+            <div class="tarjeta tarjeta-cremacion" data-categoria="baja">
+                <div class="carrusel-tarjeta">
+                    <div class="carrusel-track">
+                        <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" alt="Urna Baja 1" class="carrusel-img">
+                    </div>
+                </div>
+                <h3>Urna Económica / Gama Baja</h3>
+                <p>Opción accesible y respetuosa, cumpliendo con los estándares esenciales.</p>
+                <p class="info-asesoria">Cotización con promotores</p>
+                <a href="#contactos" class="btn-accion">Consultar</a>
             </div>
 
         </div>
@@ -547,7 +788,11 @@
         </div>
     </div>
 
-
+<!------------------------------ MODAL LIGHTBOX ------------------------------>
+    <div id="modalLightbox" class="modal-lightbox">
+        <span class="cerrar-modal">&times;</span>
+        <img id="imgAmpliada" src="" alt="Imagen ampliada">
+    </div>
 <!------------------------------ PIE DE PÁGINA ------------------------------>
     <footer class="footer-disclaimer">
         <a href="https://www.facebook.com" target="_blank" class="btn-facebook">Visitar Facebook</a>
@@ -588,6 +833,107 @@
                 setTimeout(() => {
                     cajaSubmenu.style.display = '';
                 }, 300);
+            });
+        });
+
+        // 3. Funcionalidad de Carruseles, Filtros y Lightbox
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // A. Lógica para los Carruseles de cada tarjeta
+            document.querySelectorAll('.carrusel-tarjeta').forEach(carrusel => {
+                const track = carrusel.querySelector('.carrusel-track');
+                const imgs = track.querySelectorAll('.carrusel-img');
+                const btnPrev = carrusel.querySelector('.btn-prev');
+                const btnNext = carrusel.querySelector('.btn-next');
+                let index = 0;
+
+                function actualizarCarrusel() {
+                    if (track) track.style.transform = `translateX(-${index * 100}%)`;
+                }
+
+                // Solo agregar el evento si el botón "Siguiente" existe en la tarjeta
+                if (btnNext) {
+                    btnNext.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        index = (index + 1) % imgs.length;
+                        actualizarCarrusel();
+                    });
+                }
+
+                // Solo agregar el evento si el botón "Anterior" existe en la tarjeta
+                if (btnPrev) {
+                    btnPrev.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        index = (index - 1 + imgs.length) % imgs.length;
+                        actualizarCarrusel();
+                    });
+                }
+            });
+
+            // B. Lógica de Filtros (Alta, Media, Baja)
+            const botonesFiltro = document.querySelectorAll('.btn-filtro-ataud');
+            const tarjetasCatalogo = document.querySelectorAll('.tarjeta-catalogo');
+
+            botonesFiltro.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    // Cambiar clase activo al botón
+                    botonesFiltro.forEach(b => b.classList.remove('activo'));
+                    boton.classList.add('activo');
+
+                    const categoria = boton.getAttribute('data-filtro');
+
+                    tarjetasCatalogo.forEach(tarjeta => {
+                        if (categoria === 'todos' || tarjeta.getAttribute('data-categoria') === categoria) {
+                            tarjeta.style.display = 'block';
+                        } else {
+                            tarjeta.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // C. Lógica del Lightbox (Ampliar imagen al hacer clic)
+            const modal = document.getElementById('modalLightbox');
+            const imgAmpliada = document.getElementById('imgAmpliada');
+            const spanCerrar = document.querySelector('.cerrar-modal');
+
+            document.querySelectorAll('.carrusel-img').forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.style.display = 'flex';
+                    imgAmpliada.src = img.src;
+                });
+            });
+
+            spanCerrar.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+
+        // D. Lógica de Filtros para la sección de Cremaciones
+        const botonesFiltroCremacion = document.querySelectorAll('.btn-filtro-cremacion');
+        const tarjetasCremacion = document.querySelectorAll('.tarjeta-cremacion');
+
+        botonesFiltroCremacion.forEach(boton => {
+            boton.addEventListener('click', () => {
+                // Cambiar clase activo a los botones de cremación
+                botonesFiltroCremacion.forEach(b => b.classList.remove('activo'));
+                boton.classList.add('activo');
+
+                const categoria = boton.getAttribute('data-filtro');
+
+                tarjetasCremacion.forEach(tarjeta => {
+                    if (categoria === 'todos' || tarjeta.getAttribute('data-categoria') === categoria) {
+                        tarjeta.style.display = 'block';
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                });
             });
         });
     </script>

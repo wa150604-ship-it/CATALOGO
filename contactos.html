@@ -3,60 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Velatorios IMSS</title>
+    <title>Contactos | Velatorios IMSS</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: transparent;"> 
-    
+<body>
     <header class="header-fijo">
         <div class="nav-container">
             <div class="logo-sitio"><a href="index.html">Velatorios IMSS</a></div>
-            
             <div class="menu-toggle" id="mobile-menu-btn"><span></span><span></span><span></span></div>
-            
             <nav class="nav-links" id="nav-menu">
-                <a href="index.html" class="activo">Inicio</a>
+                <a href="index.html">Inicio</a>
                 <a href="catalogo.html">Catálogo</a>
-                <a href="contactos.html">Contactos</a>
+                <a href="contactos.html" class="activo">Contactos</a>
             </nav>
         </div>
     </header>
 
-    <!-- Video en pausa por defecto -->
-    <video id="videoFondo" loop muted playsinline class="video-background">
+    <!-- Video de fondo automático -->
+    <video autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
         <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
     </video>
     
-    <div class="overlay"></div>
-    
-    <!-- Botón de Reproducir / Pausar -->
-    <button id="btnVideo" class="boton-sonido">▶️ Reproducir Video</button>
+    <!-- CORRECCIÓN: Un solo overlay con opacidad 0.5 para que se vea igual que el catálogo -->
+    <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -2;"></div>
 
-    <div class="hero-section">
-        <div class="contenido-central">
-            <h1 style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.7);">VELATORIOS<br>IMSS N° 20</h1>
-            <p style="color: #e0e0e0; text-shadow: 0 1px 3px rgba(0,0,0,0.7);">Atención Integral y Solidaria</p>
-        </div>
-    </div>
+    <div id="contactos" class="seccion-contenido" style="padding-top: 100px;">
+        <h2 class="titulo-seccion">Directorio de Promotores</h2>
+        <div class="grid-tarjetas">
+            <div class="tarjeta">
+                <div class="contenedor-imagenes-promotor">
+                    <img src="MULTIMEDIA/IMAGENES/temporal.png" alt="Hospital" class="img-hospital">
+                    <img src="MULTIMEDIA/IMAGENES/itemporal.png" alt="Icono Usuario" class="img-icono">
+                </div>
+                <h3>Ulises Vargas</h3>
+                <p>HSZ 68 <br> 21</p>
+                <a href="https://wa.me/525611881243" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
 
-    <!-- Sección Ubicación con padding inferior en 0 para eliminar la brecha -->
-    <div id="ubicacion" class="seccion-contenido" style="min-height: auto !important; height: auto !important; padding: 40px 20px 0px 20px !important; margin-bottom: 0 !important;">
-        <h2 class="titulo-seccion" style="margin-top: 0; margin-bottom: 20px;">Nuestra Ubicación</h2>
-        
-        <div style="text-align: center; margin-bottom: 20px;">
-            <h3 style="color: #4CAF50; font-size: 1.4rem; margin-bottom: 8px; letter-spacing: 1px;">VELATORIO IMSS No.20 ECATEPEC</h3>
-            <p style="color: #ddd; font-size: 1rem; line-height: 1.4;">Vía Morelos 74, Santa Clara Coatitla,<br>55540 Ecatepec de Morelos, Méx.</p>
-        </div>
+            <div class="tarjeta">
+                <div class="contenedor-imagenes-promotor">
+                    <img src="MULTIMEDIA/IMAGENES/temporal.png" alt="Hospital" class="img-hospital">
+                    <img src="MULTIMEDIA/IMAGENES/itemporal.png" alt="Icono Usuario" class="img-icono">
+                </div>
+                <h3>Gabriela Hernández</h3>
+                <p>HGZ 98<br>30</p>
+                <a href="https://wa.me/525560740429" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
 
-        <div style="max-width: 900px; margin: 0 auto; width: 100%;">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15040.500383069857!2d-99.062996!3d19.536242200000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f083e49ea975%3A0x465a653b61961aeb!2sVELATORIO%20IMSS%20No.20%20ECATEPEC!5e0!3m2!1ses-419!2smx!4v1785873850974!5m2!1ses-419!2smx" 
-                width="100%" 
-                height="380" 
-                style="border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); display: block;" 
-                allowfullscreen="" 
-                loading="lazy">
-            </iframe>
+            <div class="tarjeta">
+                <div class="contenedor-imagenes-promotor">
+                    <img src="MULTIMEDIA/IMAGENES/temporal.png" alt="Hospital" class="img-hospital">
+                    <img src="MULTIMEDIA/IMAGENES/itemporal.png" alt="Icono Usuario" class="img-icono">
+                </div>
+                <h3>Nayeli Chagoya</h3>
+                <p>HGZ 76<br>59</p>
+                <p>HGZ 197<br>11</p>
+                <a href="https://wa.me/525521301206" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
+
+            <div class="tarjeta">
+                <div class="contenedor-imagenes-promotor">
+                    <img src="MULTIMEDIA/IMAGENES/temporal.png" alt="Hospital" class="img-hospital">
+                    <img src="MULTIMEDIA/IMAGENES/itemporal.png" alt="Icono Usuario" class="img-icono">
+                </div>
+                <h3>Benita Andrea </h3>
+                <p> HGR 196<br>63</p>
+                <p> HGR 200<br>11</p>
+                <a href="https://wa.me/525645507653" target="_blank" class="btn-accion">💬 WhatsApp</a>
+            </div>
         </div>
     </div>
 
@@ -104,30 +118,5 @@
     </footer>
 
     <script src="main.js"></script>
-    
-    <!-- Script para Reproducir/Pausar video y forzar el scroll arriba al recargar -->
-    <script>
-        // Evita que el navegador recuerde la posición anterior al recargar
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
-
-        // Control de Reproducir / Pausar Video
-        const video = document.getElementById('videoFondo');
-        const btnVideo = document.getElementById('btnVideo');
-
-        if (video && btnVideo) {
-            btnVideo.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    btnVideo.textContent = '⏸️ Pausar Video';
-                } else {
-                    video.pause();
-                    btnVideo.textContent = '▶️ Reproducir Video';
-                }
-            });
-        }
-    </script>
 </body>
 </html>

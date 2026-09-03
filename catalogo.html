@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Velatorios IMSS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header-fijo">
+        <div class="nav-container">
+            <div class="logo-sitio"><a href="index.html">Velatorios IMSS</a></div>
+            <div class="menu-toggle" id="mobile-menu-btn"><span></span><span></span><span></span></div>
+            <nav class="nav-links" id="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="catalogo.html" class="activo">Catálogo</a>
+                <a href="contactos.html">Contactos</a>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Video de fondo automático -->
+    <video autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
+        <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+    </video>
+    
+    <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -2;"></div>
+
+    <div class="seccion-contenido" style="padding-top: 85px;">
+        <!-- FILTROS MACRO ACTUALIZADOS -->
+        <div class="filtros-macro" style="padding-top: 10px; margin-bottom: 30px;">
+            <button class="btn-filtro-macro activo" data-target="todos">Todos los servicios</button>
+            <button class="btn-filtro-macro" data-target="paquetes">Paquetes</button>
+            <button class="btn-filtro-macro" data-target="ataudes">Ataúdes</button>
+            <button class="btn-filtro-macro" data-target="urnas">Urnas</button>
+            <button class="btn-filtro-macro" data-target="instalaciones">Instalaciones</button>
+        </div>
+
+        <!-- GRUPO: PAQUETES -->
+        <div id="seccion-paquetes" class="grupo-macro">
+            <div class="seccion-contenido" style="border-top: none;">
+                <h2 class="titulo-seccion">Nuestros Paquetes</h2>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Paquete Económico</h3>
+                        <p>Uso de capilla por 24 horas, ataúd básico, arreglo estético y servicio de carroza al panteón.</p>
+                        <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRUPO: ATAÚDES -->
+        <div id="seccion-ataudes" class="grupo-macro">
+            <div class="seccion-contenido" style="border-top: none;">
+                <h2 class="titulo-seccion">Catálogo de Ataúdes</h2>
+                
+                <div class="filtros-catalogo">
+                    <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
+                    <button class="btn-filtro-ataud btn-filtro" data-filtro="alta">Gama Alta</button>
+                    <button class="btn-filtro-ataud btn-filtro" data-filtro="media">Gama Media</button>
+                    <button class="btn-filtro-ataud btn-filtro" data-filtro="baja">Gama Baja</button>
+                </div>
+
+                <div class="grid-tarjetas">
+                    <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Ataúd de Gama Alta</h3>
+                        <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+
+                    <div class="tarjeta tarjeta-catalogo" data-categoria="media">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png" alt="Ataúd Gama Media" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-4.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Ataúd de Gama Media</h3>
+                        <p>Diseño tradicional sólido con excelentes acabados y confort visual.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+
+                    <div class="tarjeta tarjeta-catalogo" data-categoria="baja">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-1.png" alt="Ataúd Gama Baja" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-4.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Ataúd Económico / Baja</h3>
+                        <p>Opción accesible y digna, cumpliendo con los estándares esenciales.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <!-- GRUPO: URNAS -->
+        <div id="seccion-urnas" class="grupo-macro">
+            <div class="seccion-contenido" style="border-top: none;">
+                <h2 class="titulo-seccion">Catálogo de Urnas</h2>
+                
+                <div class="filtros-catalogo">
+                    <button class="btn-filtro-cremacion btn-filtro activo" data-filtro="todos">Todos</button>
+                    <button class="btn-filtro-cremacion btn-filtro" data-filtro="alta">Gama Alta</button>
+                    <button class="btn-filtro-cremacion btn-filtro" data-filtro="media">Gama Media</button>
+                    <button class="btn-filtro-cremacion btn-filtro" data-filtro="baja">Gama Baja</button>
+                </div>
+
+                <div class="grid-tarjetas">
+                    <div class="tarjeta tarjeta-cremacion" data-categoria="alta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" alt="Urna Gama Alta" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Urna de Gama Alta</h3>
+                        <p>Diseño exclusivo en materiales finos, acabados detallados y máxima elegancia.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+
+                    <div class="tarjeta tarjeta-cremacion" data-categoria="media">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" alt="Urna Gama Media" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Urna de Gama Media</h3>
+                        <p>Estilo tradicional y sobrio con excelentes acabados y gran durabilidad.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+
+                    <div class="tarjeta tarjeta-cremacion" data-categoria="baja">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" alt="Urna Gama Baja" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
+                        <h3>Urna Económica / Gama Baja</h3>
+                        <p>Opción accesible y respetuosa, cumpliendo con los estándares esenciales.</p>
+                        <p class="info-asesoria">Cotización con promotores</p>
+                        <a href="contactos.html" class="btn-accion">Consultar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRUPO: INSTALACIONES -->
+        <div id="seccion-instalaciones" class="grupo-macro">
+            <h2 class="titulo-seccion" style="font-size: 2.2rem; margin-top: 40px; color: #fff; text-align: center;">Instalaciones</h2>
+            
+            <div class="seccion-contenido" style="border-top: none;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Capillas</h3>
+                <div class="grid-tarjetas tarjeta-centrada"> 
+                    <div class="tarjeta">
+                        <h3>Capillas de Velación</h3>
+                        <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
+                        <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Oratorio</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Oratorio</h3>
+                        <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
+                        <p class="info-asesoria">Acceso libre para visitantes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Estancia Infantil</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Estancia Infantil</h3>
+                        <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
+                        <p class="info-asesoria">Servicio gratuito</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Cafetería</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Cafetería</h3>
+                        <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
+                        <p class="info-asesoria">Consumo a la carta</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+    </div>
+
+    <!-- Modal Lightbox -->
+    <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
+        <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10000; user-select: none;">&times;</span>
+        
+        <!-- Botones de Galería Anterior / Siguiente -->
+        <button id="modalPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10094;</button>
+        <button id="modalNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10095;</button>
+
+        <!-- Contenedor de la Imagen Ampliada -->
+        <div id="modalZoomContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+            <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in;">
+        </div>
+
+        <!-- NUEVO: Contenedor para los puntos indicadores de la galería -->
+        <div id="modalIndicadores" style="position: absolute; bottom: 50px; display: flex; gap: 8px; z-index: 10000; pointer-events: none;"></div>
+
+    </div>
+
+    <!------------------------------ PIE DE PÁGINA ------------------------------>
+    <footer class="footer-disclaimer" style="background-color: rgba(0, 0, 0, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 0 !important; position: relative; z-index: 2;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 20px auto;">
+            
+            <div style="text-align: center; flex: 1; min-width: 200px; cursor: pointer;" class="elemento-copiable" data-valor="vel.imss20@gmail.com" title="Haz clic para copiar correo">
+                <p style="font-weight: bold; color: #4CAF50; margin-bottom: 5px;">Correo </p>
+                <p style="color: #ddd; font-size: 0.95rem; text-align: center;" class="texto-a-copiar">vel.imss20@gmail.com</p>
+            </div>
+            
+            <div style="text-align: center; flex: 1; min-width: 200px;">
+                <p style="font-weight: bold; color: #4CAF50; margin-bottom: 8px;">Teléfonos</p>
+                <div class="elemento-copiable" data-valor="55 57 91 48 44" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9srem; text-align: center;" class="texto-a-copiar">55 57 91 48 44</p></div>
+                <div class="elemento-copiable" data-valor="55 57 88 52 62" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 88 52 62</p></div>
+                <div class="elemento-copiable" data-valor="55 57 91 37 78" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 37 78</p></div>
+                <div class="elemento-copiable" data-valor="55 56 99 52 95" style="cursor: pointer;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p></div>
+            </div>
+            
+            <div style="text-align: center; flex: 1; min-width: 200px; display: flex; justify-content: center; align-items: center;">
+                <a href="https://www.facebook.com" target="_blank" class="btn-facebook" style="background-color: #1877f2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Visitar Facebook</a>
+            </div>
+            
+        </div>
+        
+        <p style="font-size: 0.85rem; color: #aaa; max-width: 800px; margin: 0 auto; line-height: 1.5; text-align: center;">
+            Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social.
+        </p>
+    </footer>
+
+    <script src="main.js"></script>
+    
+    <!-- Script de Control con Indicadores Actualizados -->
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Control de Filtros Macro
+            const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
+            const gruposMacro = document.querySelectorAll('.grupo-macro');
+
+            botonesMacro.forEach(boton => {
+                boton.addEventListener('click', () => {
+                    botonesMacro.forEach(b => b.classList.remove('activo'));
+                    boton.classList.add('activo');
+
+                    const target = boton.getAttribute('data-target');
+
+                    gruposMacro.forEach(grupo => {
+                        if (target === 'todos') {
+                            grupo.style.display = 'block';
+                        } else {
+                            if (grupo.id === 'seccion-' + target) {
+                                grupo.style.display = 'block';
+                            } else {
+                                grupo.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+
+            // 2. Galería Lightbox, Zoom, Arrastre e Indicadores de Puntos
+            let galeriaActual = [];
+            let indiceActual = 0;
+            let escala = 1;
+            let posX = 0;
+            let posY = 0;
+            let arrastrando = false;
+            let inicioX = 0;
+            let inicioY = 0;
+            let downX = 0;
+            let downY = 0;
+            let isDragging = false;
+
+            const modal = document.getElementById('modalLightbox');
+            const imgAmpliada = document.getElementById('imgAmpliada');
+            const btnCerrar = document.querySelector('.cerrar-modal');
+            const btnPrev = document.getElementById('modalPrev');
+            const btnNext = document.getElementById('modalNext');
+            const modalIndicadores = document.getElementById('modalIndicadores');
+
+            function actualizarImagenModal() {
+                if (galeriaActual.length > 0) {
+                    imgAmpliada.src = galeriaActual[indiceActual];
+                    resetZoom();
+                    
+                    // Mostrar u ocultar flechas según la cantidad de imágenes
+                    if (galeriaActual.length > 1) {
+                        btnPrev.style.display = 'block';
+                        btnNext.style.display = 'block';
+                    } else {
+                        btnPrev.style.display = 'none';
+                        btnNext.style.display = 'none';
+                    }
+
+                    // Generar y actualizar puntos indicadores blancos
+                    if (modalIndicadores) {
+                        modalIndicadores.innerHTML = '';
+                        if (galeriaActual.length > 1) {
+                            galeriaActual.forEach((_, idx) => {
+                                const punto = document.createElement('div');
+                                punto.style.width = '10px';
+                                punto.style.height = '10px';
+                                punto.style.borderRadius = '50%';
+                                punto.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
+                                
+                                if (idx === indiceActual) {
+                                    punto.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                                    punto.style.transform = 'scale(1.3)';
+                                } else {
+                                    punto.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                                    punto.style.transform = 'scale(1)';
+                                }
+                                modalIndicadores.appendChild(punto);
+                            });
+                        }
+                    }
+                }
+            }
+
+            function resetZoom() {
+                escala = 1;
+                posX = 0;
+                posY = 0;
+                actualizarTransformacion();
+            }
+
+            function actualizarTransformacion() {
+                imgAmpliada.style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
+                if (escala > 1) {
+                    imgAmpliada.style.cursor = 'grab';
+                } else {
+                    imgAmpliada.style.cursor = 'zoom-in';
+                }
+            }
+
+            // Abrir modal al hacer clic en las imágenes de las tarjetas
+            document.querySelectorAll('.carrusel-img').forEach(img => {
+                img.addEventListener('click', () => {
+                    const dataGaleria = img.getAttribute('data-galeria');
+                    if (dataGaleria) {
+                        galeriaActual = dataGaleria.split(',').map(url => url.trim());
+                    } else {
+                        galeriaActual = [img.src];
+                    }
+                    indiceActual = 0;
+                    actualizarImagenModal();
+                    modal.style.display = 'flex';
+                });
+            });
+
+            // Cerrar modal
+            const cerrarModalFunc = () => {
+                modal.style.display = 'none';
+                resetZoom();
+                if (modalIndicadores) modalIndicadores.innerHTML = '';
+            };
+
+            btnCerrar.addEventListener('click', cerrarModalFunc);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    cerrarModalFunc();
+                }
+            });
+
+            // Botones Anterior / Siguiente
+            btnPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (galeriaActual.length > 1) {
+                    indiceActual = (indiceActual - 1 + galeriaActual.length) % galeriaActual.length;
+                    actualizarImagenModal();
+                }
+            });
+
+            btnNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (galeriaActual.length > 1) {
+                    indiceActual = (indiceActual + 1) % galeriaActual.length;
+                    actualizarImagenModal();
+                }
+            });
+
+            // Control de Arrastre sobre la imagen ampliada
+            imgAmpliada.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                e.preventDefault();
+                
+                downX = e.clientX;
+                downY = e.clientY;
+                inicioX = e.clientX - posX;
+                inicioY = e.clientY - posY;
+                isDragging = false;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (e.buttons === 0) {
+                    arrastrando = false;
+                    return;
+                }
+                const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
+                if (dist > 5) {
+                    isDragging = true;
+                    if (escala > 1) {
+                        arrastrando = true;
+                        posX = e.clientX - inicioX;
+                        posY = e.clientY - inicioY;
+                        actualizarTransformacion();
+                        imgAmpliada.style.cursor = 'grabbing';
+                    }
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (arrastrando) {
+                    arrastrando = false;
+                    if (escala > 1) imgAmpliada.style.cursor = 'grab';
+                }
+            });
+
+            // Control de Zoom con un solo Clic sobre la imagen
+            imgAmpliada.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
+                if (isDragging || dist > 5) return; 
+
+                if (escala === 1) {
+                    escala = 2.5; 
+                } else {
+                    escala = 1; 
+                    posX = 0;
+                    posY = 0;
+                }
+                actualizarTransformacion();
+            });
+        });
+    </script>
+</body>
+</html>

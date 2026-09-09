@@ -304,24 +304,74 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // CONTROL DE VIDEO DE FONDO Y BOTÓN DE SONIDO
+    // CONTROL DE VIDEO DE FONDO, SONIDO, PLAY/PAUSE Y REINICIO
     // --------------------------------------------------------
     const videoFondo = document.getElementById('videoFondo');
+    const videoFondoBlur = document.getElementById('videoFondoBlur');
     const btnSonido = document.getElementById('btnSonido');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnReiniciar = document.getElementById('btnReiniciar');
 
-    if (videoFondo && btnSonido) {
-        videoFondo.play().catch(e => console.log("Autoplay bloqueado por el navegador:", e));
+    if (videoFondo) {
+        // Asegurar que ambos videos inicien pausados y silenciados
+        videoFondo.pause();
+        videoFondo.muted = true;
+        if (videoFondoBlur) {
+            videoFondoBlur.pause();
+            videoFondoBlur.muted = true;
+        }
 
-        btnSonido.addEventListener('click', () => {
-            if (videoFondo.muted) {
-                videoFondo.muted = false;
-                videoFondo.play();
-                btnSonido.textContent = '🔇 Silenciar Video';
-            } else {
+        // Control de Sonido (afecta al video principal y blur)
+        if (btnSonido) {
+            btnSonido.addEventListener('click', () => {
+                if (videoFondo.muted) {
+                    videoFondo.muted = false;
+                    videoFondo.play();
+                    if (videoFondoBlur) videoFondoBlur.play();
+                    btnSonido.textContent = '🔊';
+                } else {
+                    videoFondo.muted = true;
+                    btnSonido.textContent = '🔇';
+                }
+            });
+        }
+
+        // Control de Play / Pausa sincronizado para ambos videos
+        if (btnPlayPause) {
+            btnPlayPause.addEventListener('click', () => {
+                if (videoFondo.paused) {
+                    videoFondo.play();
+                    if (videoFondoBlur) videoFondoBlur.play();
+                    btnPlayPause.textContent = '❚❚'; // Icono de pausa
+                    btnPlayPause.title = 'Pausar video';
+                } else {
+                    videoFondo.pause();
+                    if (videoFondoBlur) videoFondoBlur.pause();
+                    btnPlayPause.textContent = '►';  // Icono de play
+                    btnPlayPause.title = 'Reproducir video';
+                }
+            });
+        }
+
+        // Control de Reinicio sincronizado para ambos videos
+        if (btnReiniciar) {
+            btnReiniciar.addEventListener('click', () => {
+                videoFondo.currentTime = 0;
+                videoFondo.pause();
                 videoFondo.muted = true;
-                btnSonido.textContent = '▶️ Reproducir / Activar Sonido';
-            }
-        });
+                
+                if (videoFondoBlur) {
+                    videoFondoBlur.currentTime = 0;
+                    videoFondoBlur.pause();
+                    videoFondoBlur.muted = true;
+                }
+
+                if (btnPlayPause) {
+                    btnPlayPause.textContent = '►'; 
+                    btnPlayPause.title = 'Reproducir video';
+                }
+            });
+        }
     }
 
     // --------------------------------------------------------

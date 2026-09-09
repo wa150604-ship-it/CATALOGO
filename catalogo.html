@@ -20,11 +20,14 @@
     </header>
     
     <!-- Video de fondo automático -->
-    <video autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
+    <video id="videoFondo" autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
         <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
     </video>
     
     <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -2;"></div>
+
+    <!-- Botón de Reproducir / Activar Sonido -->
+    <button id="btnSonido" class="boton-sonido" style="width: 50px; height: 50px; border-radius: 50%; padding: 0; font-size: 1.5rem; display: flex; justify-content: center; align-items: center;" title="Activar / Desactivar Sonido">🔇</button>
 
     <div class="seccion-contenido" style="padding-top: 85px;">
         <!-- FILTROS MACRO ACTUALIZADOS -->
@@ -213,7 +216,7 @@
             <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in;">
         </div>
 
-        <!-- NUEVO: Contenedor para los puntos indicadores de la galería -->
+        <!-- Contenedor para los puntos indicadores de la galería -->
         <div id="modalIndicadores" style="position: absolute; bottom: 50px; display: flex; gap: 8px; z-index: 10000; pointer-events: none;"></div>
 
     </div>

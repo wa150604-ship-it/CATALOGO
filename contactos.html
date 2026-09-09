@@ -20,12 +20,14 @@
     </header>
 
     <!-- Video de fondo automático -->
-    <video autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
+    <video id="videoFondo" autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
         <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
     </video>
     
-    <!-- CORRECCIÓN: Un solo overlay con opacidad 0.5 para que se vea igual que el catálogo -->
     <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -2;"></div>
+
+    <!-- Botón de Reproducir / Activar Sonido -->
+    <button id="btnSonido" class="boton-sonido" style="width: 50px; height: 50px; border-radius: 50%; padding: 0; font-size: 1.5rem; display: flex; justify-content: center; align-items: center;" title="Activar / Desactivar Sonido">🔇</button>
 
     <div id="contactos" class="seccion-contenido" style="padding-top: 100px;">
         <h2 class="titulo-seccion">Directorio de Promotores</h2>
@@ -78,34 +80,19 @@
     <footer class="footer-disclaimer" style="background-color: rgba(0, 0, 0, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 0 !important; position: relative; z-index: 2;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 20px auto;">
             
-            <!-- Correo copiable -->
             <div style="text-align: center; flex: 1; min-width: 200px; cursor: pointer;" class="elemento-copiable" data-valor="vel.imss20@gmail.com" title="Haz clic para copiar correo">
                 <p style="font-weight: bold; color: #4CAF50; margin-bottom: 5px;">Correo </p>
                 <p style="color: #ddd; font-size: 0.95rem; text-align: center;" class="texto-a-copiar">vel.imss20@gmail.com</p>
             </div>
             
-            <!-- Teléfonos copiables individualmente -->
             <div style="text-align: center; flex: 1; min-width: 200px;">
                 <p style="font-weight: bold; color: #4CAF50; margin-bottom: 8px;">Teléfonos</p>
-                
-                <div class="elemento-copiable" data-valor="55 57 91 48 44" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;">
-                    <p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 48 44</p>
-                </div>
-                
-                <div class="elemento-copiable" data-valor="55 57 88 52 62" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;">
-                    <p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 88 52 62</p>
-                </div>
-                
-                <div class="elemento-copiable" data-valor="55 57 91 37 78" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;">
-                    <p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 37 78</p>
-                </div>
-                
-                <div class="elemento-copiable" data-valor="55 56 99 52 95" title="Haz clic para copiar este número" style="cursor: pointer;">
-                    <p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p>
-                </div>
+                <div class="elemento-copiable" data-valor="55 57 91 48 44" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 48 44</p></div>
+                <div class="elemento-copiable" data-valor="55 57 88 52 62" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 88 52 62</p></div>
+                <div class="elemento-copiable" data-valor="55 57 91 37 78" title="Haz clic para copiar este número" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 37 78</p></div>
+                <div class="elemento-copiable" data-valor="55 56 99 52 95" title="Haz clic para copiar este número" style="cursor: pointer;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p></div>
             </div>
             
-            <!-- Botón Facebook -->
             <div style="text-align: center; flex: 1; min-width: 200px; display: flex; justify-content: center; align-items: center;">
                 <a href="https://www.facebook.com" target="_blank" class="btn-facebook" style="background-color: #1877f2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Visitar Facebook</a>
             </div>

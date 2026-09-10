@@ -49,27 +49,6 @@ body
 .logo-sitio a:hover 
 { color: #4CAF50; }
 
-.menu-toggle 
-{ 
-    display: none; 
-    flex-direction: column; 
-    justify-content: space-between; 
-    width: 35px; 
-    height: 24px; 
-    cursor: pointer; 
-    z-index: 1001; 
-}
-
-.menu-toggle span 
-{ 
-    display: block; 
-    width: 100%; 
-    height: 3px; 
-    background-color: #fff; 
-    border-radius: 2px; 
-    transition: all 0.3s ease; 
-}
-
 .nav-links 
 { 
     display: flex; 
@@ -150,7 +129,8 @@ body
     height: 100vh; 
     display: flex; 
     flex-direction: column; 
-    justify-content: center; 
+    justify-content: flex-end;
+    padding-bottom: 80px;
 }
 
 .contenido-central 
@@ -481,62 +461,6 @@ body
     text-decoration: none; 
     font-weight: bold; 
     display: inline-block; 
-}
-
-/* RESPONSIVO */
-@media (max-width: 768px) 
-{
-    .menu-toggle 
-    { display: flex; }
-
-    .nav-links 
-    { 
-        position: fixed; 
-        top: 0; 
-        right: -100%; 
-        width: 75%; 
-        height: 100vh; 
-        background-color: rgba(15, 15, 15, 0.98); 
-        flex-direction: column; 
-        justify-content: flex-start; 
-        padding-top: 100px; 
-        transition: right 0.4s ease; 
-        box-shadow: -5px 0 20px rgba(0,0,0,0.7); 
-    }
-    
-    .nav-links.active 
-    { right: 0; }
-    
-    .hero-section 
-    { 
-        height: 60vh; 
-        justify-content: flex-end; 
-        padding-bottom: 30px; 
-    }
-    
-    .contenido-central h1 
-    { font-size: 2.8rem; }
-    
-    #contactos .grid-tarjetas 
-    { grid-template-columns: 1fr; }
-
-    /* NUEVO: Ajustes para los videos en móviles */
-    .video-container-bg
-    {
-        height: 60vh;
-    }
-
-    .video-background 
-    { 
-        height: 60vh; 
-        object-fit: contain; 
-    }
-    
-    .video-background-blur 
-    { 
-        height: 60vh; 
-        object-fit: cover; 
-    }
 }
 
 /* Estilos para los botones del carrusel de imágenes */

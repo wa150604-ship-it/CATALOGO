@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
 
     // --------------------------------------------------------
-    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES (Opcional en tarjeta si se usa)
+    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES
     // --------------------------------------------------------
     const carruseles = document.querySelectorAll('.carrusel-tarjeta');
     
@@ -111,7 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const imagenesParaZoom = document.querySelectorAll('.carrusel-img');
     const modalIndicadores = document.getElementById('modalIndicadores');
     
-    // Referencias opcionales si tienes botones de flecha dentro del modal Lightbox
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
 
@@ -145,13 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
             actualizarTransformacion();
         }
 
-        // Función para actualizar la imagen y redibujar los puntos indicadores
         function actualizarImagenModal() {
             if (galeriaActual.length > 0) {
                 imgAmpliada.src = galeriaActual[indiceActual];
                 resetZoom();
 
-                // Mostrar u ocultar flechas del modal si existen
                 if (modalPrev && modalNext) {
                     if (galeriaActual.length > 1) {
                         modalPrev.style.display = 'block';
@@ -162,9 +159,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
-                // Generar los puntos blancos indicadores
                 if (modalIndicadores) {
-                    modalIndicadores.innerHTML = ''; // Limpiar puntos anteriores
+                    modalIndicadores.innerHTML = '';
                     
                     if (galeriaActual.length > 1) {
                         galeriaActual.forEach((_, idx) => {
@@ -205,7 +201,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Eventos para los botones de anterior/siguiente del modal (si los tienes)
         if (modalPrev) {
             modalPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -226,7 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Control de Arrastre
         imgAmpliada.addEventListener('mousedown', (e) => {
             if (e.button !== 0) return;
             e.preventDefault(); 
@@ -262,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Zoom con un solo Clic
         imgAmpliada.addEventListener('click', (e) => {
             e.stopPropagation();
             const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
@@ -278,7 +271,6 @@ document.addEventListener("DOMContentLoaded", () => {
             actualizarTransformacion();
         });
 
-        // Cerrar modal
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
             resetZoom();
@@ -295,7 +287,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Cerrar modal con la tecla Escape (ESC)
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && modalLightbox.style.display === 'flex') {
                 cerrarModalFunc();
@@ -304,7 +295,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // CONTROL DE VIDEO DE FONDO, SONIDO, PLAY/PAUSE Y REINICIO
+    // 5. CONTROL DE VIDEO DE FONDO, SONIDO, PLAY/PAUSE Y REINICIO
     // --------------------------------------------------------
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
@@ -313,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        // Asegurar que ambos videos inicien pausados y silenciados
         videoFondo.pause();
         videoFondo.muted = true;
         if (videoFondoBlur) {
@@ -321,7 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
             videoFondoBlur.muted = true;
         }
 
-        // Control de Sonido (afecta al video principal y blur)
         if (btnSonido) {
             btnSonido.addEventListener('click', () => {
                 if (videoFondo.muted) {
@@ -336,24 +325,22 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Control de Play / Pausa sincronizado para ambos videos
         if (btnPlayPause) {
             btnPlayPause.addEventListener('click', () => {
                 if (videoFondo.paused) {
                     videoFondo.play();
                     if (videoFondoBlur) videoFondoBlur.play();
-                    btnPlayPause.textContent = '❚❚'; // Icono de pausa
+                    btnPlayPause.textContent = '❚❚';
                     btnPlayPause.title = 'Pausar video';
                 } else {
                     videoFondo.pause();
                     if (videoFondoBlur) videoFondoBlur.pause();
-                    btnPlayPause.textContent = '►';  // Icono de play
+                    btnPlayPause.textContent = '►';
                     btnPlayPause.title = 'Reproducir video';
                 }
             });
         }
 
-        // Control de Reinicio sincronizado para ambos videos
         if (btnReiniciar) {
             btnReiniciar.addEventListener('click', () => {
                 videoFondo.currentTime = 0;
@@ -375,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // COPIAR AL PORTAPAPELES DESDE EL FOOTER
+    // 6. COPIAR AL PORTAPAPELES DESDE EL FOOTER
     // --------------------------------------------------------
     document.querySelectorAll('.elemento-copiable').forEach(elemento => {
         elemento.addEventListener('click', () => {

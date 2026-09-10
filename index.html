@@ -2,6 +2,7 @@
 <html lang="es"> 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Velatorios IMSS</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,6 +12,13 @@
         <div class="nav-container">
             <div class="logo-sitio"><a href="index.html">Velatorios IMSS</a></div>
             
+            <!-- Botón Menú Hamburguesa para Móviles -->
+            <div class="menu-toggle" id="mobile-menu-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
             <nav class="nav-links" id="nav-menu">
                 <a href="index.html" class="activo">Inicio</a>
                 <a href="catalogo.html">Catálogo</a>
@@ -34,7 +42,7 @@
     
     <div class="overlay"></div>
     
-    <!-- Contenedor los los botones -->
+    <!-- Contenedor los botones -->
     <div style="position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; gap: 15px;">
         <!-- Reproducir / Pausar -->
         <button id="btnPlayPause" class="boton-sonido" style="position: static; width: 50px; height: 50px; border-radius: 50%; padding: 0; font-size: 1.5rem; display: flex; justify-content: center; align-items: center;" title="Reproducir / Pausar">►</button>

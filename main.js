@@ -1,5 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+
+    // --------------------------------------------------------
+    // 0. MENÚ HAMBURGUESA PARA DISPOSITIVOS MÓVILES
+    // --------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (mobileMenuBtn && navMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
     // --------------------------------------------------------
     // 1. LÓGICA DE FILTROS MACRO (Servicios, Catálogo, Instalaciones)
     // --------------------------------------------------------
@@ -36,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const botones = document.querySelectorAll(selectorBotones);
         const tarjetas = document.querySelectorAll(selectorTarjetas);
 
-        if(botones.length > 0 && tarjetas.length > 0) {
+        if (botones.length > 0 && tarjetas.length > 0) {
             botones.forEach(btn => {
                 btn.addEventListener('click', () => {
                     botones.forEach(b => b.classList.remove('activo'));
@@ -274,10 +294,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
             resetZoom();
-            if(modalIndicadores) modalIndicadores.innerHTML = '';
+            if (modalIndicadores) modalIndicadores.innerHTML = '';
         };
 
-        if(cerrarModal) {
+        if (cerrarModal) {
             cerrarModal.addEventListener('click', cerrarModalFunc);
         }
 

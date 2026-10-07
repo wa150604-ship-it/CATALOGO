@@ -314,35 +314,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --------------------------------------------------------
-    // 5. CONTROL DE VIDEO DE FONDO, SONIDO, PLAY/PAUSE Y REINICIO
-    // --------------------------------------------------------
-    const videoFondo = document.getElementById('videoFondo');
-    const videoFondoBlur = document.getElementById('videoFondoBlur');
-    const btnSonido = document.getElementById('btnSonido');
-    const btnPlayPause = document.getElementById('btnPlayPause');
-    const btnReiniciar = document.getElementById('btnReiniciar');
+// --------------------------------------------------------
+// 5. CONTROL DE VIDEO DE FONDO Y BOTONES DE REPRODUCCIÓN
+// --------------------------------------------------------
+const videoFondo = document.getElementById('videoFondo');
+const videoFondoBlur = document.getElementById('videoFondoBlur');
+const btnSonido = document.getElementById('btnSonido');
+const btnPlayPause = document.getElementById('btnPlayPause');
+const btnReiniciar = document.getElementById('btnReiniciar');
 
-    if (videoFondo) {
+if (videoFondo) {
+    // Si la página tiene botones de control de reproducción (index.html)
+    if (btnPlayPause || btnReiniciar) {
         videoFondo.pause();
         videoFondo.muted = true;
         if (videoFondoBlur) {
             videoFondoBlur.pause();
             videoFondoBlur.muted = true;
-        }
-
-        if (btnSonido) {
-            btnSonido.addEventListener('click', () => {
-                if (videoFondo.muted) {
-                    videoFondo.muted = false;
-                    videoFondo.play();
-                    if (videoFondoBlur) videoFondoBlur.play();
-                    btnSonido.textContent = '🔊';
-                } else {
-                    videoFondo.muted = true;
-                    btnSonido.textContent = '🔇';
-                }
-            });
         }
 
         if (btnPlayPause) {
@@ -379,7 +367,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         }
+    } else {
+        // En páginas sin controles manuales (catalogo.html), se reproduce automáticamente en silencio
+        videoFondo.muted = true;
+        videoFondo.play().catch(error => {
+            console.log("Autoplay de video de fondo:", error);
+        });
+
+        if (videoFondoBlur) {
+            videoFondoBlur.muted = true;
+            videoFondoBlur.play().catch(error => {
+                console.log("Autoplay blur:", error);
+            });
+        }
     }
+
+    if (btnSonido) {
+        btnSonido.addEventListener('click', () => {
+            if (videoFondo.muted) {
+                videoFondo.muted = false;
+                videoFondo.play();
+                if (videoFondoBlur) videoFondoBlur.play();
+                btnSonido.textContent = '🔊';
+            } else {
+                videoFondo.muted = true;
+                btnSonido.textContent = '🔇';
+            }
+        });
+    }
+}
 
     // --------------------------------------------------------
     // 6. COPIAR AL PORTAPAPELES DESDE EL FOOTER

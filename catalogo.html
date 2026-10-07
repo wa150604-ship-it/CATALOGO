@@ -26,30 +26,79 @@
         </div>
     </header>
     
-    <!-- Video de fondo automático -->
-    <video id="videoFondo" autoplay loop muted playsinline class="video-background" style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; z-index: -3; object-fit: cover;">
+    <!-- Video de fondo desenfocado en automático y en silencio -->
+    <video id="videoFondo" autoplay loop muted playsinline class="video-background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -3; object-fit: cover; filter: blur(6px); transform: scale(1.05);">
         <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+        Tu navegador no soporta video HTML5.
     </video>
     
-    <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -2;"></div>
+    <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.35); z-index: -2;"></div>
 
-    <!-- Botón de Reproducir / Activar Sonido -->
-    <button id="btnSonido" class="boton-sonido" style="width: 50px; height: 50px; border-radius: 50%; padding: 0; font-size: 1.5rem; display: flex; justify-content: center; align-items: center;" title="Activar / Desactivar Sonido">🔇</button>
-
-    <div class="seccion-contenido" style="padding-top: 85px;">
-        <!-- FILTROS MACRO ACTUALIZADOS -->
-        <div class="filtros-macro" style="padding-top: 10px; margin-bottom: 30px;">
+    <!-- CONTENEDOR PRINCIPAL TRANSPARENTE Y CON ESPACIADO SUPERIOR ADECUADO -->
+    <div class="contenedor-catalogo" style="padding-top: 110px; background: transparent; max-width: 1250px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; padding-bottom: 40px;">
+        
+        <!-- FILTROS MACRO -->
+        <div class="filtros-macro" style="margin-bottom: 35px;">
             <button class="btn-filtro-macro activo" data-target="todos">Todos los servicios</button>
+            <button class="btn-filtro-macro" data-target="instalaciones">Instalaciones</button>
             <button class="btn-filtro-macro" data-target="paquetes">Paquetes</button>
             <button class="btn-filtro-macro" data-target="ataudes">Ataúdes</button>
             <button class="btn-filtro-macro" data-target="urnas">Urnas</button>
-            <button class="btn-filtro-macro" data-target="instalaciones">Instalaciones</button>
         </div>
 
-        <!-- GRUPO: PAQUETES -->
+        <!-- 1. GRUPO: INSTALACIONES -->
+        <div id="seccion-instalaciones" class="grupo-macro">
+            <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
+            
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Capillas</h3>
+                <div class="grid-tarjetas tarjeta-centrada"> 
+                    <div class="tarjeta">
+                        <h3>Capillas de Velación</h3>
+                        <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
+                        <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Oratorio</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Oratorio</h3>
+                        <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
+                        <p class="info-asesoria">Acceso libre para visitantes</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Estancia Infantil</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Estancia Infantil</h3>
+                        <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
+                        <p class="info-asesoria">Servicio gratuito</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Cafetería</h3>
+                <div class="grid-tarjetas tarjeta-centrada">
+                    <div class="tarjeta">
+                        <h3>Cafetería</h3>
+                        <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
+                        <p class="info-asesoria">Consumo a la carta</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- 2. GRUPO: PAQUETES -->
         <div id="seccion-paquetes" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none;">
-                <h2 class="titulo-seccion">Nuestros Paquetes</h2>
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Nuestros Paquetes</h2>
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
                         <h3>Paquete Económico</h3>
@@ -61,10 +110,10 @@
             </div>
         </div>
 
-        <!-- GRUPO: ATAÚDES -->
+        <!-- 3. GRUPO: ATAÚDES -->
         <div id="seccion-ataudes" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none;">
-                <h2 class="titulo-seccion">Catálogo de Ataúdes</h2>
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Catálogo de Ataúdes</h2>
                 
                 <div class="filtros-catalogo">
                     <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
@@ -110,10 +159,10 @@
             </div>
         </div>
             
-        <!-- GRUPO: URNAS -->
+        <!-- 4. GRUPO: URNAS -->
         <div id="seccion-urnas" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none;">
-                <h2 class="titulo-seccion">Catálogo de Urnas</h2>
+            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Catálogo de Urnas</h2>
                 
                 <div class="filtros-catalogo">
                     <button class="btn-filtro-cremacion btn-filtro activo" data-filtro="todos">Todos</button>
@@ -159,73 +208,20 @@
             </div>
         </div>
 
-        <!-- GRUPO: INSTALACIONES -->
-        <div id="seccion-instalaciones" class="grupo-macro">
-            <h2 class="titulo-seccion" style="font-size: 2.2rem; margin-top: 40px; color: #fff; text-align: center;">Instalaciones</h2>
-            
-            <div class="seccion-contenido" style="border-top: none;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Capillas</h3>
-                <div class="grid-tarjetas tarjeta-centrada"> 
-                    <div class="tarjeta">
-                        <h3>Capillas de Velación</h3>
-                        <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
-                        <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seccion-contenido" style="border-top: none;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Oratorio</h3>
-                <div class="grid-tarjetas tarjeta-centrada">
-                    <div class="tarjeta">
-                        <h3>Oratorio</h3>
-                        <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
-                        <p class="info-asesoria">Acceso libre para visitantes</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seccion-contenido" style="border-top: none;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Estancia Infantil</h3>
-                <div class="grid-tarjetas tarjeta-centrada">
-                    <div class="tarjeta">
-                        <h3>Estancia Infantil</h3>
-                        <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
-                        <p class="info-asesoria">Servicio gratuito</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="seccion-contenido" style="border-top: none;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem;">Cafetería</h3>
-                <div class="grid-tarjetas tarjeta-centrada">
-                    <div class="tarjeta">
-                        <h3>Cafetería</h3>
-                        <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
-                        <p class="info-asesoria">Consumo a la carta</p>
-                    </div>
-                </div>
-            </div>
-        </div> 
-
     </div>
 
     <!-- Modal Lightbox -->
     <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
         <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10000; user-select: none;">&times;</span>
         
-        <!-- Botones de Galería Anterior / Siguiente -->
         <button id="modalPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10094;</button>
         <button id="modalNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10095;</button>
 
-        <!-- Contenedor de la Imagen Ampliada -->
         <div id="modalZoomContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
             <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in;">
         </div>
 
-        <!-- Contenedor para los puntos indicadores de la galería -->
         <div id="modalIndicadores" style="position: absolute; bottom: 50px; display: flex; gap: 8px; z-index: 10000; pointer-events: none;"></div>
-
     </div>
 
     <!-- Modal exclusivo para Ataúd Gama Alta -->
@@ -241,21 +237,21 @@
         <div id="indicadoresGamaAlta" style="position:absolute; bottom:25px; left:50%; transform:translateX(-50%); z-index:10052; display:flex; gap:8px;"></div>
     </div>
 
-    <!------------------------------ PIE DE PÁGINA ------------------------------>
-    <footer class="footer-disclaimer" style="background-color: rgba(0, 0, 0, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 0 !important; position: relative; z-index: 2;">
+    <!------------------------------ PIE DE PÁGINA (ESTILO DORADO) ------------------------------>
+    <footer class="footer-disclaimer" style="background-color: rgba(188, 149, 91, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: auto; position: relative; z-index: 2;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 20px auto;">
             
-            <div style="text-align: center; flex: 1; min-width: 200px; cursor: pointer;" class="elemento-copiable" data-valor="vel.imss20@gmail.com" title="Haz clic para copiar correo">
-                <p style="font-weight: bold; color: #4CAF50; margin-bottom: 5px;">Correo </p>
-                <p style="color: #ddd; font-size: 0.95rem; text-align: center;" class="texto-a-copiar">vel.imss20@gmail.com</p>
+            <div style="text-align: center; flex: 1; min-width: 200px;" class="elemento-copiable" data-valor="vel.imss20@gmail.com" title="Haz clic para copiar correo">
+                <p style="font-weight: bold; color: #ffffff; margin-bottom: 5px;">Correo</p>
+                <p style="color: #ffffff; font-size: 0.95rem; text-align: center;" class="texto-a-copiar">vel.imss20@gmail.com</p>
             </div>
             
             <div style="text-align: center; flex: 1; min-width: 200px;">
-                <p style="font-weight: bold; color: #4CAF50; margin-bottom: 8px;">Teléfonos</p>
-                <div class="elemento-copiable" data-valor="55 57 91 48 44" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 48 44</p></div>
-                <div class="elemento-copiable" data-valor="55 57 88 52 62" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 88 52 62</p></div>
-                <div class="elemento-copiable" data-valor="55 57 91 37 78" style="cursor: pointer; margin-bottom: 5px;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 37 78</p></div>
-                <div class="elemento-copiable" data-valor="55 56 99 52 95" style="cursor: pointer;"><p style="color: #ddd; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p></div>
+                <p style="font-weight: bold; color: #ffffff; margin-bottom: 8px;">Teléfonos</p>
+                <div class="elemento-copiable" data-valor="55 57 91 48 44" style="margin-bottom: 5px;"><p style="color: #ffffff; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 48 44</p></div>
+                <div class="elemento-copiable" data-valor="55 57 88 52 62" style="margin-bottom: 5px;"><p style="color: #ffffff; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 88 52 62</p></div>
+                <div class="elemento-copiable" data-valor="55 57 91 37 78" style="margin-bottom: 5px;"><p style="color: #ffffff; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 57 91 37 78</p></div>
+                <div class="elemento-copiable" data-valor="55 56 99 52 95"><p style="color: #ffffff; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p></div>
             </div>
             
             <div style="text-align: center; flex: 1; min-width: 200px; display: flex; justify-content: center; align-items: center;">
@@ -264,14 +260,13 @@
             
         </div>
         
-        <p style="font-size: 0.85rem; color: #aaa; max-width: 800px; margin: 0 auto; line-height: 1.5; text-align: center;">
+        <p style="font-size: 0.85rem; color: #ffffff; max-width: 800px; margin: 0 auto; line-height: 1.5; text-align: center;">
             Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social.
         </p>
     </footer>
 
     <script src="main.js"></script>
     
-    <!-- Script de Control con Indicadores Actualizados -->
     <script>
         if ('scrollRestoration' in history) {
             history.scrollRestoration = 'manual';
@@ -279,7 +274,7 @@
         window.scrollTo(0, 0);
 
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Control de Filtros Macro
+            // Control de Filtros Macro
             const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
             const gruposMacro = document.querySelectorAll('.grupo-macro');
 
@@ -304,7 +299,7 @@
                 });
             });
 
-            // 2. Galería Lightbox, Zoom, Arrastre e Indicadores de Puntos
+            // Galería Lightbox, Zoom, Arrastre e Indicadores de Puntos
             let galeriaActual = [];
             let indiceActual = 0;
             let escala = 1;
@@ -329,7 +324,6 @@
                     imgAmpliada.src = galeriaActual[indiceActual];
                     resetZoom();
                     
-                    // Mostrar u ocultar flechas según la cantidad de imágenes
                     if (galeriaActual.length > 1) {
                         btnPrev.style.display = 'block';
                         btnNext.style.display = 'block';
@@ -338,7 +332,6 @@
                         btnNext.style.display = 'none';
                     }
 
-                    // Generar y actualizar puntos indicadores blancos
                     if (modalIndicadores) {
                         modalIndicadores.innerHTML = '';
                         if (galeriaActual.length > 1) {
@@ -379,7 +372,6 @@
                 }
             }
 
-            // Abrir modal al hacer clic en las imágenes de las tarjetas
             document.querySelectorAll('.carrusel-img:not(.gama-alta-trigger)').forEach(img => {
                 img.addEventListener('click', () => {
                     const dataGaleria = img.getAttribute('data-galeria');
@@ -394,7 +386,6 @@
                 });
             });
 
-            // Cerrar modal
             const cerrarModalFunc = () => {
                 modal.style.display = 'none';
                 resetZoom();
@@ -408,7 +399,6 @@
                 }
             });
 
-            // Botones Anterior / Siguiente
             btnPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (galeriaActual.length > 1) {
@@ -425,7 +415,6 @@
                 }
             });
 
-            // Control de Arrastre sobre la imagen ampliada
             imgAmpliada.addEventListener('mousedown', (e) => {
                 if (e.button !== 0) return;
                 e.preventDefault();
@@ -462,7 +451,6 @@
                 }
             });
 
-            // Control de Zoom con un solo Clic sobre la imagen
             imgAmpliada.addEventListener('click', (e) => {
                 e.stopPropagation();
                 const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
@@ -479,9 +467,7 @@
             });
         });
 
-        // --------------------------------------------------------
-        // GALERÍA EXCLUSIVA: ATAÚD GAMA ALTA
-        // --------------------------------------------------------
+        // Galería Exclusiva: Ataúd Gama Alta
         const modalGamaAlta = document.getElementById('modalGamaAlta');
         const imagenGamaAlta = document.getElementById('imagenGamaAlta');
         const cerrarGamaAlta = document.getElementById('cerrarGamaAlta');

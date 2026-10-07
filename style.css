@@ -494,8 +494,9 @@ body {
     cursor: pointer;
 }
 
+.elemento-copiable:hover .texto-a-copiar,
 .elemento-copiable:hover .texto-hover-verde {
-    color: #006556 !important;
+    color: #006556 !important; /* Verde institucional */
     transition: color 0.3s ease;
 }
 

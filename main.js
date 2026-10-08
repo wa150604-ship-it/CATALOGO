@@ -336,8 +336,13 @@ if (videoFondo) {
         if (btnPlayPause) {
             btnPlayPause.addEventListener('click', () => {
                 if (videoFondo.paused) {
+                    // Al dar play, activar sonido en el video principal y mantener el fondo desenfocado en silencio
+                    videoFondo.muted = false;
                     videoFondo.play();
-                    if (videoFondoBlur) videoFondoBlur.play();
+                    if (videoFondoBlur) {
+                        videoFondoBlur.muted = true;
+                        videoFondoBlur.play();
+                    }
                     btnPlayPause.textContent = '❚❚';
                     btnPlayPause.title = 'Pausar video';
                 } else {

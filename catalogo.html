@@ -26,16 +26,16 @@
         </div>
     </header>
     
-    <!-- Video de fondo desenfocado en automático y en silencio -->
-    <video id="videoFondo" autoplay loop muted playsinline class="video-background" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -3; object-fit: cover; filter: blur(6px); transform: scale(1.05);">
-        <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
-        Tu navegador no soporta video HTML5.
-    </video>
-    
-    <div class="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.35); z-index: -2;"></div>
+    <!-- Video de fondo desenfocado (Estructura idéntica a contactos.html) -->
+    <div class="video-container-bg">
+        <video id="videoFondo" autoplay loop muted playsinline class="video-background-blur">
+            <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
+    </div>
 
-    <!-- CONTENEDOR PRINCIPAL TRANSPARENTE Y CON ESPACIADO SUPERIOR ADECUADO -->
-    <div class="contenedor-catalogo" style="padding-top: 110px; background: transparent; max-width: 1250px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; padding-bottom: 40px;">
+    <!-- CONTENEDOR PRINCIPAL TRANSPARENTE -->
+    <div class="contenedor-catalogo" style="padding-top: 100px; background: transparent; max-width: 1250px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; padding-bottom: 40px;">
         
         <!-- FILTROS MACRO -->
         <div class="filtros-macro" style="margin-bottom: 35px;">
@@ -48,10 +48,10 @@
 
         <!-- 1. GRUPO: INSTALACIONES -->
         <div id="seccion-instalaciones" class="grupo-macro">
-            <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
+            <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
             
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Capillas</h3>
+            <div style="padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Capillas</h3>
                 <div class="grid-tarjetas tarjeta-centrada"> 
                     <div class="tarjeta">
                         <h3>Capillas de Velación</h3>
@@ -61,8 +61,8 @@
                 </div>
             </div>
 
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Oratorio</h3>
+            <div style="padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Oratorio</h3>
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
                         <h3>Oratorio</h3>
@@ -72,8 +72,8 @@
                 </div>
             </div>
 
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Estancia Infantil</h3>
+            <div style="padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Estancia Infantil</h3>
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
                         <h3>Estancia Infantil</h3>
@@ -83,8 +83,8 @@
                 </div>
             </div>
 
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Cafetería</h3>
+            <div style="padding: 1rem 0;">
+                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Cafetería</h3>
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
                         <h3>Cafetería</h3>
@@ -97,8 +97,8 @@
 
         <!-- 2. GRUPO: PAQUETES -->
         <div id="seccion-paquetes" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Nuestros Paquetes</h2>
+            <div style="padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Nuestros Paquetes</h2>
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
                         <h3>Paquete Económico</h3>
@@ -112,8 +112,8 @@
 
         <!-- 3. GRUPO: ATAÚDES -->
         <div id="seccion-ataudes" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Catálogo de Ataúdes</h2>
+            <div style="padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Catálogo de Ataúdes</h2>
                 
                 <div class="filtros-catalogo">
                     <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
@@ -161,8 +161,8 @@
             
         <!-- 4. GRUPO: URNAS -->
         <div id="seccion-urnas" class="grupo-macro">
-            <div class="seccion-contenido" style="border-top: none; background: transparent; padding: 1rem 0;">
-                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.8);">Catálogo de Urnas</h2>
+            <div style="padding: 1rem 0;">
+                <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Catálogo de Urnas</h2>
                 
                 <div class="filtros-catalogo">
                     <button class="btn-filtro-cremacion btn-filtro activo" data-filtro="todos">Todos</button>

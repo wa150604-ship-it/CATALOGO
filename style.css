@@ -328,20 +328,22 @@ body {
     flex-wrap: wrap; 
 }
 
+/* FILTROS DE CATEGORÍA (ATAÚDES Y URNAS CON ESTILO BLANCO / VERDE) */
 .btn-filtro { 
-    background: rgba(0, 101, 86, 0.05); 
-    border: 1px solid rgba(0, 101, 86, 0.2); 
+    background: #ffffff; 
+    border: 2px solid #006556; 
     color: #006556; 
-    padding: 8px 18px; 
-    border-radius: 20px; 
+    padding: 8px 22px; 
+    border-radius: 30px; 
     cursor: pointer; 
-    font-weight: 500;
-    transition: all 0.3s; 
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: all 0.3s ease; 
 }
 
 .btn-filtro:hover, .btn-filtro.activo { 
     background-color: #006556; 
-    color: white; 
+    color: #ffffff; 
     border-color: #006556; 
 }
 

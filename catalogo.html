@@ -26,7 +26,7 @@
         </div>
     </header>
     
-    <!-- Video de fondo desenfocado (Estructura idéntica a contactos.html) -->
+    <!-- Video de fondo desenfocado -->
     <div class="video-container-bg">
         <video id="videoFondo" autoplay loop muted playsinline class="video-background-blur">
             <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
@@ -39,8 +39,7 @@
         
         <!-- FILTROS MACRO -->
         <div class="filtros-macro" style="margin-bottom: 35px;">
-            <button class="btn-filtro-macro activo" data-target="todos">Todos los servicios</button>
-            <button class="btn-filtro-macro" data-target="instalaciones">Instalaciones</button>
+            <button class="btn-filtro-macro activo" data-target="instalaciones">Instalaciones</button>
             <button class="btn-filtro-macro" data-target="paquetes">Paquetes</button>
             <button class="btn-filtro-macro" data-target="ataudes">Ataúdes</button>
             <button class="btn-filtro-macro" data-target="urnas">Urnas</button>
@@ -50,10 +49,34 @@
         <div id="seccion-instalaciones" class="grupo-macro">
             <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
             
-            <div style="padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Capillas</h3>
+            <!-- FILTROS ESPECÍFICOS PARA INSTALACIONES -->
+            <div class="filtros-catalogo">
+                <button class="btn-filtro-instalacion btn-filtro activo" data-filtro="todos">Todos</button>
+                <button class="btn-filtro-instalacion btn-filtro" data-filtro="capillas">Capillas</button>
+                <button class="btn-filtro-instalacion btn-filtro" data-filtro="oratorio">Oratorio</button>
+                <button class="btn-filtro-instalacion btn-filtro" data-filtro="estancia">Estancia Infantil</button>
+                <button class="btn-filtro-instalacion btn-filtro" data-filtro="cafeteria">Cafetería</button>
+            </div>
+            
+            <div class="item-instalacion" data-categoria="capillas" style="padding: 1rem 0;">
+
                 <div class="grid-tarjetas tarjeta-centrada"> 
                     <div class="tarjeta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_0.jpg" alt="Capillas de Velación" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_0.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_01.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_02.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_03.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_04.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_05.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_06.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_07.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_08.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_09.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_10.jpg" 
+                                 style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
                         <h3>Capillas de Velación</h3>
                         <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
                         <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
@@ -61,10 +84,20 @@
                 </div>
             </div>
 
-            <div style="padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Oratorio</h3>
+            <div class="item-instalacion" data-categoria="oratorio" style="padding: 1rem 0;">
+
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_0.jpg" alt="Oratorio" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_0.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_01.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_02.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_03.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_04.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_05.jpg"
+                                 style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
                         <h3>Oratorio</h3>
                         <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
                         <p class="info-asesoria">Acceso libre para visitantes</p>
@@ -72,10 +105,19 @@
                 </div>
             </div>
 
-            <div style="padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Estancia Infantil</h3>
+            <div class="item-instalacion" data-categoria="estancia" style="padding: 1rem 0;">
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_0.jpg" alt="Estancia Infantil" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_0.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_01.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_02.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_03.jpg,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_04.jpg, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_05.jpg"
+                                 style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
                         <h3>Estancia Infantil</h3>
                         <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
                         <p class="info-asesoria">Servicio gratuito</p>
@@ -83,10 +125,23 @@
                 </div>
             </div>
 
-            <div style="padding: 1rem 0;">
-                <h3 class="titulo-seccion" style="font-size: 1.5rem; margin-bottom: 15px; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Cafetería</h3>
+            <div class="item-instalacion" data-categoria="cafeteria" style="padding: 1rem 0;">
+
                 <div class="grid-tarjetas tarjeta-centrada">
                     <div class="tarjeta">
+                        <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                            <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png" alt="Cafetería" class="carrusel-img" 
+                                 data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-02.png, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-03.png, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-04.png,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-05.png, 
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-06.png,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-07.png,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-08.png,
+                                 MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-09.png"
+                                 style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        </div>
                         <h3>Cafetería</h3>
                         <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
                         <p class="info-asesoria">Consumo a la carta</p>
@@ -125,7 +180,7 @@
                 <div class="grid-tarjetas">
                     <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
                         <div style="width: 100%; overflow: hidden; border-radius: 6px;">
-                            <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="gama-alta-trigger" 
+                            <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="carrusel-img" 
                                  data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png" style="width: 100%; height: auto; display: block; cursor: pointer;">
                         </div>
                         <h3>Ataúd de Gama Alta</h3>
@@ -207,37 +262,26 @@
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- Modal Lightbox -->
+    <!-- Modal General Lightbox Único -->
     <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
+        <!-- Fondo opcional con estilo (similar al anterior script manual) -->
+        <div style="position:absolute; inset:0; background-image:url('MULTIMEDIA/IMAGENES/fondo_catalogo_ga.png'); background-size:cover; background-position:center; background-repeat:no-repeat; filter:brightness(0.25);"></div>
+        
         <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10000; user-select: none;">&times;</span>
         
         <button id="modalPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10094;</button>
         <button id="modalNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10095;</button>
 
-        <div id="modalZoomContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;">
+        <div id="modalZoomContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; z-index: 9999;">
             <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in;">
         </div>
 
         <div id="modalIndicadores" style="position: absolute; bottom: 50px; display: flex; gap: 8px; z-index: 10000; pointer-events: none;"></div>
     </div>
 
-    <!-- Modal exclusivo para Ataúd Gama Alta -->
-    <div id="modalGamaAlta" style="display:none; position:fixed; inset:0; z-index:10050; align-items:center; justify-content:center; overflow:hidden; background:#000;">
-        <div style="position:absolute; inset:0; background-image:url('MULTIMEDIA/IMAGENES/fondo_catalogo_ga.png'); background-size:cover; background-position:center; background-repeat:no-repeat; filter:brightness(0.45);"></div>
-        <div style="position:absolute; inset:0; background:rgba(0,0,0,0.35);"></div>
-        <button id="cerrarGamaAlta" aria-label="Cerrar" style="position:absolute; top:18px; right:28px; z-index:10052; border:0; background:rgba(0,0,0,.55); color:#fff; font-size:38px; line-height:1; cursor:pointer; width:48px; height:48px; border-radius:50%;">&times;</button>
-        <button id="prevGamaAlta" aria-label="Anterior" style="position:absolute; left:22px; top:50%; transform:translateY(-50%); z-index:10052; border:0; background:rgba(0,0,0,.55); color:#fff; font-size:34px; cursor:pointer; width:52px; height:64px; border-radius:8px;">&#10094;</button>
-        <button id="nextGamaAlta" aria-label="Siguiente" style="position:absolute; right:22px; top:50%; transform:translateY(-50%); z-index:10052; border:0; background:rgba(0,0,0,.55); color:#fff; font-size:34px; cursor:pointer; width:52px; height:64px; border-radius:8px;">&#10095;</button>
-        <div style="position:relative; z-index:10051; width:min(92vw,1200px); height:min(88vh,850px); display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
-            <img id="imagenGamaAlta" src="" alt="Ataúd Gama Alta" draggable="false" style="max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; display:block; user-select:none;">
-        </div>
-        <div id="indicadoresGamaAlta" style="position:absolute; bottom:25px; left:50%; transform:translateX(-50%); z-index:10052; display:flex; gap:8px;"></div>
-    </div>
-
-    <!------------------------------ PIE DE PÁGINA (ESTILO DORADO) ------------------------------>
+    <!------------------------------ PIE DE PÁGINA ------------------------------>
     <footer class="footer-disclaimer" style="background-color: rgba(188, 149, 91, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: auto; position: relative; z-index: 2;">
         <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 20px auto;">
             
@@ -266,267 +310,5 @@
     </footer>
 
     <script src="main.js"></script>
-    
-    <script>
-        if ('scrollRestoration' in history) {
-            history.scrollRestoration = 'manual';
-        }
-        window.scrollTo(0, 0);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Control de Filtros Macro
-            const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
-            const gruposMacro = document.querySelectorAll('.grupo-macro');
-
-            botonesMacro.forEach(boton => {
-                boton.addEventListener('click', () => {
-                    botonesMacro.forEach(b => b.classList.remove('activo'));
-                    boton.classList.add('activo');
-
-                    const target = boton.getAttribute('data-target');
-
-                    gruposMacro.forEach(grupo => {
-                        if (target === 'todos') {
-                            grupo.style.display = 'block';
-                        } else {
-                            if (grupo.id === 'seccion-' + target) {
-                                grupo.style.display = 'block';
-                            } else {
-                                grupo.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-
-            // Galería Lightbox, Zoom, Arrastre e Indicadores de Puntos
-            let galeriaActual = [];
-            let indiceActual = 0;
-            let escala = 1;
-            let posX = 0;
-            let posY = 0;
-            let arrastrando = false;
-            let inicioX = 0;
-            let inicioY = 0;
-            let downX = 0;
-            let downY = 0;
-            let isDragging = false;
-
-            const modal = document.getElementById('modalLightbox');
-            const imgAmpliada = document.getElementById('imgAmpliada');
-            const btnCerrar = document.querySelector('.cerrar-modal');
-            const btnPrev = document.getElementById('modalPrev');
-            const btnNext = document.getElementById('modalNext');
-            const modalIndicadores = document.getElementById('modalIndicadores');
-
-            function actualizarImagenModal() {
-                if (galeriaActual.length > 0) {
-                    imgAmpliada.src = galeriaActual[indiceActual];
-                    resetZoom();
-                    
-                    if (galeriaActual.length > 1) {
-                        btnPrev.style.display = 'block';
-                        btnNext.style.display = 'block';
-                    } else {
-                        btnPrev.style.display = 'none';
-                        btnNext.style.display = 'none';
-                    }
-
-                    if (modalIndicadores) {
-                        modalIndicadores.innerHTML = '';
-                        if (galeriaActual.length > 1) {
-                            galeriaActual.forEach((_, idx) => {
-                                const punto = document.createElement('div');
-                                punto.style.width = '10px';
-                                punto.style.height = '10px';
-                                punto.style.borderRadius = '50%';
-                                punto.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
-                                
-                                if (idx === indiceActual) {
-                                    punto.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-                                    punto.style.transform = 'scale(1.3)';
-                                } else {
-                                    punto.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                                    punto.style.transform = 'scale(1)';
-                                }
-                                modalIndicadores.appendChild(punto);
-                            });
-                        }
-                    }
-                }
-            }
-
-            function resetZoom() {
-                escala = 1;
-                posX = 0;
-                posY = 0;
-                actualizarTransformacion();
-            }
-
-            function actualizarTransformacion() {
-                imgAmpliada.style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
-                if (escala > 1) {
-                    imgAmpliada.style.cursor = 'grab';
-                } else {
-                    imgAmpliada.style.cursor = 'zoom-in';
-                }
-            }
-
-            document.querySelectorAll('.carrusel-img:not(.gama-alta-trigger)').forEach(img => {
-                img.addEventListener('click', () => {
-                    const dataGaleria = img.getAttribute('data-galeria');
-                    if (dataGaleria) {
-                        galeriaActual = dataGaleria.split(',').map(url => url.trim());
-                    } else {
-                        galeriaActual = [img.src];
-                    }
-                    indiceActual = 0;
-                    actualizarImagenModal();
-                    modal.style.display = 'flex';
-                });
-            });
-
-            const cerrarModalFunc = () => {
-                modal.style.display = 'none';
-                resetZoom();
-                if (modalIndicadores) modalIndicadores.innerHTML = '';
-            };
-
-            btnCerrar.addEventListener('click', cerrarModalFunc);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    cerrarModalFunc();
-                }
-            });
-
-            btnPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (galeriaActual.length > 1) {
-                    indiceActual = (indiceActual - 1 + galeriaActual.length) % galeriaActual.length;
-                    actualizarImagenModal();
-                }
-            });
-
-            btnNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (galeriaActual.length > 1) {
-                    indiceActual = (indiceActual + 1) % galeriaActual.length;
-                    actualizarImagenModal();
-                }
-            });
-
-            imgAmpliada.addEventListener('mousedown', (e) => {
-                if (e.button !== 0) return;
-                e.preventDefault();
-                
-                downX = e.clientX;
-                downY = e.clientY;
-                inicioX = e.clientX - posX;
-                inicioY = e.clientY - posY;
-                isDragging = false;
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (e.buttons === 0) {
-                    arrastrando = false;
-                    return;
-                }
-                const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-                if (dist > 5) {
-                    isDragging = true;
-                    if (escala > 1) {
-                        arrastrando = true;
-                        posX = e.clientX - inicioX;
-                        posY = e.clientY - inicioY;
-                        actualizarTransformacion();
-                        imgAmpliada.style.cursor = 'grabbing';
-                    }
-                }
-            });
-
-            window.addEventListener('mouseup', () => {
-                if (arrastrando) {
-                    arrastrando = false;
-                    if (escala > 1) imgAmpliada.style.cursor = 'grab';
-                }
-            });
-
-            imgAmpliada.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-                if (isDragging || dist > 5) return; 
-
-                if (escala === 1) {
-                    escala = 2.5; 
-                } else {
-                    escala = 1; 
-                    posX = 0;
-                    posY = 0;
-                }
-                actualizarTransformacion();
-            });
-        });
-
-        // Galería Exclusiva: Ataúd Gama Alta
-        const modalGamaAlta = document.getElementById('modalGamaAlta');
-        const imagenGamaAlta = document.getElementById('imagenGamaAlta');
-        const cerrarGamaAlta = document.getElementById('cerrarGamaAlta');
-        const prevGamaAlta = document.getElementById('prevGamaAlta');
-        const nextGamaAlta = document.getElementById('nextGamaAlta');
-        const indicadoresGamaAlta = document.getElementById('indicadoresGamaAlta');
-        const triggerGamaAlta = document.querySelector('.gama-alta-trigger');
-
-        if (modalGamaAlta && imagenGamaAlta && triggerGamaAlta) {
-            const galeriaGamaAlta = (triggerGamaAlta.getAttribute('data-galeria') || triggerGamaAlta.src)
-                .split(',').map(url => url.trim()).filter(Boolean);
-            let indiceGamaAlta = 0;
-
-            function actualizarGamaAlta() {
-                imagenGamaAlta.src = galeriaGamaAlta[indiceGamaAlta];
-                indicadoresGamaAlta.innerHTML = '';
-                galeriaGamaAlta.forEach((_, i) => {
-                    const punto = document.createElement('span');
-                    punto.style.cssText = `width:9px;height:9px;border-radius:50%;display:block;background:${i === indiceGamaAlta ? '#fff' : 'rgba(255,255,255,.4)'};`;
-                    indicadoresGamaAlta.appendChild(punto);
-                });
-            }
-
-            triggerGamaAlta.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                indiceGamaAlta = 0;
-                actualizarGamaAlta();
-                modalGamaAlta.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            });
-
-            function cerrarGamaAltaModal() {
-                modalGamaAlta.style.display = 'none';
-                document.body.style.overflow = '';
-                imagenGamaAlta.src = '';
-            }
-
-            cerrarGamaAlta.addEventListener('click', cerrarGamaAltaModal);
-            modalGamaAlta.addEventListener('click', (e) => {
-                if (e.target === modalGamaAlta) cerrarGamaAltaModal();
-            });
-            prevGamaAlta.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaAlta = (indiceGamaAlta - 1 + galeriaGamaAlta.length) % galeriaGamaAlta.length;
-                actualizarGamaAlta();
-            });
-            nextGamaAlta.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaAlta = (indiceGamaAlta + 1) % galeriaGamaAlta.length;
-                actualizarGamaAlta();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (modalGamaAlta.style.display !== 'flex') return;
-                if (e.key === 'Escape') cerrarGamaAltaModal();
-                if (e.key === 'ArrowLeft') prevGamaAlta.click();
-                if (e.key === 'ArrowRight') nextGamaAlta.click();
-            });
-        }
-    </script>
 </body>
 </html>

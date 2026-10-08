@@ -1,3 +1,9 @@
+// Prevenir que el navegador restaure el scroll automáticamente
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 document.addEventListener("DOMContentLoaded", () => {
 
     // --------------------------------------------------------
@@ -21,36 +27,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // 1. LÓGICA DE FILTROS MACRO (Servicios, Catálogo, Instalaciones)
+    // 1. LÓGICA DE FILTROS MACRO DINÁMICOS
     // --------------------------------------------------------
-    const btnFiltroMacro = document.querySelectorAll('.btn-filtro-macro');
-    const seccionCatalogo = document.getElementById('seccion-catalogo');
-    const seccionInstalaciones = document.getElementById('seccion-instalaciones');
+    const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
+    const gruposMacro = document.querySelectorAll('.grupo-macro');
 
-    if (btnFiltroMacro.length > 0 && seccionCatalogo && seccionInstalaciones) {
-        btnFiltroMacro.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btnFiltroMacro.forEach(b => b.classList.remove('activo'));
-                btn.classList.add('activo');
+    if (botonesMacro.length > 0 && gruposMacro.length > 0) {
+        botonesMacro.forEach(boton => {
+            boton.addEventListener('click', () => {
+                // Quitar clase activo de todos y ponerla al clickeado
+                botonesMacro.forEach(b => b.classList.remove('activo'));
+                boton.classList.add('activo');
 
-                const target = btn.getAttribute('data-target');
+                const target = boton.getAttribute('data-target');
 
-                if (target === 'todo') {
-                    seccionCatalogo.style.display = 'block';
-                    seccionInstalaciones.style.display = 'block';
-                } else if (target === 'catalogo') {
-                    seccionCatalogo.style.display = 'block';
-                    seccionInstalaciones.style.display = 'none';
-                } else if (target === 'instalaciones') {
-                    seccionCatalogo.style.display = 'none';
-                    seccionInstalaciones.style.display = 'block';
-                }
+                // Mostrar solo la sección que coincida con el target
+                gruposMacro.forEach(grupo => {
+                    if (grupo.id === 'seccion-' + target) {
+                        grupo.style.display = 'block';
+                    } else {
+                        grupo.style.display = 'none';
+                    }
+                });
             });
         });
+
+        // INICIALIZACIÓN: Forzar el estado inicial al cargar la página
+        // Simulamos un clic en el botón que tenga la clase 'activo' por defecto ("Instalaciones")
+        const botonMacroActivo = document.querySelector('.btn-filtro-macro.activo');
+        if (botonMacroActivo) {
+            botonMacroActivo.click();
+        }
     }
 
     // --------------------------------------------------------
-    // 2. LÓGICA DE FILTROS POR CATEGORÍA (Ataúdes y Urnas)
+    // 2. LÓGICA DE FILTROS POR CATEGORÍA
     // --------------------------------------------------------
     function configurarFiltros(selectorBotones, selectorTarjetas) {
         const botones = document.querySelectorAll(selectorBotones);
@@ -77,11 +88,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    // Se configuran los sub-filtros de cada grupo
     configurarFiltros('.btn-filtro-ataud', '.tarjeta-catalogo');
     configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
+    configurarFiltros('.btn-filtro-instalacion', '.item-instalacion');
 
     // --------------------------------------------------------
-    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES
+    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES (TARJETAS INDIVIDUALES)
     // --------------------------------------------------------
     const carruseles = document.querySelectorAll('.carrusel-tarjeta');
     
@@ -218,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceActual = 0;
                 actualizarImagenModal();
                 modalLightbox.style.display = 'flex'; 
+                document.body.style.overflow = 'hidden'; // Ocultar scroll trasero
             });
         });
 
@@ -293,6 +307,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Restaurar scroll trasero
             resetZoom();
             if (modalIndicadores) modalIndicadores.innerHTML = '';
         };
@@ -308,99 +323,100 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalLightbox.style.display === 'flex') {
-                cerrarModalFunc();
+            if (modalLightbox.style.display === 'flex') {
+                if (e.key === 'Escape') cerrarModalFunc();
+                if (e.key === 'ArrowLeft' && modalPrev) modalPrev.click();
+                if (e.key === 'ArrowRight' && modalNext) modalNext.click();
             }
         });
     }
 
-// --------------------------------------------------------
-// 5. CONTROL DE VIDEO DE FONDO Y BOTONES DE REPRODUCCIÓN
-// --------------------------------------------------------
-const videoFondo = document.getElementById('videoFondo');
-const videoFondoBlur = document.getElementById('videoFondoBlur');
-const btnSonido = document.getElementById('btnSonido');
-const btnPlayPause = document.getElementById('btnPlayPause');
-const btnReiniciar = document.getElementById('btnReiniciar');
+    // --------------------------------------------------------
+    // 5. CONTROL DE VIDEO DE FONDO Y BOTONES DE REPRODUCCIÓN
+    // --------------------------------------------------------
+    const videoFondo = document.getElementById('videoFondo');
+    const videoFondoBlur = document.getElementById('videoFondoBlur');
+    const btnSonido = document.getElementById('btnSonido');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnReiniciar = document.getElementById('btnReiniciar');
 
-if (videoFondo) {
-    // Si la página tiene botones de control de reproducción (index.html)
-    if (btnPlayPause || btnReiniciar) {
-        videoFondo.pause();
-        videoFondo.muted = true;
-        if (videoFondoBlur) {
-            videoFondoBlur.pause();
-            videoFondoBlur.muted = true;
+    if (videoFondo) {
+        // Si la página tiene botones de control de reproducción (index.html)
+        if (btnPlayPause || btnReiniciar) {
+            videoFondo.pause();
+            videoFondo.muted = true;
+            if (videoFondoBlur) {
+                videoFondoBlur.pause();
+                videoFondoBlur.muted = true;
+            }
+
+            if (btnPlayPause) {
+                btnPlayPause.addEventListener('click', () => {
+                    if (videoFondo.paused) {
+                        videoFondo.muted = false;
+                        videoFondo.play();
+                        if (videoFondoBlur) {
+                            videoFondoBlur.muted = true;
+                            videoFondoBlur.play();
+                        }
+                        btnPlayPause.textContent = '❚❚';
+                        btnPlayPause.title = 'Pausar video';
+                    } else {
+                        videoFondo.pause();
+                        if (videoFondoBlur) videoFondoBlur.pause();
+                        btnPlayPause.textContent = '►';
+                        btnPlayPause.title = 'Reproducir video';
+                    }
+                });
+            }
+
+            if (btnReiniciar) {
+                btnReiniciar.addEventListener('click', () => {
+                    videoFondo.currentTime = 0;
+                    videoFondo.pause();
+                    videoFondo.muted = true;
+                    
+                    if (videoFondoBlur) {
+                        videoFondoBlur.currentTime = 0;
+                        videoFondoBlur.pause();
+                        videoFondoBlur.muted = true;
+                    }
+
+                    if (btnPlayPause) {
+                        btnPlayPause.textContent = '►'; 
+                        btnPlayPause.title = 'Reproducir video';
+                    }
+                });
+            }
+        } else {
+            // En páginas sin controles manuales (catalogo.html), se reproduce automáticamente en silencio
+            videoFondo.muted = true;
+            videoFondo.play().catch(error => {
+                console.log("Autoplay de video de fondo:", error);
+            });
+
+            if (videoFondoBlur) {
+                videoFondoBlur.muted = true;
+                videoFondoBlur.play().catch(error => {
+                    console.log("Autoplay blur:", error);
+                });
+            }
         }
 
-        if (btnPlayPause) {
-            btnPlayPause.addEventListener('click', () => {
-                if (videoFondo.paused) {
-                    // Al dar play, activar sonido en el video principal y mantener el fondo desenfocado en silencio
+        if (btnSonido) {
+            btnSonido.addEventListener('click', () => {
+                if (videoFondo.muted) {
                     videoFondo.muted = false;
                     videoFondo.play();
-                    if (videoFondoBlur) {
-                        videoFondoBlur.muted = true;
-                        videoFondoBlur.play();
-                    }
-                    btnPlayPause.textContent = '❚❚';
-                    btnPlayPause.title = 'Pausar video';
+                    if (videoFondoBlur) videoFondoBlur.play();
+                    btnSonido.textContent = '🔊';
                 } else {
-                    videoFondo.pause();
-                    if (videoFondoBlur) videoFondoBlur.pause();
-                    btnPlayPause.textContent = '►';
-                    btnPlayPause.title = 'Reproducir video';
+                    videoFondo.muted = true;
+                    btnSonido.textContent = '🔇';
                 }
-            });
-        }
-
-        if (btnReiniciar) {
-            btnReiniciar.addEventListener('click', () => {
-                videoFondo.currentTime = 0;
-                videoFondo.pause();
-                videoFondo.muted = true;
-                
-                if (videoFondoBlur) {
-                    videoFondoBlur.currentTime = 0;
-                    videoFondoBlur.pause();
-                    videoFondoBlur.muted = true;
-                }
-
-                if (btnPlayPause) {
-                    btnPlayPause.textContent = '►'; 
-                    btnPlayPause.title = 'Reproducir video';
-                }
-            });
-        }
-    } else {
-        // En páginas sin controles manuales (catalogo.html), se reproduce automáticamente en silencio
-        videoFondo.muted = true;
-        videoFondo.play().catch(error => {
-            console.log("Autoplay de video de fondo:", error);
-        });
-
-        if (videoFondoBlur) {
-            videoFondoBlur.muted = true;
-            videoFondoBlur.play().catch(error => {
-                console.log("Autoplay blur:", error);
             });
         }
     }
-
-    if (btnSonido) {
-        btnSonido.addEventListener('click', () => {
-            if (videoFondo.muted) {
-                videoFondo.muted = false;
-                videoFondo.play();
-                if (videoFondoBlur) videoFondoBlur.play();
-                btnSonido.textContent = '🔊';
-            } else {
-                videoFondo.muted = true;
-                btnSonido.textContent = '🔇';
-            }
-        });
-    }
-}
 
     // --------------------------------------------------------
     // 6. COPIAR AL PORTAPAPELES DESDE EL FOOTER

@@ -35,13 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (botonesMacro.length > 0 && gruposMacro.length > 0) {
         botonesMacro.forEach(boton => {
             boton.addEventListener('click', () => {
-                // Quitar clase activo de todos y ponerla al clickeado
                 botonesMacro.forEach(b => b.classList.remove('activo'));
                 boton.classList.add('activo');
 
                 const target = boton.getAttribute('data-target');
 
-                // Mostrar solo la sección que coincida con el target
                 gruposMacro.forEach(grupo => {
                     if (grupo.id === 'seccion-' + target) {
                         grupo.style.display = 'block';
@@ -52,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // INICIALIZACIÓN: Forzar el estado inicial al cargar la página
-        // Simulamos un clic en el botón que tenga la clase 'activo' por defecto ("Instalaciones")
         const botonMacroActivo = document.querySelector('.btn-filtro-macro.activo');
         if (botonMacroActivo) {
             botonMacroActivo.click();
@@ -88,16 +84,51 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Se configuran los sub-filtros de cada grupo
     configurarFiltros('.btn-filtro-ataud', '.tarjeta-catalogo');
     configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
-    configurarFiltros('.btn-filtro-instalacion', '.item-instalacion');
 
     // --------------------------------------------------------
-    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES (TARJETAS INDIVIDUALES)
+    // CARRUSEL PRINCIPAL DE INSTALACIONES (Navegación general unificada)
+    // --------------------------------------------------------
+    const trackInstalaciones = document.querySelector('.items-instalacion-track');
+    const itemsInstalacion = document.querySelectorAll('.item-instalacion');
+    const btnInstPrev = document.querySelector('.btn-inst-prev');
+    const btnInstNext = document.querySelector('.btn-inst-next');
+
+    if (trackInstalaciones && itemsInstalacion.length > 0) {
+        let indiceInstalacion = 0;
+        const totalInstalaciones = itemsInstalacion.length;
+
+        const actualizarCarruselInstalaciones = () => {
+            trackInstalaciones.style.transform = `translateX(-${indiceInstalacion * 100}%)`;
+        };
+
+        if (btnInstNext) {
+            btnInstNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceInstalacion = (indiceInstalacion + 1) % totalInstalaciones;
+                actualizarCarruselInstalaciones();
+            });
+            btnInstNext.addEventListener('mouseenter', () => btnInstNext.style.backgroundColor = '#bc955b');
+            btnInstNext.addEventListener('mouseleave', () => btnInstNext.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
+        }
+
+        if (btnInstPrev) {
+            btnInstPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceInstalacion = (indiceInstalacion - 1 + totalInstalaciones) % totalInstalaciones;
+                actualizarCarruselInstalaciones();
+            });
+            btnInstPrev.addEventListener('mouseenter', () => btnInstPrev.style.backgroundColor = '#bc955b');
+            btnInstPrev.addEventListener('mouseleave', () => btnInstPrev.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
+        }
+    }
+
+    // --------------------------------------------------------
+    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES (DESPLAZAMIENTO LATERAL)
     // --------------------------------------------------------
     const carruseles = document.querySelectorAll('.carrusel-tarjeta');
-    
+
     carruseles.forEach(carrusel => {
         const imgElement = carrusel.querySelector('.carrusel-img');
         if (!imgElement) return;
@@ -120,16 +151,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 carrusel.appendChild(btnPrev);
                 carrusel.appendChild(btnNext);
 
+                const cambiarImagenConDesplazamiento = (nuevoIndice, direccion) => {
+                    const claseSalida = direccion === 'next' ? 'saliendo-izquierda' : 'saliendo-derecha';
+                    const claseEntradaOpuesta = direccion === 'next' ? 'saliendo-derecha' : 'saliendo-izquierda';
+
+                    imgElement.classList.add(claseSalida);
+
+                    setTimeout(() => {
+                        imgElement.style.transition = 'none';
+                        imgElement.classList.remove(claseSalida);
+                        imgElement.classList.add(claseEntradaOpuesta);
+                        
+                        indiceActual = nuevoIndice;
+                        imgElement.src = imagenes[indiceActual];
+
+                        void imgElement.offsetWidth;
+
+                        imgElement.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
+                        imgElement.classList.remove(claseEntradaOpuesta);
+                    }, 250);
+                };
+
                 btnNext.addEventListener('click', (e) => {
                     e.stopPropagation(); 
-                    indiceActual = (indiceActual + 1) % imagenes.length;
-                    imgElement.src = imagenes[indiceActual];
+                    const siguienteIndice = (indiceActual + 1) % imagenes.length;
+                    cambiarImagenConDesplazamiento(siguienteIndice, 'next');
                 });
 
                 btnPrev.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
-                    imgElement.src = imagenes[indiceActual];
+                    const anteriorIndice = (indiceActual - 1 + imagenes.length) % imagenes.length;
+                    cambiarImagenConDesplazamiento(anteriorIndice, 'prev');
                 });
             }
         }
@@ -231,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceActual = 0;
                 actualizarImagenModal();
                 modalLightbox.style.display = 'flex'; 
-                document.body.style.overflow = 'hidden'; // Ocultar scroll trasero
+                document.body.style.overflow = 'hidden';
             });
         });
 
@@ -307,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
-            document.body.style.overflow = ''; // Restaurar scroll trasero
+            document.body.style.overflow = '';
             resetZoom();
             if (modalIndicadores) modalIndicadores.innerHTML = '';
         };
@@ -332,7 +384,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // 5. CONTROL DE VIDEO DE FONDO Y BOTONES DE REPRODUCCIÓN
+    // 5. CONTROL DE VIDEO DE FONDO
     // --------------------------------------------------------
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
@@ -341,55 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        // Si la página tiene botones de control de reproducción (index.html)
-        if (btnPlayPause || btnReiniciar) {
-            videoFondo.pause();
-            videoFondo.muted = true;
-            if (videoFondoBlur) {
-                videoFondoBlur.pause();
-                videoFondoBlur.muted = true;
-            }
-
-            if (btnPlayPause) {
-                btnPlayPause.addEventListener('click', () => {
-                    if (videoFondo.paused) {
-                        videoFondo.muted = false;
-                        videoFondo.play();
-                        if (videoFondoBlur) {
-                            videoFondoBlur.muted = true;
-                            videoFondoBlur.play();
-                        }
-                        btnPlayPause.textContent = '❚❚';
-                        btnPlayPause.title = 'Pausar video';
-                    } else {
-                        videoFondo.pause();
-                        if (videoFondoBlur) videoFondoBlur.pause();
-                        btnPlayPause.textContent = '►';
-                        btnPlayPause.title = 'Reproducir video';
-                    }
-                });
-            }
-
-            if (btnReiniciar) {
-                btnReiniciar.addEventListener('click', () => {
-                    videoFondo.currentTime = 0;
-                    videoFondo.pause();
-                    videoFondo.muted = true;
-                    
-                    if (videoFondoBlur) {
-                        videoFondoBlur.currentTime = 0;
-                        videoFondoBlur.pause();
-                        videoFondoBlur.muted = true;
-                    }
-
-                    if (btnPlayPause) {
-                        btnPlayPause.textContent = '►'; 
-                        btnPlayPause.title = 'Reproducir video';
-                    }
-                });
-            }
-        } else {
-            // En páginas sin controles manuales (catalogo.html), se reproduce automáticamente en silencio
+        if (!btnPlayPause && !btnReiniciar) {
             videoFondo.muted = true;
             videoFondo.play().catch(error => {
                 console.log("Autoplay de video de fondo:", error);

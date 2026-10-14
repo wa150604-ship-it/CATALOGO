@@ -328,7 +328,7 @@ body {
     flex-wrap: wrap; 
 }
 
-/* FILTROS DE CATEGORÍA (ATAÚDES Y URNAS CON ESTILO BLANCO / VERDE) */
+/* FILTROS DE CATEGORÍA */
 .btn-filtro { 
     background: #ffffff; 
     border: 2px solid #006556; 
@@ -357,17 +357,28 @@ body {
     background: rgba(0, 0, 0, 0.05); 
 }
 
-.carrusel-img { 
-    min-width: 100%; 
-    height: 100%; 
-    object-fit: contain; 
-    padding: 8px; 
-    cursor: pointer; 
-    transition: transform 0.2s; 
+.carrusel-img {
+    min-width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 8px;
+    cursor: pointer;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    will-change: transform, opacity;
 }
 
-.carrusel-img:hover { 
-    transform: scale(1.02); 
+.carrusel-img:hover {
+    transform: scale(1.02);
+}
+
+.carrusel-img.saliendo-izquierda {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.carrusel-img.saliendo-derecha {
+    transform: translateX(100%);
+    opacity: 0;
 }
 
 /* MODAL Y EXTRAS */
@@ -491,18 +502,16 @@ body {
     right: 0; 
 }
 
-/* EFECTO HOVER EN EL PIE DE PÁGINA (CORREOS Y TELÉFONOS) */
 .elemento-copiable {
     cursor: pointer;
 }
 
 .elemento-copiable:hover .texto-a-copiar,
 .elemento-copiable:hover .texto-hover-verde {
-    color: #006556 !important; /* Verde institucional */
+    color: #006556 !important;
     transition: color 0.3s ease;
 }
 
-/* MEDIA QUERIES (ADAPTABILIDAD MÓVIL) */
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;

@@ -45,102 +45,82 @@
                 <button class="btn-filtro-macro" data-target="urnas">Urnas</button>
             </div>
 
-            <!-- INSTALACIONES -->
+            <!-- INSTALACIONES (Unificado en un solo carrusel sin filtros) -->
             <div id="seccion-instalaciones" class="grupo-macro">
                 <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
                 
-                <!-- FILTROS INSTALACIONES -->
-                <div class="filtros-catalogo">
-                    <button class="btn-filtro-instalacion btn-filtro activo" data-filtro="todos">Todos</button>
-                    <button class="btn-filtro-instalacion btn-filtro" data-filtro="capillas">Capillas</button>
-                    <button class="btn-filtro-instalacion btn-filtro" data-filtro="oratorio">Oratorio</button>
-                    <button class="btn-filtro-instalacion btn-filtro" data-filtro="estancia">Estancia Infantil</button>
-                    <button class="btn-filtro-instalacion btn-filtro" data-filtro="cafeteria">Cafetería</button>
-                </div>
-                
-                <div class="item-instalacion" data-categoria="capillas" style="padding: 1rem 0;">
-                    <div class="grid-tarjetas tarjeta-centrada"> 
-                        <div class="tarjeta">
-                            <div style="width: 100%; overflow: hidden; border-radius: 6px;">
-                                <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_01.JPG" alt="Capillas de Velación" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_01.JPG,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_02.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_03.JPG,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_04.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_05.JPG,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_06.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_07.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_08.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_09.JPG, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_10.JPG" 
-                                    style="width: 100%; height: auto; display: block; cursor: pointer;">
+                <div id="carrusel-instalaciones-wrapper" style="position: relative; max-width: 500px; margin: 0 auto; overflow: hidden; padding: 0 40px;">
+                    <div class="items-instalacion-track" style="display: flex; transition: transform 0.35s ease-in-out; width: 100%;">
+                        
+                        <!-- 1. Capillas -->
+                        <div class="item-instalacion" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0;">
+                            <div class="grid-tarjetas tarjeta-centrada" style="margin: 0 auto;"> 
+                                <div class="tarjeta" style="width: 100%;">
+                                    <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                                        <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_01.JPG" alt="Capillas de Velación" class="carrusel-img" 
+                                            data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_01.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_02.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_03.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_04.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_05.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_06.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_07.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_08.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_09.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/CAPILLAS/C_10.JPG" 
+                                            style="width: 100%; height: auto; display: block; cursor: pointer;">
+                                    </div>
+                                    <h3>Capillas de Velación</h3>
+                                    <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
+                                    <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
+                                </div>
                             </div>
-                            <h3>Capillas de Velación</h3>
-                            <p>Espacios confortables y tranquilos con capacidad adecuada para recibir a familiares y amigos cercanos, ofreciendo un ambiente de respeto y privacidad.</p>
-                            <p class="info-asesoria">Cotización y detalles directamente con nuestros promotores</p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="item-instalacion" data-categoria="oratorio" style="padding: 1rem 0;">
-
-                    <div class="grid-tarjetas tarjeta-centrada">
-                        <div class="tarjeta">
-                            <div style="width: 100%; overflow: hidden; border-radius: 6px;">
-                                <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_0.jpg" alt="Oratorio" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_0.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_02.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_03.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_04.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_05.jpg"
-                                    style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        <!-- 2. Oratorio -->
+                        <div class="item-instalacion" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0;">
+                            <div class="grid-tarjetas tarjeta-centrada" style="margin: 0 auto;">
+                                <div class="tarjeta" style="width: 100%;">
+                                    <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                                        <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_01.JPG" alt="Oratorio" class="carrusel-img" 
+                                            data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_01.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_02.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_03.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_04.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ORATORIO/O_05.JPG"
+                                            style="width: 100%; height: auto; display: block; cursor: pointer;">
+                                    </div>
+                                    <h3>Oratorio</h3>
+                                    <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
+                                    <p class="info-asesoria">Acceso libre para visitantes</p>
+                                </div>
                             </div>
-                            <h3>Oratorio</h3>
-                            <p>Un espacio dedicado a la reflexión y el recogimiento espiritual, adecuado para diversas creencias.</p>
-                            <p class="info-asesoria">Acceso libre para visitantes</p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="item-instalacion" data-categoria="estancia" style="padding: 1rem 0;">
-                    <div class="grid-tarjetas tarjeta-centrada">
-                        <div class="tarjeta">
-                            <div style="width: 100%; overflow: hidden; border-radius: 6px;">
-                                <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_0.jpg" alt="Estancia Infantil" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_0.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_01.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_02.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_03.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_04.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_05.jpg"
-                                    style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        <!-- 3. Estancia Infantil -->
+                        <div class="item-instalacion" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0;">
+                            <div class="grid-tarjetas tarjeta-centrada" style="margin: 0 auto;">
+                                <div class="tarjeta" style="width: 100%;">
+                                    <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                                        <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_01.JPG" alt="Estancia Infantil" class="carrusel-img" 
+                                            data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_01.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_02.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_03.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_04.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_05.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_06.JPG, MULTIMEDIA/IMAGENES/INSTALACIONES/ESTANCIA_INFANTIL/EI_07.JPG"
+                                            style="width: 100%; height: auto; display: block; cursor: pointer;">
+                                    </div>
+                                    <h3>Estancia Infantil</h3>
+                                    <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
+                                    <p class="info-asesoria">Servicio gratuito</p>
+                                </div>
                             </div>
-                            <h3>Estancia Infantil</h3>
-                            <p>Área segura y acondicionada para el cuidado y entretenimiento de los más pequeños durante su permanencia en nuestras instalaciones.</p>
-                            <p class="info-asesoria">Servicio gratuito</p>
                         </div>
-                    </div>
-                </div>
 
-                <div class="item-instalacion" data-categoria="cafeteria" style="padding: 1rem 0;">
-                    <div class="grid-tarjetas tarjeta-centrada">
-                        <div class="tarjeta">
-                            <div style="width: 100%; overflow: hidden; border-radius: 6px;">
-                                <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png" alt="Cafetería" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-02.png, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-03.png, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-04.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-05.jpg, 
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-06.jpg,
-                                    MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-07.jpg"
-                                    style="width: 100%; height: auto; display: block; cursor: pointer;">
+                        <!-- 4. Cafetería -->
+                        <div class="item-instalacion" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0;">
+                            <div class="grid-tarjetas tarjeta-centrada" style="margin: 0 auto;">
+                                <div class="tarjeta" style="width: 100%;">
+                                    <div style="width: 100%; overflow: hidden; border-radius: 6px;">
+                                        <img src="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png" alt="Cafetería" class="carrusel-img" 
+                                            data-galeria="MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-01.png, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-02.png, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-03.png, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-04.jpg, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-05.jpg, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-06.jpg, MULTIMEDIA/IMAGENES/INSTALACIONES/CAFETERIA/CAF-07.jpg"
+                                            style="width: 100%; height: auto; display: block; cursor: pointer;">
+                                    </div>
+                                    <h3>Cafetería</h3>
+                                    <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
+                                    <p class="info-asesoria">Consumo a la carta</p>
+                                </div>
                             </div>
-                            <h3>Cafetería</h3>
-                            <p>Servicio de alimentos y bebidas disponibles las 24 horas para su comodidad y la de sus acompañantes.</p>
-                            <p class="info-asesoria">Consumo a la carta</p>
                         </div>
+
                     </div>
+
+                    <!-- Botones de navegación de instalaciones -->
+                    <button class="btn-inst-prev" style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px; transition: background 0.3s;">&#10094;</button>
+                    <button class="btn-inst-next" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px; transition: background 0.3s;">&#10095;</button>
                 </div>
             </div> 
 
@@ -258,19 +238,26 @@
             </div>
         </div>
 
-        <!-- Modal General Lightbox Único -->
-        <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
+        <!-- Modal General Lightbox Único con Plantilla e Imagen Ampliada -->
+        <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
             
-            <div style="position:absolute; inset:0; background-image:url('MULTIMEDIA/IMAGENES/fondo_catalogo_ga.png'); background-size:cover; background-position:center; background-repeat:no-repeat; filter:brightness(0.25);"></div>
-            <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10000; user-select: none;">&times;</span>
-            <button id="modalPrev" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10094;</button>
-            <button id="modalNext" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10000;">&#10095;</button>
+            <!-- Plantilla de marco centrada -->
+            <div style="position: absolute; width: 85vw; max-width: 1100px; aspect-ratio: 16 / 9; background-image: url('MULTIMEDIA/IMAGENES/fondo_catalogo_ga.png'); background-size: contain; background-position: center; background-repeat: no-repeat; pointer-events: none; z-index: 1;"></div>
+
+            <!-- Botón de cerrar -->
+            <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10002; user-select: none;">&times;</span>
             
-            <div id="modalZoomContainer" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; z-index: 9999;">
-                <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in;">
+            <!-- Botones de navegación lateral -->
+            <button id="modalPrev" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10094;</button>
+            <button id="modalNext" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10095;</button>
+            
+            <!-- Contenedor de zoom con tamaño extendido casi tocando el logo -->
+            <div id="modalZoomContainer" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: visible; z-index: 2; pointer-events: none;">
+                <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 85%; max-height: 76%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in; pointer-events: auto;">
             </div>
 
-            <div id="modalIndicadores" style="position: absolute; bottom: 50px; display: flex; gap: 8px; z-index: 10000; pointer-events: none;"></div>
+            <!-- Puntos indicadores de la galería -->
+            <div id="modalIndicadores" style="position: absolute; bottom: 30px; display: flex; gap: 8px; z-index: 10002; pointer-events: none;"></div>
         </div>
 
         <!------------------------------ PIE DE PÁGINA ------------------------------>

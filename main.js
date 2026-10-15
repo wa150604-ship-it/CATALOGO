@@ -125,73 +125,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
-    // 3. LÓGICA DEL CARRUSEL DE IMÁGENES (DESPLAZAMIENTO LATERAL)
+    // 3. IMÁGENES DE TARJETAS (Limpias, sin flechas flotantes)
     // --------------------------------------------------------
-    const carruseles = document.querySelectorAll('.carrusel-tarjeta');
-
-    carruseles.forEach(carrusel => {
-        const imgElement = carrusel.querySelector('.carrusel-img');
-        if (!imgElement) return;
-
-        const galeriaData = imgElement.getAttribute('data-galeria');
-        if (galeriaData) {
-            const imagenes = galeriaData.split(',').map(url => url.trim()); 
-            
-            if (imagenes.length > 1) {
-                let indiceActual = 0;
-
-                const btnPrev = document.createElement('button');
-                btnPrev.innerHTML = '&#10094;';
-                btnPrev.className = 'btn-carrusel prev';
-
-                const btnNext = document.createElement('button');
-                btnNext.innerHTML = '&#10095;';
-                btnNext.className = 'btn-carrusel next';
-
-                carrusel.appendChild(btnPrev);
-                carrusel.appendChild(btnNext);
-
-                const cambiarImagenConDesplazamiento = (nuevoIndice, direccion) => {
-                    const claseSalida = direccion === 'next' ? 'saliendo-izquierda' : 'saliendo-derecha';
-                    const claseEntradaOpuesta = direccion === 'next' ? 'saliendo-derecha' : 'saliendo-izquierda';
-
-                    imgElement.classList.add(claseSalida);
-
-                    setTimeout(() => {
-                        imgElement.style.transition = 'none';
-                        imgElement.classList.remove(claseSalida);
-                        imgElement.classList.add(claseEntradaOpuesta);
-                        
-                        indiceActual = nuevoIndice;
-                        imgElement.src = imagenes[indiceActual];
-
-                        void imgElement.offsetWidth;
-
-                        imgElement.style.transition = 'transform 0.25s ease-in-out, opacity 0.25s ease-in-out';
-                        imgElement.classList.remove(claseEntradaOpuesta);
-                    }, 250);
-                };
-
-                btnNext.addEventListener('click', (e) => {
-                    e.stopPropagation(); 
-                    const siguienteIndice = (indiceActual + 1) % imagenes.length;
-                    cambiarImagenConDesplazamiento(siguienteIndice, 'next');
-                });
-
-                btnPrev.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const anteriorIndice = (indiceActual - 1 + imagenes.length) % imagenes.length;
-                    cambiarImagenConDesplazamiento(anteriorIndice, 'prev');
-                });
-            }
-        }
-    });
 
     // --------------------------------------------------------
-    // 4. LÓGICA DEL LIGHTBOX (ZOOM, ARRASTRE E INDICADORES)
+    // 4. LÓGICA DEL LIGHTBOX (DESPLAZAMIENTO LINEAL Y ZOOM)
     // --------------------------------------------------------
     const modalLightbox = document.getElementById('modalLightbox');
-    const imgAmpliada = document.getElementById('imgAmpliada');
+    const modalZoomContainer = document.getElementById('modalZoomContainer');
     const cerrarModal = document.querySelector('.cerrar-modal');
     const imagenesParaZoom = document.querySelectorAll('.carrusel-img');
     const modalIndicadores = document.getElementById('modalIndicadores');
@@ -199,7 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
 
-    if (modalLightbox && imgAmpliada) {
+    if (modalLightbox && modalZoomContainer) {
+        let galeriaActual = [];
+        let indiceActual = 0;
+        let modalTrack = null;
+        let slideImgs = [];
+
         let escala = 1;
         let posX = 0;
         let posY = 0;
@@ -209,16 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
         let downX = 0;
         let downY = 0;
         let isDragging = false;
-        
-        let galeriaActual = [];
-        let indiceActual = 0;
 
-        function actualizarTransformacion() {
-            imgAmpliada.style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
-            if (escala > 1) {
-                imgAmpliada.style.cursor = 'grab';
-            } else {
-                imgAmpliada.style.cursor = 'zoom-in';
+        function actualizarTransformacionActiva() {
+            if (slideImgs[indiceActual]) {
+                slideImgs[indiceActual].style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
+                if (escala > 1) {
+                    slideImgs[indiceActual].style.cursor = 'grab';
+                } else {
+                    slideImgs[indiceActual].style.cursor = 'zoom-in';
+                }
             }
         }
 
@@ -226,45 +171,49 @@ document.addEventListener("DOMContentLoaded", () => {
             escala = 1;
             posX = 0;
             posY = 0;
-            actualizarTransformacion();
+            slideImgs.forEach(img => {
+                if (img) {
+                    img.style.transform = 'translate(0px, 0px) scale(1)';
+                    img.style.cursor = 'zoom-in';
+                }
+            });
         }
 
         function actualizarImagenModal() {
-            if (galeriaActual.length > 0) {
-                imgAmpliada.src = galeriaActual[indiceActual];
-                resetZoom();
+            if (!modalTrack) return;
+            resetZoom(); // Restablece el zoom al cambiar de foto
+            modalTrack.style.transform = `translateX(-${indiceActual * 100}%)`;
 
-                if (modalPrev && modalNext) {
-                    if (galeriaActual.length > 1) {
-                        modalPrev.style.display = 'block';
-                        modalNext.style.display = 'block';
-                    } else {
-                        modalPrev.style.display = 'none';
-                        modalNext.style.display = 'none';
-                    }
+            if (modalPrev && modalNext) {
+                if (galeriaActual.length > 1) {
+                    modalPrev.style.display = 'block';
+                    modalNext.style.display = 'block';
+                } else {
+                    modalPrev.style.display = 'none';
+                    modalNext.style.display = 'none';
                 }
+            }
 
-                if (modalIndicadores) {
-                    modalIndicadores.innerHTML = '';
-                    
-                    if (galeriaActual.length > 1) {
-                        galeriaActual.forEach((_, idx) => {
-                            const punto = document.createElement('div');
-                            punto.style.width = '10px';
-                            punto.style.height = '10px';
-                            punto.style.borderRadius = '50%';
-                            punto.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
-                            
-                            if (idx === indiceActual) {
-                                punto.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-                                punto.style.transform = 'scale(1.2)';
-                            } else {
-                                punto.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                                punto.style.transform = 'scale(1)';
-                            }
-                            modalIndicadores.appendChild(punto);
-                        });
-                    }
+            if (modalIndicadores) {
+                modalIndicadores.innerHTML = '';
+                
+                if (galeriaActual.length > 1) {
+                    galeriaActual.forEach((_, idx) => {
+                        const punto = document.createElement('div');
+                        punto.style.width = '10px';
+                        punto.style.height = '10px';
+                        punto.style.borderRadius = '50%';
+                        punto.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
+                        
+                        if (idx === indiceActual) {
+                            punto.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+                            punto.style.transform = 'scale(1.2)';
+                        } else {
+                            punto.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                            punto.style.transform = 'scale(1)';
+                        }
+                        modalIndicadores.appendChild(punto);
+                    });
                 }
             }
         }
@@ -281,10 +230,93 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 
                 indiceActual = 0;
+                for (let i = 0; i < galeriaActual.length; i++) {
+                    if (this.src.includes(galeriaActual[i]) || galeriaActual[i].includes(this.getAttribute('src'))) {
+                        indiceActual = i;
+                        break;
+                    }
+                }
+
+                modalZoomContainer.innerHTML = '';
+                modalZoomContainer.style.overflow = 'hidden';
+
+                modalTrack = document.createElement('div');
+                modalTrack.style.cssText = 'display: flex; transition: transform 0.35s ease-in-out; width: 100%; height: 100%; pointer-events: auto;';
+
+                slideImgs = [];
+
+                galeriaActual.forEach(urlImg => {
+                    const slideDiv = document.createElement('div');
+                    slideDiv.style.cssText = 'min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box;';
+
+                    const slideImg = document.createElement('img');
+                    slideImg.src = urlImg;
+                    slideImg.alt = 'Imagen ampliada';
+                    slideImg.style.cssText = 'max-width: 85%; max-height: 76%; object-fit: contain; user-select: none; pointer-events: auto; cursor: zoom-in; transition: transform 0.15s ease-out; transform-origin: center;';
+
+                    // Lógica de arrastre y zoom por cada imagen del carrusel modal
+                    slideImg.addEventListener('mousedown', (ev) => {
+                        if (ev.button !== 0) return;
+                        ev.preventDefault();
+                        downX = ev.clientX;
+                        downY = ev.clientY;
+                        inicioX = ev.clientX - posX;
+                        inicioY = ev.clientY - posY;
+                        isDragging = false;
+                    });
+
+                    slideImg.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
+                        const dist = Math.hypot(ev.clientX - downX, ev.clientY - downY);
+                        if (isDragging || dist > 5) return;
+
+                        if (escala === 1) {
+                            escala = 2.5;
+                        } else {
+                            escala = 1;
+                            posX = 0;
+                            posY = 0;
+                        }
+                        actualizarTransformacionActiva();
+                    });
+
+                    slideDiv.appendChild(slideImg);
+                    modalTrack.appendChild(slideDiv);
+                    slideImgs.push(slideImg);
+                });
+
+                modalZoomContainer.appendChild(modalTrack);
+
                 actualizarImagenModal();
                 modalLightbox.style.display = 'flex'; 
                 document.body.style.overflow = 'hidden';
             });
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (modalLightbox.style.display !== 'flex') return;
+            if (e.buttons === 0) {
+                arrastrando = false;
+                return;
+            }
+            const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
+            if (dist > 5) {
+                isDragging = true;
+                if (escala > 1) {
+                    arrastrando = true;
+                    posX = e.clientX - inicioX;
+                    posY = e.clientY - inicioY;
+                    actualizarTransformacionActiva();
+                    if (slideImgs[indiceActual]) slideImgs[indiceActual].style.cursor = 'grabbing';
+                }
+            }
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (arrastrando) {
+                arrastrando = false;
+                if (escala > 1 && slideImgs[indiceActual]) slideImgs[indiceActual].style.cursor = 'grab';
+            }
         });
 
         if (modalPrev) {
@@ -307,59 +339,12 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        imgAmpliada.addEventListener('mousedown', (e) => {
-            if (e.button !== 0) return;
-            e.preventDefault(); 
-            downX = e.clientX;
-            downY = e.clientY;
-            inicioX = e.clientX - posX;
-            inicioY = e.clientY - posY;
-            isDragging = false;
-        });
-
-        window.addEventListener('mousemove', (e) => {
-            if (e.buttons === 0) {
-                arrastrando = false;
-                return;
-            }
-            const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-            if (dist > 5) {
-                isDragging = true;
-                if (escala > 1) {
-                    arrastrando = true;
-                    posX = e.clientX - inicioX;
-                    posY = e.clientY - inicioY;
-                    actualizarTransformacion();
-                    imgAmpliada.style.cursor = 'grabbing';
-                }
-            }
-        });
-
-        window.addEventListener('mouseup', () => {
-            if (arrastrando) {
-                arrastrando = false;
-                if (escala > 1) imgAmpliada.style.cursor = 'grab';
-            }
-        });
-
-        imgAmpliada.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
-            if (isDragging || dist > 5) return; 
-
-            if (escala === 1) {
-                escala = 2.5; 
-            } else {
-                escala = 1; 
-                posX = 0;
-                posY = 0;
-            }
-            actualizarTransformacion();
-        });
-
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
             document.body.style.overflow = '';
+            modalZoomContainer.innerHTML = '';
+            modalTrack = null;
+            slideImgs = [];
             resetZoom();
             if (modalIndicadores) modalIndicadores.innerHTML = '';
         };

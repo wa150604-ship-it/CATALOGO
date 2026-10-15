@@ -125,6 +125,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --------------------------------------------------------
+    // CARRUSEL DE GAMA BAJA (Ataúdes)
+    // --------------------------------------------------------
+    const trackGamaBaja = document.querySelector('.items-gamabaja-track');
+    const itemsGamaBaja = document.querySelectorAll('.item-gamabaja');
+    const btnGbPrev = document.querySelector('.btn-gb-prev');
+    const btnGbNext = document.querySelector('.btn-gb-next');
+
+    if (trackGamaBaja && itemsGamaBaja.length > 0) {
+        let indiceGamaBaja = 0;
+        const totalGamaBaja = itemsGamaBaja.length;
+
+        const actualizarCarruselGamaBaja = () => {
+            trackGamaBaja.style.transform = `translateX(-${indiceGamaBaja * 100}%)`;
+        };
+
+        if (btnGbNext) {
+            btnGbNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceGamaBaja = (indiceGamaBaja + 1) % totalGamaBaja;
+                actualizarCarruselGamaBaja();
+            });
+            btnGbNext.addEventListener('mouseenter', () => btnGbNext.style.backgroundColor = '#bc955b');
+            btnGbNext.addEventListener('mouseleave', () => btnGbNext.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
+        }
+
+        if (btnGbPrev) {
+            btnGbPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceGamaBaja = (indiceGamaBaja - 1 + totalGamaBaja) % totalGamaBaja;
+                actualizarCarruselGamaBaja();
+            });
+            btnGbPrev.addEventListener('mouseenter', () => btnGbPrev.style.backgroundColor = '#bc955b');
+            btnGbPrev.addEventListener('mouseleave', () => btnGbPrev.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
+        }
+    }
+
+    // --------------------------------------------------------
     // 3. IMÁGENES DE TARJETAS (Limpias, sin flechas flotantes)
     // --------------------------------------------------------
 
@@ -254,7 +291,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     slideImg.alt = 'Imagen ampliada';
                     slideImg.style.cssText = 'max-width: 85%; max-height: 76%; object-fit: contain; user-select: none; pointer-events: auto; cursor: zoom-in; transition: transform 0.15s ease-out; transform-origin: center;';
 
-                    // Lógica de arrastre y zoom por cada imagen del carrusel modal
                     slideImg.addEventListener('mousedown', (ev) => {
                         if (ev.button !== 0) return;
                         ev.preventDefault();

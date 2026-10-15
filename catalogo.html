@@ -157,27 +157,101 @@
                     
                     <div class="filtros-catalogo">
                         <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
-                        <button class="btn-filtro-ataud btn-filtro" data-filtro="alta">Gama Alta</button>
-                        <button class="btn-filtro-ataud btn-filtro" data-filtro="media">Gama Media</button>
                         <button class="btn-filtro-ataud btn-filtro" data-filtro="baja">Gama Baja</button>
+                        <button class="btn-filtro-ataud btn-filtro" data-filtro="media">Gama Media</button>
+                        <button class="btn-filtro-ataud btn-filtro" data-filtro="alta">Gama Alta</button>
                     </div>
 
-                    <div class="grid-tarjetas">
-                        <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
-                            <div class="carrusel-tarjeta">
-                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                    <!-- SUB-CONTENEDOR / CARRUSEL PARA GAMA BAJA (Primero) -->
+                    <div id="carrusel-gamabaja-wrapper" class="tarjeta-catalogo" data-categoria="baja" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px;">
+                        <div style="overflow: hidden; width: 100%;">
+                            <div class="items-gamabaja-track" style="display: flex; transition: transform 0.35s ease-in-out; width: 100%; align-items: stretch;">
+                                
+                                <!-- GAMA BAJA 1 -->
+                                <div class="item-gamabaja" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB01-1.PNG" alt="Ataúd Gama Baja Modelo 1" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB01-1.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB01-2.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB01-3.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB01-4.PNG" 
+                                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                            </div>
+                                            <h3>Ataúd Económico / Baja - Modelo 1</h3>
+                                            <p>Opción accesible y digna, cumpliendo con los estándares esenciales.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- GAMA BAJA 2 -->
+                                <div class="item-gamabaja" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB02-1.PNG" alt="Ataúd Gama Baja Modelo 2" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB02-1.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB02-2.PNG,
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB02-3.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB02-4.PNG" 
+                                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                            </div>
+                                            <h3>Ataúd Económico / Baja - Modelo 2</h3>
+                                            <p>Opción sencilla de diseño funcional y acabados de calidad.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- GAMA BAJA 3 -->
+                                <div class="item-gamabaja" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB03-1.PNG" alt="Ataúd Gama Baja Modelo 3" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB03-1.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB03-2.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB03-3.PNG, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB03-4.PNG" 
+                                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                            </div>
+                                            <h3>Ataúd Económico / Baja - Modelo 3</h3>
+                                            <p>Modelo tradicional básico, sobrio y respetuoso.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <h3>Ataúd de Gama Alta</h3>
-                            <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
-                            <p class="info-asesoria">Cotización con promotores</p>
-                            <a href="contactos.html" class="btn-accion">Consultar</a>
                         </div>
 
+                        <!-- Botones de navegación para los modelos de gama baja -->
+                        <button class="btn-gb-prev" style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px; transition: background 0.3s;">&#10094;</button>
+                        <button class="btn-gb-next" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px; transition: background 0.3s;">&#10095;</button>
+                    </div>
+
+                    <!-- GAMA MEDIA Y GAMA ALTA (Después) -->
+                    <div class="grid-tarjetas">
+                        <!-- GAMA MEDIA -->
                         <div class="tarjeta tarjeta-catalogo" data-categoria="media">
                             <div class="carrusel-tarjeta">
                                 <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png" alt="Ataúd Gama Media" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-4.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-1.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-2.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-3.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_MEDIA/AGM_01-4.png" 
+                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
                             </div>
                             <h3>Ataúd de Gama Media</h3>
                             <p>Diseño tradicional sólido con excelentes acabados y confort visual.</p>
@@ -185,17 +259,23 @@
                             <a href="contactos.html" class="btn-accion">Consultar</a>
                         </div>
 
-                        <div class="tarjeta tarjeta-catalogo" data-categoria="baja">
+                        <!-- GAMA ALTA -->
+                        <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
                             <div class="carrusel-tarjeta">
-                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-1.png" alt="Ataúd Gama Baja" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_BAJA/AGB_01-4.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="carrusel-img" 
+                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png, 
+                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png" 
+                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
                             </div>
-                            <h3>Ataúd Económico / Baja</h3>
-                            <p>Opción accesible y digna, cumpliendo con los estándares esenciales.</p>
+                            <h3>Ataúd de Gama Alta</h3>
+                            <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
                             <p class="info-asesoria">Cotización con promotores</p>
                             <a href="contactos.html" class="btn-accion">Consultar</a>
                         </div>
                     </div>
+
                 </div>
             </div>
                 
@@ -215,7 +295,8 @@
                         <div class="tarjeta tarjeta-cremacion" data-categoria="alta">
                             <div class="carrusel-tarjeta">
                                 <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" alt="Urna Gama Alta" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" 
+                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
                             </div>
                             <h3>Urna de Gama Alta</h3>
                             <p>Diseño exclusivo en materiales finos, acabados detallados y máxima elegancia.</p>
@@ -226,7 +307,8 @@
                         <div class="tarjeta tarjeta-cremacion" data-categoria="media">
                             <div class="carrusel-tarjeta">
                                 <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" alt="Urna Gama Media" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_MEDIA/UGM_1.png" 
+                                    style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
                             </div>
                             <h3>Urna de Gama Media</h3>
                             <p>Estilo tradicional y sobrio con excelentes acabados y gran durabilidad.</p>
@@ -237,7 +319,8 @@
                         <div class="tarjeta tarjeta-cremacion" data-categoria="baja">
                             <div class="carrusel-tarjeta">
                                 <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" alt="Urna Gama Baja" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
+                                    data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_BAJA/UGB_1.png" 
+                                     style="width: 100%; height: 100%; object-fit: contain; display: block; cursor: pointer;">
                             </div>
                             <h3>Urna Económica / Gama Baja</h3>
                             <p>Opción accesible y respetuosa, cumpliendo con los estándares esenciales.</p>

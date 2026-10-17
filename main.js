@@ -1,4 +1,3 @@
-// Prevenir que el navegador restaure el scroll automáticamente
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
@@ -6,9 +5,7 @@ window.scrollTo(0, 0);
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // --------------------------------------------------------
-    // 0. MENÚ HAMBURGUESA PARA DISPOSITIVOS MÓVILES
-    // --------------------------------------------------------
+    // 0. MENÚ HAMBURGUESA
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
 
@@ -26,9 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --------------------------------------------------------
-    // 1. LÓGICA DE FILTROS MACRO DINÁMICOS
-    // --------------------------------------------------------
+    // 1. FILTROS MACRO DINÁMICOS
     const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
     const gruposMacro = document.querySelectorAll('.grupo-macro');
 
@@ -56,9 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --------------------------------------------------------
-    // 2. LÓGICA DE FILTROS POR CATEGORÍA
-    // --------------------------------------------------------
+    // 2. FILTROS POR CATEGORÍA
     function configurarFiltros(selectorBotones, selectorTarjetas) {
         const botones = document.querySelectorAll(selectorBotones);
         const tarjetas = document.querySelectorAll(selectorTarjetas);
@@ -87,9 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarFiltros('.btn-filtro-ataud', '.tarjeta-catalogo');
     configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
 
-    // --------------------------------------------------------
-    // CARRUSEL PRINCIPAL DE INSTALACIONES (Navegación general unificada)
-    // --------------------------------------------------------
+    // CARRUSEL DE INSTALACIONES
     const trackInstalaciones = document.querySelector('.items-instalacion-track');
     const itemsInstalacion = document.querySelectorAll('.item-instalacion');
     const btnInstPrev = document.querySelector('.btn-inst-prev');
@@ -109,8 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceInstalacion = (indiceInstalacion + 1) % totalInstalaciones;
                 actualizarCarruselInstalaciones();
             });
-            btnInstNext.addEventListener('mouseenter', () => btnInstNext.style.backgroundColor = '#bc955b');
-            btnInstNext.addEventListener('mouseleave', () => btnInstNext.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
         }
 
         if (btnInstPrev) {
@@ -119,14 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceInstalacion = (indiceInstalacion - 1 + totalInstalaciones) % totalInstalaciones;
                 actualizarCarruselInstalaciones();
             });
-            btnInstPrev.addEventListener('mouseenter', () => btnInstPrev.style.backgroundColor = '#bc955b');
-            btnInstPrev.addEventListener('mouseleave', () => btnInstPrev.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
         }
     }
 
-    // --------------------------------------------------------
-    // CARRUSEL DE GAMA BAJA (Ataúdes)
-    // --------------------------------------------------------
+    // CARRUSEL DE GAMA BAJA
     const trackGamaBaja = document.querySelector('.items-gamabaja-track');
     const itemsGamaBaja = document.querySelectorAll('.item-gamabaja');
     const btnGbPrev = document.querySelector('.btn-gb-prev');
@@ -146,8 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceGamaBaja = (indiceGamaBaja + 1) % totalGamaBaja;
                 actualizarCarruselGamaBaja();
             });
-            btnGbNext.addEventListener('mouseenter', () => btnGbNext.style.backgroundColor = '#bc955b');
-            btnGbNext.addEventListener('mouseleave', () => btnGbNext.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
         }
 
         if (btnGbPrev) {
@@ -156,24 +139,46 @@ document.addEventListener("DOMContentLoaded", () => {
                 indiceGamaBaja = (indiceGamaBaja - 1 + totalGamaBaja) % totalGamaBaja;
                 actualizarCarruselGamaBaja();
             });
-            btnGbPrev.addEventListener('mouseenter', () => btnGbPrev.style.backgroundColor = '#bc955b');
-            btnGbPrev.addEventListener('mouseleave', () => btnGbPrev.style.backgroundColor = 'rgba(0, 0, 0, 0.6)');
         }
     }
 
-    // --------------------------------------------------------
-    // 3. IMÁGENES DE TARJETAS (Limpias, sin flechas flotantes)
-    // --------------------------------------------------------
+    // CARRUSEL DE GAMA MEDIA (10 MODELOS)
+    const trackGamaMedia = document.querySelector('.items-gamamedia-track');
+    const itemsGamaMedia = document.querySelectorAll('.item-gamamedia');
+    const btnGmPrev = document.querySelector('.btn-gm-prev');
+    const btnGmNext = document.querySelector('.btn-gm-next');
 
-    // --------------------------------------------------------
-    // 4. LÓGICA DEL LIGHTBOX (DESPLAZAMIENTO LINEAL Y ZOOM)
-    // --------------------------------------------------------
+    if (trackGamaMedia && itemsGamaMedia.length > 0) {
+        let indiceGamaMedia = 0;
+        const totalGamaMedia = itemsGamaMedia.length;
+
+        const actualizarCarruselGamaMedia = () => {
+            trackGamaMedia.style.transform = `translateX(-${indiceGamaMedia * 100}%)`;
+        };
+
+        if (btnGmNext) {
+            btnGmNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceGamaMedia = (indiceGamaMedia + 1) % totalGamaMedia;
+                actualizarCarruselGamaMedia();
+            });
+        }
+
+        if (btnGmPrev) {
+            btnGmPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                indiceGamaMedia = (indiceGamaMedia - 1 + totalGamaMedia) % totalGamaMedia;
+                actualizarCarruselGamaMedia();
+            });
+        }
+    }
+
+    // 4. LIGHTBOX / ZOOM DE IMÁGENES
     const modalLightbox = document.getElementById('modalLightbox');
     const modalZoomContainer = document.getElementById('modalZoomContainer');
     const cerrarModal = document.querySelector('.cerrar-modal');
     const imagenesParaZoom = document.querySelectorAll('.carrusel-img');
     const modalIndicadores = document.getElementById('modalIndicadores');
-    
     const modalPrev = document.getElementById('modalPrev');
     const modalNext = document.getElementById('modalNext');
 
@@ -196,11 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function actualizarTransformacionActiva() {
             if (slideImgs[indiceActual]) {
                 slideImgs[indiceActual].style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
-                if (escala > 1) {
-                    slideImgs[indiceActual].style.cursor = 'grab';
-                } else {
-                    slideImgs[indiceActual].style.cursor = 'zoom-in';
-                }
+                slideImgs[indiceActual].style.cursor = escala > 1 ? 'grab' : 'zoom-in';
             }
         }
 
@@ -218,22 +219,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function actualizarImagenModal() {
             if (!modalTrack) return;
-            resetZoom(); // Restablece el zoom al cambiar de foto
+            resetZoom();
             modalTrack.style.transform = `translateX(-${indiceActual * 100}%)`;
 
             if (modalPrev && modalNext) {
-                if (galeriaActual.length > 1) {
-                    modalPrev.style.display = 'block';
-                    modalNext.style.display = 'block';
-                } else {
-                    modalPrev.style.display = 'none';
-                    modalNext.style.display = 'none';
-                }
+                modalPrev.style.display = galeriaActual.length > 1 ? 'block' : 'none';
+                modalNext.style.display = galeriaActual.length > 1 ? 'block' : 'none';
             }
 
             if (modalIndicadores) {
                 modalIndicadores.innerHTML = '';
-                
                 if (galeriaActual.length > 1) {
                     galeriaActual.forEach((_, idx) => {
                         const punto = document.createElement('div');
@@ -241,14 +236,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         punto.style.height = '10px';
                         punto.style.borderRadius = '50%';
                         punto.style.transition = 'background-color 0.3s ease, transform 0.3s ease';
-                        
-                        if (idx === indiceActual) {
-                            punto.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-                            punto.style.transform = 'scale(1.2)';
-                        } else {
-                            punto.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                            punto.style.transform = 'scale(1)';
-                        }
+                        punto.style.backgroundColor = idx === indiceActual ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0.4)';
+                        punto.style.transform = idx === indiceActual ? 'scale(1.2)' : 'scale(1)';
                         modalIndicadores.appendChild(punto);
                     });
                 }
@@ -259,12 +248,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.addEventListener('click', function(e) {
                 e.preventDefault(); 
                 const dataGaleria = this.getAttribute('data-galeria');
-                
-                if (dataGaleria) {
-                    galeriaActual = dataGaleria.split(',').map(url => url.trim());
-                } else {
-                    galeriaActual = [this.src];
-                }
+                galeriaActual = dataGaleria ? dataGaleria.split(',').map(url => url.trim()) : [this.src];
                 
                 indiceActual = 0;
                 for (let i = 0; i < galeriaActual.length; i++) {
@@ -306,13 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         const dist = Math.hypot(ev.clientX - downX, ev.clientY - downY);
                         if (isDragging || dist > 5) return;
 
-                        if (escala === 1) {
-                            escala = 2.5;
-                        } else {
-                            escala = 1;
-                            posX = 0;
-                            posY = 0;
-                        }
+                        escala = escala === 1 ? 2.5 : 1;
+                        if (escala === 1) { posX = 0; posY = 0; }
                         actualizarTransformacionActiva();
                     });
 
@@ -322,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 modalZoomContainer.appendChild(modalTrack);
-
                 actualizarImagenModal();
                 modalLightbox.style.display = 'flex'; 
                 document.body.style.overflow = 'hidden';
@@ -331,10 +309,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.addEventListener('mousemove', (e) => {
             if (modalLightbox.style.display !== 'flex') return;
-            if (e.buttons === 0) {
-                arrastrando = false;
-                return;
-            }
+            if (e.buttons === 0) { arrastrando = false; return; }
             const dist = Math.hypot(e.clientX - downX, e.clientY - downY);
             if (dist > 5) {
                 isDragging = true;
@@ -390,9 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         modalLightbox.addEventListener('click', (e) => {
-            if (e.target === modalLightbox) {
-                cerrarModalFunc();
-            }
+            if (e.target === modalLightbox) cerrarModalFunc();
         });
 
         window.addEventListener('keydown', (e) => {
@@ -404,28 +377,17 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --------------------------------------------------------
-    // 5. CONTROL DE VIDEO DE FONDO
-    // --------------------------------------------------------
+    // 5. VIDEO DE FONDO
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
     const btnSonido = document.getElementById('btnSonido');
-    const btnPlayPause = document.getElementById('btnPlayPause');
-    const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        if (!btnPlayPause && !btnReiniciar) {
-            videoFondo.muted = true;
-            videoFondo.play().catch(error => {
-                console.log("Autoplay de video de fondo:", error);
-            });
-
-            if (videoFondoBlur) {
-                videoFondoBlur.muted = true;
-                videoFondoBlur.play().catch(error => {
-                    console.log("Autoplay blur:", error);
-                });
-            }
+        videoFondo.muted = true;
+        videoFondo.play().catch(() => {});
+        if (videoFondoBlur) {
+            videoFondoBlur.muted = true;
+            videoFondoBlur.play().catch(() => {});
         }
 
         if (btnSonido) {
@@ -443,35 +405,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // --------------------------------------------------------
-    // 6. COPIAR AL PORTAPAPELES DESDE EL FOOTER
-    // --------------------------------------------------------
+    // 6. COPIAR AL PORTAPAPELES
     document.querySelectorAll('.elemento-copiable').forEach(elemento => {
         elemento.addEventListener('click', () => {
             const textoACopiar = elemento.getAttribute('data-valor');
-            
             navigator.clipboard.writeText(textoACopiar).then(() => {
                 const aviso = document.createElement('div');
                 aviso.textContent = '¡Copiado al portapapeles!';
-                aviso.style.position = 'fixed';
-                aviso.style.bottom = '20px';
-                aviso.style.left = '50%';
-                aviso.style.transform = 'translateX(-50%)';
-                aviso.style.backgroundColor = '#4CAF50';
-                aviso.style.color = 'white';
-                aviso.style.padding = '10px 20px';
-                aviso.style.borderRadius = '5px';
-                aviso.style.zIndex = '10000';
-                aviso.style.boxShadow = '0 4px 6px rgba(0,0,0,0.3)';
-                aviso.style.fontWeight = 'bold';
-                
+                aviso.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 10000; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3);';
                 document.body.appendChild(aviso);
-
-                setTimeout(() => {
-                    aviso.remove();
-                }, 2000);
-            }).catch(err => {
-                console.error('Error al intentar copiar: ', err);
+                setTimeout(() => aviso.remove(), 2000);
             });
         });
     });

@@ -1,4 +1,6 @@
+/* ======================================================== */
 /* RESET Y AJUSTES GENERALES */
+/* ======================================================== */
 * { 
     margin: 0; 
     padding: 0; 
@@ -328,7 +330,6 @@ body {
     flex-wrap: wrap; 
 }
 
-/* FILTROS DE CATEGORÍA */
 .btn-filtro { 
     background: #ffffff; 
     border: 2px solid #006556; 
@@ -371,14 +372,12 @@ body {
     transform: scale(1.02);
 }
 
-.carrusel-img.saliendo-izquierda {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-
-.carrusel-img.saliendo-derecha {
-    transform: translateX(100%);
-    opacity: 0;
+/* TRACKS DE CARRUSELES */
+.items-gamamedia-track {
+    display: flex;
+    transition: transform 0.35s ease-in-out;
+    width: 100%;
+    align-items: stretch;
 }
 
 /* MODAL Y EXTRAS */
@@ -416,44 +415,6 @@ body {
     color: #bc955b; 
 }
 
-.btn-modal { 
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    background: rgba(0,0,0,0.6); 
-    color: white; 
-    border: none; 
-    width: 50px; 
-    height: 50px; 
-    border-radius: 50%; 
-    cursor: pointer; 
-    font-size: 1.5rem; 
-    z-index: 1001; 
-}
-
-.btn-modal-prev { 
-    left: 20px; 
-} 
-
-.btn-modal-next { 
-    right: 20px; 
-}
-
-.boton-sonido { 
-    position: fixed; 
-    bottom: 30px; 
-    right: 30px; 
-    z-index: 10; 
-    background-color: rgba(255, 255, 255, 0.85); 
-    color: #111; 
-    border: none; 
-    padding: 10px 20px; 
-    border-radius: 30px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
-}
-
 .footer-disclaimer { 
     background-color: rgba(188, 149, 91, 0.95); 
     padding: 40px 5% 30px 5%; 
@@ -476,38 +437,11 @@ body {
     font-weight: bold; 
 }
 
-.btn-carrusel {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 1.5rem;
-    padding: 10px 15px;
-    cursor: pointer;
-    z-index: 10;
-    transition: background 0.3s;
-}
-
-.btn-carrusel:hover { 
-    background-color: #bc955b; 
-}
-
-.btn-carrusel.prev { 
-    left: 0; 
-}
-
-.btn-carrusel.next { 
-    right: 0; 
-}
-
 .elemento-copiable {
     cursor: pointer;
 }
 
-.elemento-copiable:hover .texto-a-copiar,
-.elemento-copiable:hover .texto-hover-verde {
+.elemento-copiable:hover .texto-a-copiar {
     color: #006556 !important;
     transition: color 0.3s ease;
 }

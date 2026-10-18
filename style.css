@@ -372,12 +372,48 @@ body {
     transform: scale(1.02);
 }
 
-/* TRACKS DE CARRUSELES */
-.items-gamamedia-track {
+/* TRACKS DE CARRUSELES CORREGIDOS Y ESTABLES */
+.items-instalacion-track,
+.items-gamabaja-track,
+.items-gamamedia-track,
+.items-gamaalta-track {
     display: flex;
     transition: transform 0.35s ease-in-out;
     width: 100%;
     align-items: stretch;
+}
+
+.item-instalacion,
+.item-gamabaja,
+.item-gamamedia,
+.item-gamaalta {
+    flex: 0 0 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ESTILOS PARA LOS INDICADORES DE LOS CARRUSELES PRINCIPALES */
+.carrusel-indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.carrusel-indicadores .punto {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.carrusel-indicadores .punto.activo {
+    background-color: #ffffff;
+    transform: scale(1.2);
 }
 
 /* MODAL Y EXTRAS */

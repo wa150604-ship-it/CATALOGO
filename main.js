@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 2. FILTROS POR CATEGORÍA
+    // 2. FILTROS POR CATEGORÍA (ATAÚDES Y URNAS)
     function configurarFiltros(selectorBotones, selectorTarjetas) {
         const botones = document.querySelectorAll(selectorBotones);
         const tarjetas = document.querySelectorAll(selectorTarjetas);
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     tarjetas.forEach(tarjeta => {
                         const categoriaTarjeta = tarjeta.getAttribute('data-categoria');
-                        if (categoriaFiltro === 'todos' || categoriaTarjeta === categoriaFiltro) {
+                        if (categoriaTarjeta === categoriaFiltro) {
                             tarjeta.style.display = 'block';
                         } else {
                             tarjeta.style.display = 'none';
@@ -77,101 +77,92 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
+    configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
+
     configurarFiltros('.btn-filtro-ataud', '.tarjeta-catalogo');
     configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
 
-    // CARRUSEL DE INSTALACIONES
-    const trackInstalaciones = document.querySelector('.items-instalacion-track');
-    const itemsInstalacion = document.querySelectorAll('.item-instalacion');
-    const btnInstPrev = document.querySelector('.btn-inst-prev');
-    const btnInstNext = document.querySelector('.btn-inst-next');
+    // FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES
+    function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
+        if (!track || items.length === 0) return;
 
-    if (trackInstalaciones && itemsInstalacion.length > 0) {
-        let indiceInstalacion = 0;
-        const totalInstalaciones = itemsInstalacion.length;
+        let indice = 0;
+        const total = items.length;
+        const indicadoresContainer = document.getElementById(contenedorIndicadores);
 
-        const actualizarCarruselInstalaciones = () => {
-            trackInstalaciones.style.transform = `translateX(-${indiceInstalacion * 100}%)`;
+        if (indicadoresContainer) {
+            indicadoresContainer.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const punto = document.createElement('div');
+                punto.classList.add('punto');
+                if (i === 0) punto.classList.add('activo');
+                indicadoresContainer.appendChild(punto);
+            }
+        }
+
+        const puntos = indicadoresContainer ? indicadoresContainer.querySelectorAll('.punto') : [];
+
+        const actualizarCarrusel = () => {
+            track.style.transform = `translateX(-${indice * 100}%)`;
+            puntos.forEach((p, idx) => {
+                if (idx === indice) {
+                    p.classList.add('activo');
+                } else {
+                    p.classList.remove('activo');
+                }
+            });
         };
 
-        if (btnInstNext) {
-            btnInstNext.addEventListener('click', (e) => {
+        if (btnNext) {
+            btnNext.addEventListener('click', (e) => {
                 e.stopPropagation();
-                indiceInstalacion = (indiceInstalacion + 1) % totalInstalaciones;
-                actualizarCarruselInstalaciones();
+                indice = (indice + 1) % total;
+                actualizarCarrusel();
             });
         }
 
-        if (btnInstPrev) {
-            btnInstPrev.addEventListener('click', (e) => {
+        if (btnPrev) {
+            btnPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
-                indiceInstalacion = (indiceInstalacion - 1 + totalInstalaciones) % totalInstalaciones;
-                actualizarCarruselInstalaciones();
+                indice = (indice - 1 + total) % total;
+                actualizarCarrusel();
             });
         }
     }
 
-    // CARRUSEL DE GAMA BAJA
-    const trackGamaBaja = document.querySelector('.items-gamabaja-track');
-    const itemsGamaBaja = document.querySelectorAll('.item-gamabaja');
-    const btnGbPrev = document.querySelector('.btn-gb-prev');
-    const btnGbNext = document.querySelector('.btn-gb-next');
+    // APLICAR A LOS 4 CARRUSELES PRINCIPALES
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-instalacion-track'),
+        document.querySelectorAll('.item-instalacion'),
+        document.querySelector('.btn-inst-prev'),
+        document.querySelector('.btn-inst-next'),
+        'indicadores-instalaciones'
+    );
 
-    if (trackGamaBaja && itemsGamaBaja.length > 0) {
-        let indiceGamaBaja = 0;
-        const totalGamaBaja = itemsGamaBaja.length;
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-gamabaja-track'),
+        document.querySelectorAll('.item-gamabaja'),
+        document.querySelector('.btn-gb-prev'),
+        document.querySelector('.btn-gb-next'),
+        'indicadores-gamabaja'
+    );
 
-        const actualizarCarruselGamaBaja = () => {
-            trackGamaBaja.style.transform = `translateX(-${indiceGamaBaja * 100}%)`;
-        };
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-gamamedia-track'),
+        document.querySelectorAll('.item-gamamedia'),
+        document.querySelector('.btn-gm-prev'),
+        document.querySelector('.btn-gm-next'),
+        'indicadores-gamamedia'
+    );
 
-        if (btnGbNext) {
-            btnGbNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaBaja = (indiceGamaBaja + 1) % totalGamaBaja;
-                actualizarCarruselGamaBaja();
-            });
-        }
-
-        if (btnGbPrev) {
-            btnGbPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaBaja = (indiceGamaBaja - 1 + totalGamaBaja) % totalGamaBaja;
-                actualizarCarruselGamaBaja();
-            });
-        }
-    }
-
-    // CARRUSEL DE GAMA MEDIA (10 MODELOS)
-    const trackGamaMedia = document.querySelector('.items-gamamedia-track');
-    const itemsGamaMedia = document.querySelectorAll('.item-gamamedia');
-    const btnGmPrev = document.querySelector('.btn-gm-prev');
-    const btnGmNext = document.querySelector('.btn-gm-next');
-
-    if (trackGamaMedia && itemsGamaMedia.length > 0) {
-        let indiceGamaMedia = 0;
-        const totalGamaMedia = itemsGamaMedia.length;
-
-        const actualizarCarruselGamaMedia = () => {
-            trackGamaMedia.style.transform = `translateX(-${indiceGamaMedia * 100}%)`;
-        };
-
-        if (btnGmNext) {
-            btnGmNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaMedia = (indiceGamaMedia + 1) % totalGamaMedia;
-                actualizarCarruselGamaMedia();
-            });
-        }
-
-        if (btnGmPrev) {
-            btnGmPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                indiceGamaMedia = (indiceGamaMedia - 1 + totalGamaMedia) % totalGamaMedia;
-                actualizarCarruselGamaMedia();
-            });
-        }
-    }
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-gamaalta-track'),
+        document.querySelectorAll('.item-gamaalta'),
+        document.querySelector('.btn-ga-prev'),
+        document.querySelector('.btn-ga-next'),
+        'indicadores-gamaalta'
+    );
 
     // 4. LIGHTBOX / ZOOM DE IMÁGENES
     const modalLightbox = document.getElementById('modalLightbox');

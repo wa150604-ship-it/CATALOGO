@@ -50,6 +50,7 @@
                 <h2 class="titulo-seccion" style="font-size: 2.2rem; color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8); text-align: center;">Instalaciones</h2>
                 
                 <div id="carrusel-instalaciones-wrapper" style="position: relative; max-width: 520px; margin: 0 auto; padding: 0 50px;">
+                    <div class="carrusel-indicadores" id="indicadores-instalaciones"></div>
                     <div style="overflow: hidden; width: 100%;">
                         <div class="items-instalacion-track" style="display: flex; transition: transform 0.35s ease-in-out; width: 100%; align-items: stretch;">
                             
@@ -150,14 +151,14 @@
                     <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Catálogo de Ataúdes</h2>
                     
                     <div class="filtros-catalogo">
-                        <button class="btn-filtro-ataud btn-filtro activo" data-filtro="todos">Todos</button>
-                        <button class="btn-filtro-ataud btn-filtro" data-filtro="baja">Gama Baja</button>
+                        <button class="btn-filtro-ataud btn-filtro activo" data-filtro="baja">Gama Baja</button>
                         <button class="btn-filtro-ataud btn-filtro" data-filtro="media">Gama Media</button>
                         <button class="btn-filtro-ataud btn-filtro" data-filtro="alta">Gama Alta</button>
                     </div>
 
                     <!-- GAMA BAJA -->
-                    <div id="carrusel-gamabaja-wrapper" class="tarjeta-catalogo" data-categoria="baja" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px;">
+                    <div id="carrusel-gamabaja-wrapper" class="tarjeta-catalogo seccion-ataud-item" data-categoria="baja" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px;">
+                        <div class="carrusel-indicadores" id="indicadores-gamabaja"></div>
                         <div style="overflow: hidden; width: 100%;">
                             <div class="items-gamabaja-track" style="display: flex; transition: transform 0.35s ease-in-out; width: 100%; align-items: stretch;">
                                 
@@ -219,7 +220,8 @@
                     </div>
 
                     <!-- GAMA MEDIA -->
-                    <div id="carrusel-gamamedia-wrapper" class="tarjeta-catalogo" data-categoria="media" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px;">
+                    <div id="carrusel-gamamedia-wrapper" class="tarjeta-catalogo seccion-ataud-item" data-categoria="media" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px; display: none;">
+                        <div class="carrusel-indicadores" id="indicadores-gamamedia"></div>
                         <div style="overflow: hidden; width: 100%;">
                             <div class="items-gamamedia-track">
                                 
@@ -439,17 +441,101 @@
                     </div>
 
                     <!-- GAMA ALTA -->
-                    <div class="grid-tarjetas" style="margin-top: 20px;">
-                        <div class="tarjeta tarjeta-catalogo" data-categoria="alta">
-                            <div class="carrusel-tarjeta">
-                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png" alt="Ataúd Gama Alta" class="carrusel-img" 
-                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-1.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-2.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-3.png, MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/AGA_01-4.png">
+                    <div id="carrusel-gamaalta-wrapper" class="tarjeta-catalogo seccion-ataud-item" data-categoria="alta" style="position: relative; max-width: 520px; margin: 0 auto 20px auto; padding: 0 50px; display: none;">
+                        <div class="carrusel-indicadores" id="indicadores-gamaalta"></div>
+                        <div style="overflow: hidden; width: 100%;">
+                            <div class="items-gamaalta-track">
+                                
+                                <!-- MODELO 1 -->
+                                <div class="item-gamaalta" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M01/AGA01-1.png" alt="Gama Alta 1" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M01/AGA01-1.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M01/AGA01-2.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M01/AGA01-3.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M01/AGA01-4.png">
+                                            </div>
+                                            <h3>Ataúd de Gama Alta - Modelo 1</h3>
+                                            <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MODELO 2 -->
+                                <div class="item-gamaalta" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-1.png" alt="Gama Alta 2" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-1.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-2.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-3.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-4.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-5.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M02/AGA02-6.png">
+                                            </div>
+                                            <h3>Ataúd de Gama Alta - Modelo 2</h3>
+                                            <p>Elegancia superior con detalles artesanales y materiales selectos.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MODELO 3 -->
+                                <div class="item-gamaalta" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M03/AGA03-1.png" alt="Gama Alta 3" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M03/AGA03-1.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M03/AGA03-2.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M03/AGA03-3.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M03/AGA03-4.png">
+                                            </div>
+                                            <h3>Ataúd de Gama Alta - Modelo 3</h3>
+                                            <p>Diseño exclusivo y distinguido para un homenaje de máxima solemnidad.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- MODELO 4 -->
+                                <div class="item-gamaalta" style="min-width: 100%; box-sizing: border-box; padding: 1rem 0; display: flex; flex-direction: column;">
+                                    <div class="tarjeta" style="width: 100%; display: flex; flex-direction: column; justify-content: space-between; height: 100%;">
+                                        <div>
+                                            <div class="carrusel-tarjeta">
+                                                <img src="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M04/AGA04-1.png" alt="Gama Alta 4" class="carrusel-img" 
+                                                    data-galeria="MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M04/AGA04-1.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M04/AGA04-2.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M04/AGA04-3.png, 
+                                                    MULTIMEDIA/IMAGENES/ATAUDES/GAMA_ALTA/M04/AGA04-4.png">
+                                            </div>
+                                            <h3>Ataúd de Gama Alta - Modelo 4</h3>
+                                            <p>La más alta distinción en acabados de lujo y máxima calidad.</p>
+                                        </div>
+                                        <div>
+                                            <p class="info-asesoria">Cotización con promotores</p>
+                                            <a href="contactos.html" class="btn-accion">Consultar</a>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <h3>Ataúd de Gama Alta</h3>
-                            <p>Acabado de lujo en madera fina, herrajes especiales y máxima elegancia.</p>
-                            <p class="info-asesoria">Cotización con promotores</p>
-                            <a href="contactos.html" class="btn-accion">Consultar</a>
                         </div>
+                        <button class="btn-ga-prev" style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px;">&#10094;</button>
+                        <button class="btn-ga-next" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px;">&#10095;</button>
                     </div>
 
                 </div>
@@ -473,7 +559,7 @@
                                 <img src="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png" alt="Urna Gama Alta" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/GAMA_ALTA/UGA_1.png">
                             </div>
                             <h3>Urna de Gama Alta</h3>
-                            <p>Diseño exclusivo en materiales finos, acabados detallados y máxima elegancia.</p>
+                            <p>Diseño exclusivo en materials finos, acabados detallados y máxima elegancia.</p>
                             <p class="info-asesoria">Cotización con promotores</p>
                             <a href="contactos.html" class="btn-accion">Consultar</a>
                         </div>

@@ -210,13 +210,17 @@ body {
 }
 
 .tarjeta { 
-    background: rgba(255, 255, 255, 0.8); 
-    padding: 30px; 
+    background: rgba(255, 255, 255, 0.9); 
+    padding: 15px 10px; 
     border-radius: 10px; 
     border: 1px solid rgba(0, 0, 0, 0.1); 
     text-align: center; 
     transition: transform 0.3s, background 0.3s; 
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .tarjeta:hover { 
@@ -225,32 +229,33 @@ body {
 }
 
 .tarjeta h3 { 
-    font-size: 1.5rem; 
-    margin-bottom: 15px; 
+    font-size: 1.2rem; 
+    margin-bottom: 8px; 
     color: #006556; 
 }
 
 .tarjeta p { 
-    font-size: 1rem; 
-    margin-bottom: 20px; 
-    line-height: 1.5; 
+    font-size: 0.9rem; 
+    margin-bottom: 12px; 
+    line-height: 1.4; 
     color: #333333; 
 }
 
 .info-asesoria { 
     color: #006556 !important; 
     font-weight: 600; 
-    font-size: 0.95rem !important; 
+    font-size: 0.85rem !important; 
 }
 
 .btn-accion { 
     display: inline-block; 
-    padding: 12px 25px; 
+    padding: 8px 18px; 
     background-color: #25D366; 
     color: white; 
     text-decoration: none; 
     border-radius: 5px; 
     font-weight: bold; 
+    font-size: 0.9rem;
     transition: background 0.3s; 
 }
 
@@ -351,10 +356,10 @@ body {
 .carrusel-tarjeta { 
     position: relative; 
     width: 100%; 
-    height: 240px; 
+    height: 130px; 
     border-radius: 8px; 
     overflow: hidden; 
-    margin-bottom: 15px; 
+    margin-bottom: 10px; 
     background: rgba(0, 0, 0, 0.05); 
 }
 
@@ -362,7 +367,7 @@ body {
     min-width: 100%;
     height: 100%;
     object-fit: contain;
-    padding: 8px;
+    padding: 4px;
     cursor: pointer;
     transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
     will-change: transform, opacity;
@@ -372,11 +377,12 @@ body {
     transform: scale(1.02);
 }
 
-/* TRACKS DE CARRUSELES CORREGIDOS Y ESTABLES */
+/* TRACKS DE CARRUSELES */
 .items-instalacion-track,
 .items-gamabaja-track,
 .items-gamamedia-track,
-.items-gamaalta-track {
+.items-gamaalta-track,
+.items-urnas-track {
     display: flex;
     transition: transform 0.35s ease-in-out;
     width: 100%;
@@ -386,16 +392,25 @@ body {
 .item-instalacion,
 .item-gamabaja,
 .item-gamamedia,
-.item-gamaalta {
+.item-gamaalta,
+.item-urna-slide {
     flex: 0 0 100%;
-    width: 100%;
+    min-width: 100%;
     box-sizing: border-box;
-    padding: 1rem 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: column;
 }
 
-/* ESTILOS PARA LOS INDICADORES DE LOS CARRUSELES PRINCIPALES */
+/* GRID DE 4 COLUMNAS PARA URNAS (EVITA AMONTONAMIENTO) */
+.grid-urnas-5 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+/* INDICADORES */
 .carrusel-indicadores {
     display: flex;
     justify-content: center;
@@ -482,6 +497,12 @@ body {
     transition: color 0.3s ease;
 }
 
+@media (max-width: 1100px) {
+    .grid-urnas-5 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -525,5 +546,15 @@ body {
     .btn-filtro-macro {
         padding: 8px 16px;
         font-size: 0.95rem;
+    }
+
+    .grid-urnas-5 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid-urnas-5 {
+        grid-template-columns: repeat(1, 1fr);
     }
 }

@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     tarjetas.forEach(tarjeta => {
                         const categoriaTarjeta = tarjeta.getAttribute('data-categoria');
-                        if (categoriaTarjeta === categoriaFiltro) {
+                        if (categoriaFiltro === 'todos' || categoriaTarjeta === categoriaFiltro) {
                             tarjeta.style.display = 'block';
                         } else {
                             tarjeta.style.display = 'none';
@@ -78,10 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
-    configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
-
-    configurarFiltros('.btn-filtro-ataud', '.tarjeta-catalogo');
-    configurarFiltros('.btn-filtro-cremacion', '.tarjeta-cremacion');
+    configurarFiltros('.btn-filtro-cremacion', '.item-urna-slide');
 
     // FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
@@ -131,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // APLICAR A LOS 4 CARRUSELES PRINCIPALES
+    // APLICAR A LOS CARRUSELES PRINCIPALES
     inicializarCarruselConPuntos(
         document.querySelector('.items-instalacion-track'),
         document.querySelectorAll('.item-instalacion'),
@@ -162,6 +159,15 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('.btn-ga-prev'),
         document.querySelector('.btn-ga-next'),
         'indicadores-gamaalta'
+    );
+
+    // CARRUSEL DE URNAS (CONTENEDORES DE 5 EN 5)
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-urnas-track'),
+        document.querySelectorAll('.item-urna-slide'),
+        document.querySelector('.btn-urnas-prev'),
+        document.querySelector('.btn-urnas-next'),
+        'indicadores-urnas'
     );
 
     // 4. LIGHTBOX / ZOOM DE IMÁGENES

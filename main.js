@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'indicadores-gamaalta'
     );
 
-    // CARRUSEL DE URNAS (CONTENEDORES DE 5 EN 5)
+    // CARRUSEL DE URNAS
     inicializarCarruselConPuntos(
         document.querySelector('.items-urnas-track'),
         document.querySelectorAll('.item-urna-slide'),
@@ -374,31 +374,63 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. VIDEO DE FONDO
+    // 5. VIDEO DE FONDO Y CONTROLES
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
-    const btnSonido = document.getElementById('btnSonido');
+    const btnPlayPause = document.getElementById('btnPlayPause');
+    const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        videoFondo.muted = true;
-        videoFondo.play().catch(() => {});
-        if (videoFondoBlur) {
-            videoFondoBlur.muted = true;
-            videoFondoBlur.play().catch(() => {});
-        }
+        if (btnPlayPause) {
+            // En index.html: Inicia pausado y silenciado
+            videoFondo.pause();
+            videoFondo.muted = true;
+            if (videoFondoBlur) {
+                videoFondoBlur.pause();
+                videoFondoBlur.muted = true;
+            }
 
-        if (btnSonido) {
-            btnSonido.addEventListener('click', () => {
-                if (videoFondo.muted) {
-                    videoFondo.muted = false;
+            btnPlayPause.addEventListener('click', () => {
+                if (videoFondo.paused) {
+                    videoFondo.muted = false; // Habilita el sonido al reproducir manualmente
+                    if (videoFondoBlur) videoFondoBlur.muted = false;
+                    
                     videoFondo.play();
                     if (videoFondoBlur) videoFondoBlur.play();
-                    btnSonido.textContent = '🔊';
+                    
+                    btnPlayPause.textContent = '❚❚';
+                    btnPlayPause.title = "Pausar video";
                 } else {
-                    videoFondo.muted = true;
-                    btnSonido.textContent = '🔇';
+                    videoFondo.pause();
+                    if (videoFondoBlur) videoFondoBlur.pause();
+                    
+                    btnPlayPause.textContent = '►';
+                    btnPlayPause.title = "Reproducir video";
                 }
             });
+
+            if (btnReiniciar) {
+                btnReiniciar.addEventListener('click', () => {
+                    videoFondo.currentTime = 0;
+                    videoFondo.pause();
+                    if (videoFondoBlur) {
+                        videoFondoBlur.currentTime = 0;
+                        videoFondoBlur.pause();
+                    }
+                    if (btnPlayPause) {
+                        btnPlayPause.textContent = '►';
+                        btnPlayPause.title = "Reproducir video";
+                    }
+                });
+            }
+        } else {
+            // En páginas secundarias (Catálogo, Contactos): Reproducción automática en silencio
+            videoFondo.muted = true;
+            videoFondo.play().catch(() => {});
+            if (videoFondoBlur) {
+                videoFondoBlur.muted = true;
+                videoFondoBlur.play().catch(() => {});
+            }
         }
     }
 

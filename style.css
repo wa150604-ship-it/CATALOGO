@@ -381,6 +381,8 @@ body {
 .items-gamabaja-track,
 .items-gamamedia-track,
 .items-gamaalta-track,
+.items-tallaspequenas-track,
+.items-tallasgrandes-track,
 .items-urnas-track {
     display: flex;
     transition: transform 0.35s ease-in-out;
@@ -392,6 +394,8 @@ body {
 .item-gamabaja,
 .item-gamamedia,
 .item-gamaalta,
+.item-tallaspequenas,
+.item-tallasgrandes,
 .item-urna-slide {
     flex: 0 0 100%;
     min-width: 100%;
@@ -401,7 +405,7 @@ body {
     flex-direction: column;
 }
 
-/* GRID DE 4 COLUMNAS PARA URNAS (EVITA AMONTONAMIENTO) */
+/* GRID DE 4 COLUMNAS PARA URNAS */
 .grid-urnas-5 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -518,7 +522,7 @@ body {
         align-items: center;
         padding: 25px 0;
         gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 0.1);
         display: none;
     }
 
@@ -558,56 +562,37 @@ body {
     }
 }
 
-.items-instalacion-track,
-.items-gamabaja-track,
-.items-gamamedia-track,
-.items-gamaalta-track,
-.items-tallaspequenas-track,
-.items-urnas-track {
-    display: flex;
-    transition: transform 0.35s ease-in-out;
-    width: 100%;
-    align-items: stretch;
+/* ======================================================== */
+/* CORRECCIÓN FINAL DE VIDEO PARA INDEX Y CATÁLOGO */
+/* ======================================================== */
+
+/* En index.html: El video principal mantiene su formato original */
+.video-background { 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%; 
+    height: 100vh; 
+    object-fit: contain;
+    z-index: 2; 
+    pointer-events: none; 
 }
 
-.item-instalacion,
-.item-gamabaja,
-.item-gamamedia,
-.item-gamaalta,
-.item-tallaspequenas,
-.item-urna-slide {
-    flex: 0 0 100%;
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
+/* En catalogo.html: Ocultamos el video frontal para dejar exclusivamente el fondo difuminado estilo contactos */
+body:has(.contenedor-catalogo) #videoFondo {
+    display: none !important;
 }
 
-.items-instalacion-track,
-.items-gamabaja-track,
-.items-gamamedia-track,
-.items-gamaalta-track,
-.items-tallaspequenas-track,
-.items-tallasgrandes-track,
-.items-urnas-track {
-    display: flex;
-    transition: transform 0.35s ease-in-out;
-    width: 100%;
-    align-items: stretch;
-}
-
-.item-instalacion,
-.item-gamabaja,
-.item-gamamedia,
-.item-gamaalta,
-.item-tallaspequenas,
-.item-tallasgrandes,
-.item-urna-slide {
-    flex: 0 0 100%;
-    min-width: 100%;
-    box-sizing: border-box;
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
+body:has(.contenedor-catalogo) #videoFondoBlur {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    filter: blur(25px) brightness(0.5);
+    z-index: -1;
+    pointer-events: none;
 }

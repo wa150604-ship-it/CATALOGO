@@ -5,6 +5,11 @@ window.scrollTo(0, 0);
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const esDispositivoMovil = /Mobi|Android|iPhone/i.test(navigator.userAgent) || window.innerWidth <= 768;
+
+    const textoGuiaCarrusel = esDispositivoMovil ? "Tap para visualizar" : "Click para visualizar";
+    const textoGuiaModal = esDispositivoMovil ? "Tap para zoom | Deslice para navegar" : "Click para zoom | Click y arrastre para explorar";
+
     // 0. MENÚ HAMBURGUESA
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navMenu = document.getElementById('nav-menu');
@@ -22,6 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // Inyectar mensaje guía debajo de cada imagen de carrusel
+    document.querySelectorAll('.carrusel-tarjeta').forEach(carrusel => {
+        const guia = document.createElement('div');
+        guia.className = 'guia-carrusel';
+        guia.textContent = textoGuiaCarrusel;
+        carrusel.insertAdjacentElement('afterend', guia);
+    });
 
     // 1. FILTROS MACRO DINÁMICOS
     const botonesMacro = document.querySelectorAll('.btn-filtro-macro');
@@ -51,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 2. FILTROS POR CATEGORÍA (ATAÚDES Y URNAS)
+    // 2. FILTROS POR CATEGORÍA
     function configurarFiltros(selectorBotones, selectorTarjetas) {
         const botones = document.querySelectorAll(selectorBotones);
         const tarjetas = document.querySelectorAll(selectorTarjetas);
@@ -78,9 +91,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
-    configurarFiltros('.btn-filtro-cremacion', '.item-urna-slide');
 
-    // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES INTERACTIVOS Y SWIPE
+    // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES (INSTALACIONES Y ATAÚDES)
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
         if (!track || items.length === 0) return;
 
@@ -161,7 +173,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
-    // APLICAR A LOS CARRUSELES PRINCIPALES
     inicializarCarruselConPuntos(
         document.querySelector('.items-instalacion-track'),
         document.querySelectorAll('.item-instalacion'),
@@ -210,15 +221,131 @@ document.addEventListener("DOMContentLoaded", () => {
         'indicadores-tallasgrandes'
     );
 
-    inicializarCarruselConPuntos(
-        document.querySelector('.items-urnas-track'),
-        document.querySelectorAll('.item-urna-slide'),
-        document.querySelector('.btn-urnas-prev'),
-        document.querySelector('.btn-urnas-next'),
-        'indicadores-urnas'
-    );
+    // 4. LÓGICA DE LOS 3 CARRUSELES DE URNAS (DESPLAZAMIENTO AFUERA EN LA PÁGINA)
+    function inicializarCarruselFilaUrnas(trackId, btnPrevSel, btnNextSel, contenedorIndicadoresId) {
+        const track = document.getElementById(trackId);
+        const btnPrev = document.querySelector(btnPrevSel);
+        const btnNext = document.querySelector(btnNextSel);
+        const indicadoresContainer = document.getElementById(contenedorIndicadoresId);
 
-    // 4. LIGHTBOX / ZOOM DE IMÁGENES
+        if (!track) return;
+
+        const items = track.querySelectorAll('.tarjeta-urna-item');
+        const totalItems = items.length; 
+        let indiceGrupo = 0;
+
+        const obtenerVisibles = () => (window.innerWidth <= 768 ? 1 : 3);
+        
+        function calcularTotalGrupos() {
+            const visibles = obtenerVisibles();
+            return Math.ceil(totalItems / visibles);
+        }
+
+        function actualizarPuntos() {
+            if (!indicadoresContainer) return;
+            const totalGrupos = calcularTotalGrupos();
+            indicadoresContainer.innerHTML = '';
+
+            for (let i = 0; i < totalGrupos; i++) {
+                const punto = document.createElement('div');
+                punto.classList.add('punto');
+                if (i === indiceGrupo) punto.classList.add('activo');
+                
+                punto.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    indiceGrupo = i;
+                    actualizarPosicion();
+                });
+                indicadoresContainer.appendChild(punto);
+            }
+        }
+
+        function actualizarPosicion() {
+            if (items.length === 0) return;
+            const visibles = obtenerVisibles();
+            const totalGrupos = calcularTotalGrupos();
+
+            if (indiceGrupo >= totalGrupos) {
+                indiceGrupo = totalGrupos - 1;
+            }
+            if (indiceGrupo < 0) {
+                indiceGrupo = 0;
+            }
+
+            const anchoItem = items[0].getBoundingClientRect().width + 15; 
+            const desplazamiento = indiceGrupo * visibles * anchoItem;
+            track.style.transform = `translateX(-${desplazamiento}px)`;
+
+            if (indicadoresContainer) {
+                const puntos = indicadoresContainer.querySelectorAll('.punto');
+                puntos.forEach((p, idx) => {
+                    if (idx === indiceGrupo) {
+                        p.classList.add('activo');
+                        p.style.transform = 'scale(1.2)';
+                        p.style.backgroundColor = '#ffffff';
+                    } else {
+                        p.classList.remove('activo');
+                        p.style.transform = 'scale(1)';
+                        p.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                    }
+                });
+            }
+        }
+
+        if (btnNext) {
+            btnNext.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const totalGrupos = calcularTotalGrupos();
+                indiceGrupo = (indiceGrupo + 1) % totalGrupos;
+                actualizarPosicion();
+            });
+        }
+
+        if (btnPrev) {
+            btnPrev.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const totalGrupos = calcularTotalGrupos();
+                indiceGrupo = (indiceGrupo - 1 + totalGrupos) % totalGrupos;
+                actualizarPosicion();
+            });
+        }
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const umbral = 40;
+            const totalGrupos = calcularTotalGrupos();
+
+            if (touchEndX < touchStartX - umbral) {
+                indiceGrupo = (indiceGrupo + 1) % totalGrupos;
+                actualizarPosicion();
+            }
+            if (touchEndX > touchStartX + umbral) {
+                indiceGrupo = (indiceGrupo - 1 + totalGrupos) % totalGrupos;
+                actualizarPosicion();
+            }
+        }, { passive: true });
+
+        window.addEventListener('resize', () => {
+            actualizarPuntos();
+            actualizarPosicion();
+        });
+
+        actualizarPuntos();
+        actualizarPosicion();
+    }
+
+    inicializarCarruselFilaUrnas('track-urnas-1', '.btn-u1-prev', '.btn-u1-next', 'indicadores-urnas-1');
+    inicializarCarruselFilaUrnas('track-urnas-2', '.btn-u2-prev', '.btn-u2-next', 'indicadores-urnas-2');
+    inicializarCarruselFilaUrnas('track-urnas-3', '.btn-u3-prev', '.btn-u3-next', 'indicadores-urnas-3');
+
+    // 5. LIGHTBOX / ZOOM DE IMÁGENES (FLECHAS OCULTAS DENTRO DEL MODAL SI ES URNA)
     const modalLightbox = document.getElementById('modalLightbox');
     const modalZoomContainer = document.getElementById('modalZoomContainer');
     const cerrarModal = document.querySelector('.cerrar-modal');
@@ -232,6 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let indiceActual = 0;
         let modalTrack = null;
         let slideImgs = [];
+        let esSeccionUrnas = false; 
 
         let escala = 1;
         let posX = 0;
@@ -270,15 +398,16 @@ document.addEventListener("DOMContentLoaded", () => {
             resetZoom();
             modalTrack.style.transform = `translateX(-${indiceActual * 100}%)`;
 
+            // Ocultar las flechas INTERNAS del modal si es urna o solo hay 1 foto
             if (modalPrev && modalNext) {
-                const mostrarControles = galeriaActual.length > 1;
-                modalPrev.style.display = mostrarControles ? 'flex' : 'none';
-                modalNext.style.display = mostrarControles ? 'flex' : 'none';
+                const mostrarControles = galeriaActual.length > 1 && !esSeccionUrnas;
+                modalPrev.style.setProperty('display', mostrarControles ? 'flex' : 'none', 'important');
+                modalNext.style.setProperty('display', mostrarControles ? 'flex' : 'none', 'important');
             }
 
             if (modalIndicadores) {
                 modalIndicadores.innerHTML = '';
-                if (galeriaActual.length > 1) {
+                if (galeriaActual.length > 1 && !esSeccionUrnas) {
                     galeriaActual.forEach((_, idx) => {
                         const punto = document.createElement('div');
                         punto.style.width = '10px';
@@ -299,6 +428,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const dataGaleria = this.getAttribute('data-galeria');
                 galeriaActual = dataGaleria ? dataGaleria.split(',').map(url => url.trim()) : [this.src];
                 
+                const rutaLower = this.src.toLowerCase();
+                const estaEnUrnasHTML = this.closest('#seccion-urnas') !== null;
+                esSeccionUrnas = rutaLower.includes('urnas') || estaEnUrnasHTML;
+
                 indiceActual = 0;
                 for (let i = 0; i < galeriaActual.length; i++) {
                     if (this.src.includes(galeriaActual[i]) || galeriaActual[i].includes(this.getAttribute('src'))) {
@@ -324,7 +457,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     slideImg.alt = 'Imagen ampliada';
                     slideImg.id = 'imgAmpliada';
 
-                    // Control Mouse Desktop
                     slideImg.addEventListener('mousedown', (ev) => {
                         if (ev.button !== 0) return;
                         ev.preventDefault();
@@ -335,7 +467,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         isDragging = false;
                     });
 
-                    // Control Táctil Móvil para Paneo / Zoom
                     slideImg.addEventListener('touchstart', (ev) => {
                         if (escala > 1 && ev.touches.length === 1) {
                             touchZoomStartX = ev.touches[0].clientX - posX;
@@ -367,7 +498,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 modalZoomContainer.appendChild(modalTrack);
+
+                let guiaModalEl = document.getElementById('guiaModalDinamica');
+                if (!guiaModalEl) {
+                    guiaModalEl = document.createElement('div');
+                    guiaModalEl.id = 'guiaModalDinamica';
+                    guiaModalEl.className = 'guia-modal';
+                    modalLightbox.appendChild(guiaModalEl);
+                }
+                guiaModalEl.textContent = textoGuiaModal;
+
                 actualizarImagenModal();
+                document.body.classList.add('modal-abierto');
                 modalLightbox.style.display = 'flex'; 
                 document.body.style.overflow = 'hidden';
             });
@@ -399,7 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modalPrev) {
             modalPrev.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (galeriaActual.length > 1) {
+                if (galeriaActual.length > 1 && !esSeccionUrnas) {
                     indiceActual = (indiceActual - 1 + galeriaActual.length) % galeriaActual.length;
                     actualizarImagenModal();
                 }
@@ -409,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (modalNext) {
             modalNext.addEventListener('click', (e) => {
                 e.stopPropagation();
-                if (galeriaActual.length > 1) {
+                if (galeriaActual.length > 1 && !esSeccionUrnas) {
                     indiceActual = (indiceActual + 1) % galeriaActual.length;
                     actualizarImagenModal();
                 }
@@ -419,11 +561,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const cerrarModalFunc = () => {
             modalLightbox.style.display = 'none';
             document.body.style.overflow = '';
+            document.body.classList.remove('modal-abierto');
             modalZoomContainer.innerHTML = '';
             modalTrack = null;
             slideImgs = [];
             resetZoom();
+            esSeccionUrnas = false;
             if (modalIndicadores) modalIndicadores.innerHTML = '';
+            const guiaModalEl = document.getElementById('guiaModalDinamica');
+            if (guiaModalEl) guiaModalEl.remove();
         };
 
         if (cerrarModal) {
@@ -443,7 +589,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 5. VIDEO DE FONDO Y CONTROLES
+    // 6. VIDEO DE FONDO Y CONTROLES
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
     const btnPlayPause = document.getElementById('btnPlayPause');
@@ -501,7 +647,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // 6. COPIAR AL PORTAPAPELES
+    // 7. COPIAR AL PORTAPAPELES
     document.querySelectorAll('.elemento-copiable').forEach(elemento => {
         elemento.addEventListener('click', () => {
             const textoACopiar = elemento.getAttribute('data-valor');

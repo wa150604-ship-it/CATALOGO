@@ -28,20 +28,19 @@
     
         <!-- Video de fondo desenfocado -->
         <div class="video-container-bg">
-    <!-- Video de fondo -->
-    <video id="videoFondoBlur" autoplay loop muted playsinline class="video-background-blur">
-        <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
-    </video>
+            <!-- Video de fondo -->
+            <video id="videoFondoBlur" autoplay loop muted playsinline class="video-background-blur">
+                <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+            </video>
 
-    <!-- Video principal -->
-    <video id="videoFondo" loop muted playsinline class="video-background">
-        <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
-    </video>
-</div>
+            <!-- Video principal -->
+            <video id="videoFondo" loop muted playsinline class="video-background">
+                <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
+            </video>
+        </div>
 
-        <!-- CONTENEDOR PRINCIPAL -->
-        <div class="contenedor-catalogo" style="padding-top: 100px; background: transparent; max-width: 1250px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; padding-bottom: 40px;">
-        
+        <!-- En el div de contenedor-catalogo, asegúrate de que termine limpiamente -->
+<div class="contenedor-catalogo" style="padding-top: 100px; background: transparent; max-width: 1250px; margin: 0 auto; padding-left: 1rem; padding-right: 1rem; padding-bottom: 0;">
             <!-- FILTROS SERVICIOS -->
             <div class="filtros-macro" style="margin-bottom: 35px;">
                 <button class="btn-filtro-macro activo" data-target="instalaciones">Instalaciones</button>
@@ -832,305 +831,124 @@
                 </div>
             </div>
                 
-            <!-- URNAS (CARRUSEL DE CONTENEDORES DE 4 EN 4) -->
+            <!-- URNAS (3 CARRUSELES INDEPENDIENTES DE 3 EN 3) -->
             <div id="seccion-urnas" class="grupo-macro" style="display: none;">
                 <div style="padding: 1rem 0;">
                     <h2 class="titulo-seccion" style="color: #ffffff; text-shadow: 1px 2px 6px rgba(0,0,0,0.8);">Catálogo de Urnas</h2>
                     
-                    <div id="carrusel-urnas-wrapper" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 0 50px;">
-                        <div class="carrusel-indicadores" id="indicadores-urnas"></div>
-                        <div style="overflow: hidden; width: 100%;">
-                            <div class="items-urnas-track" style="display: flex; transition: transform 0.35s ease-in-out; width: 100%; align-items: stretch;">
-                                
-                                <!-- SLIDE 1 (U01 - U04) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U01.png" alt="U01" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U01.png"></div>
-                                            <h3>Urna U01</h3><p>Diseño solemne y tradicional.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U02.png" alt="U02" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U02.png"></div>
-                                            <h3>Urna U02</h3><p>Acabado refinado en madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U03.png" alt="U03" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U03.png"></div>
-                                            <h3>Urna U03</h3><p>Modelo con relieve de cruz.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U04.png" alt="U04" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U04.png"></div>
-                                            <h3>Urna U04</h3><p>Estilo sobrio con detalles florales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
+                    <div class="bloque-tres-carruseles-urnas">
+
+                        <!-- CARRUSEL URNAS LÍNEA 1 -->
+                        <div class="contenedor-carrusel-fila">
+                            <div class="carrusel-indicadores" id="indicadores-urnas-1"></div>
+                            <div class="wrapper-carrusel-3">
+                                <button class="btn-urnas-fila-prev btn-u1-prev">&#10094;</button>
+                                <div class="viewport-carrusel-3">
+                                    <div class="track-carrusel-3" id="track-urnas-1">
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U01.png" alt="U01" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U01.png"></div><h3>Urna U01</h3><p>Diseño solemne y tradicional.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U02.png" alt="U02" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U02.png"></div><h3>Urna U02</h3><p>Acabado refinado en madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U03.png" alt="U03" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U03.png"></div><h3>Urna U03</h3><p>Modelo con relief de cruz.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U04.png" alt="U04" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U04.png"></div><h3>Urna U04</h3><p>Estilo sobrio con detalles florales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U05.png" alt="U05" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U05.png"></div><h3>Urna U05</h3><p>Modelo con imagen religiosa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U06.png" alt="U06" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U06.png"></div><h3>Urna U06</h3><p>Diseño devocional e imponente.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U07.png" alt="U07" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U07.png"></div><h3>Urna U07</h3><p>Detalle metálico con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U08.png" alt="U08" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U08.png"></div><h3>Urna U08</h3><p>Estilo clásico de madera oscura.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U09.png" alt="U09" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U09.png"></div><h3>Urna U09</h3><p>Diseño claro con cruz grabada.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U10.png" alt="U10" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U10.png"></div><h3>Urna U10</h3><p>Acabado brillante con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U11.png" alt="U11" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U11.png"></div><h3>Urna U11</h3><p>Tono marfil con detalles dorados.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U12.png" alt="U12" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U12.png"></div><h3>Urna U12</h3><p>Diseño en mármol sintético.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U13.png" alt="U13" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U13.png"></div><h3>Urna U13</h3><p>Elegancia en tono negro sobrio.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U14.png" alt="U14" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U14.png"></div><h3>Urna U14</h3><p>Modelo con emblema distintivo.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U15.png" alt="U15" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U15.png"></div><h3>Urna U15</h3><p>Caja de madera con medallón.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U16.png" alt="U16" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U16.png"></div><h3>Urna U16</h3><p>Estilo combinado bicolor.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
                                     </div>
                                 </div>
-
-                                <!-- SLIDE 2 (U05 - U08) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U05.png" alt="U05" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U05.png"></div>
-                                            <h3>Urna U05</h3><p>Modelo con imagen religiosa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U06.png" alt="U06" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U06.png"></div>
-                                            <h3>Urna U06</h3><p>Diseño devocional e imponente.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U07.png" alt="U07" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U07.png"></div>
-                                            <h3>Urna U07</h3><p>Detalle metálico con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U08.png" alt="U08" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U08.png"></div>
-                                            <h3>Urna U08</h3><p>Estilo clásico de madera oscura.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 3 (U09 - U12) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U09.png" alt="U09" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U09.png"></div>
-                                            <h3>Urna U09</h3><p>Diseño claro con cruz grabada.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U10.png" alt="U10" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U10.png"></div>
-                                            <h3>Urna U10</h3><p>Acabado brillante con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U11.png" alt="U11" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U11.png"></div>
-                                            <h3>Urna U11</h3><p>Tono marfil con detalles dorados.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U12.png" alt="U12" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U12.png"></div>
-                                            <h3>Urna U12</h3><p>Diseño en mármol sintético.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 4 (U13 - U16) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U13.png" alt="U13" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U13.png"></div>
-                                            <h3>Urna U13</h3><p>Elegancia en tono negro sobrio.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U14.png" alt="U14" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U14.png"></div>
-                                            <h3>Urna U14</h3><p>Modelo con emblema distintivo.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U15.png" alt="U15" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U15.png"></div>
-                                            <h3>Urna U15</h3><p>Caja de madera con medallón.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U16.png" alt="U16" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U16.png"></div>
-                                            <h3>Urna U16</h3><p>Estilo combinado bicolor.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 5 (U17 - U20) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U17.png" alt="U17" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U17.png"></div>
-                                            <h3>Urna U17</h3><p>Urna con marco para fotografía.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U18.png" alt="U18" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U18.png"></div>
-                                            <h3>Urna U18</h3><p>Minimalista en color negro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U19.png" alt="U19" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U19.png"></div>
-                                            <h3>Urna U19</h3><p>Diseño octagonal de mármol.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U20.png" alt="U20" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U20.png"></div>
-                                            <h3>Urna U20</h3><p>Cilíndrica oscura con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 6 (U21 - U24) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U21.png" alt="U21" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U21.png"></div>
-                                            <h3>Urna U21</h3><p>Blanca con detalles frontales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U22.png" alt="U22" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U22.png"></div>
-                                            <h3>Urna U22</h3><p>Modelo tradicional oscuro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U23.png" alt="U23" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U23.png"></div>
-                                            <h3>Urna U23</h3><p>Madera pulida de alta calidad.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U24.png" alt="U24" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U24.png"></div>
-                                            <h3>Urna U24</h3><p>Diseño rectangular clásico.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 7 (U25 - U28) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U25.png" alt="U25" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U25.png"></div>
-                                            <h3>Urna U25</h3><p>Octagonal con relieve floral.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U26.png" alt="U26" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U26.png"></div>
-                                            <h3>Urna U26</h3><p>Madera con placa grabada.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U27.png" alt="U27" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U27.png"></div>
-                                            <h3>Urna U27</h3><p>Estilo cofre con cruz metálica.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U28.png" alt="U28" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U28.png"></div>
-                                            <h3>Urna U28</h3><p>Modelo con imagen sacro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 8 (U29 - U32) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U29.png" alt="U29" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U29.png"></div>
-                                            <h3>Urna U29</h3><p>Diseño vertical elegante.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U30.png" alt="U30" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U30.png"></div>
-                                            <h3>Urna U30</h3><p>Madera fina con detalles frontales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U31.png" alt="U31" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U31.png"></div>
-                                            <h3>Urna U31</h3><p>Mármol con crucifijo.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U32.png" alt="U32" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U32.png"></div>
-                                            <h3>Urna U32</h3><p>Negra con Cristo dorado.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 9 (U33 - U36) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U33.png" alt="U33" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U33.png"></div>
-                                            <h3>Urna U33</h3><p>Blanca con figura metálica.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U34.png" alt="U34" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U34.png"></div>
-                                            <h3>Urna U34</h3><p>Madera con relieve de sol.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U35.png" alt="U35" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U35.png"></div>
-                                            <h3>Urna U35</h3><p>Cofre tradicional de madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U36.png" alt="U36" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U36.png"></div>
-                                            <h3>Urna U36</h3><p>Diseño blanco minimalista.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 10 (U37, U38, U40, U41 - omitiendo U39) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U37.png" alt="U37" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U37.png"></div>
-                                            <h3>Urna U37</h3><p>Cilíndrica en madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U38.png" alt="U38" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U38.png"></div>
-                                            <h3>Urna U38</h3><p>Madera con detalle cruciforme.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U40.png" alt="U40" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U40.png"></div>
-                                            <h3>Urna U40</h3><p>Diseño con aplicaciones de manos.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U41.png" alt="U41" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U41.png"></div>
-                                            <h3>Urna U41</h3><p>Modelo claro con relieve floral.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 11 (U42 - U45) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U42.png" alt="U42" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U42.png"></div>
-                                            <h3>Urna U42</h3><p>Blanca con placa y cruz.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U43.png" alt="U43" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U43.png"></div>
-                                            <h3>Urna U43</h3><p>Madera tallada tradicional.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U44.png" alt="U44" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U44.png"></div>
-                                            <h3>Urna U44</h3><p>Estilo mármol gris con detalles.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U45.png" alt="U45" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U45.png"></div>
-                                            <h3>Urna U45</h3><p>Diseño marfil con ornamentas.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- SLIDE 12 (U46 - U49) -->
-                                <div class="item-urna-slide">
-                                    <div class="grid-urnas-5">
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U46.png" alt="U46" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U46.png"></div>
-                                            <h3>Urna U46</h3><p>Modelo con nicho religioso.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U47.png" alt="U47" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U47.png"></div>
-                                            <h3>Urna U47</h3><p>Esférica blanca ceremonial.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U48.png" alt="U48" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U48.png"></div>
-                                            <h3>Urna U48</h3><p>Esférica marfil con cenefa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                        <div class="tarjeta">
-                                            <div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U49.png" alt="U49" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U49.png"></div>
-                                            <h3>Urna U49</h3><p>Esférica negra con detalles dorados.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <button class="btn-urnas-fila-next btn-u1-next">&#10095;</button>
                             </div>
                         </div>
 
-                        <button class="btn-urnas-prev" style="position: absolute; top: 50%; transform: translateY(-50%); left: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px;">&#10094;</button>
-                        <button class="btn-urnas-next" style="position: absolute; top: 50%; transform: translateY(-50%); right: 0px; background: rgba(0, 0, 0, 0.6); color: white; border: none; font-size: 1.5rem; padding: 12px 16px; cursor: pointer; z-index: 10; border-radius: 5px;">&#10095;</button>
+                        <!-- CARRUSEL URNAS LÍNEA 2 -->
+                        <div class="contenedor-carrusel-fila">
+                            <div class="carrusel-indicadores" id="indicadores-urnas-2"></div>
+                            <div class="wrapper-carrusel-3">
+                                <button class="btn-urnas-fila-prev btn-u2-prev">&#10094;</button>
+                                <div class="viewport-carrusel-3">
+                                    <div class="track-carrusel-3" id="track-urnas-2">
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U17.png" alt="U17" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U17.png"></div><h3>Urna U17</h3><p>Urna con marco para fotografía.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U18.png" alt="U18" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U18.png"></div><h3>Urna U18</h3><p>Minimalista en color negro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U19.png" alt="U19" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U19.png"></div><h3>Urna U19</h3><p>Diseño octagonal de mármol.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U20.png" alt="U20" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U20.png"></div><h3>Urna U20</h3><p>Cilíndrica oscura con placa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U21.png" alt="U21" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U21.png"></div><h3>Urna U21</h3><p>Blanca con detalles frontales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U22.png" alt="U22" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U22.png"></div><h3>Urna U22</h3><p>Modelo tradicional oscuro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U23.png" alt="U23" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U23.png"></div><h3>Urna U23</h3><p>Madera pulida de alta calidad.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U24.png" alt="U24" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U24.png"></div><h3>Urna U24</h3><p>Diseño rectangular clásico.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U25.png" alt="U25" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U25.png"></div><h3>Urna U25</h3><p>Octagonal con relieve floral.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U26.png" alt="U26" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U26.png"></div><h3>Urna U26</h3><p>Madera con placa grabada.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U27.png" alt="U27" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U27.png"></div><h3>Urna U27</h3><p>Estilo cofre con cruz metálica.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U28.png" alt="U28" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U28.png"></div><h3>Urna U28</h3><p>Modelo con imagen sacro.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U29.png" alt="U29" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U29.png"></div><h3>Urna U29</h3><p>Diseño vertical elegante.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U30.png" alt="U30" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U30.png"></div><h3>Urna U30</h3><p>Madera fina con detalles frontales.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U31.png" alt="U31" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U31.png"></div><h3>Urna U31</h3><p>Mármol con crucifijo.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U32.png" alt="U32" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U32.png"></div><h3>Urna U32</h3><p>Negra con Cristo dorado.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                    </div>
+                                </div>
+                                <button class="btn-urnas-fila-next btn-u2-next">&#10095;</button>
+                            </div>
+                        </div>
+
+                        <!-- CARRUSEL URNAS LÍNEA 3 -->
+                        <div class="contenedor-carrusel-fila">
+                            <div class="carrusel-indicadores" id="indicadores-urnas-3"></div>
+                            <div class="wrapper-carrusel-3">
+                                <button class="btn-urnas-fila-prev btn-u3-prev">&#10094;</button>
+                                <div class="viewport-carrusel-3">
+                                    <div class="track-carrusel-3" id="track-urnas-3">
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U33.png" alt="U33" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U33.png"></div><h3>Urna U33</h3><p>Blanca con figura metálica.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U34.png" alt="U34" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U34.png"></div><h3>Urna U34</h3><p>Madera con relieve de sol.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U35.png" alt="U35" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U35.png"></div><h3>Urna U35</h3><p>Cofre tradicional de madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U36.png" alt="U36" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U36.png"></div><h3>Urna U36</h3><p>Diseño blanco minimalista.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U37.png" alt="U37" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U37.png"></div><h3>Urna U37</h3><p>Cilíndrica en madera.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U38.png" alt="U38" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U38.png"></div><h3>Urna U38</h3><p>Madera con detalle cruciforme.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U40.png" alt="U40" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U40.png"></div><h3>Urna U40</h3><p>Diseño con aplicaciones de manos.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U41.png" alt="U41" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U41.png"></div><h3>Urna U41</h3><p>Modelo claro con relieve floral.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U42.png" alt="U42" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U42.png"></div><h3>Urna U42</h3><p>Blanca con placa y cruz.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U43.png" alt="U43" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U43.png"></div><h3>Urna U43</h3><p>Madera tallada tradicional.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U44.png" alt="U44" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U44.png"></div><h3>Urna U44</h3><p>Estilo mármol gris con detalles.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U45.png" alt="U45" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U45.png"></div><h3>Urna U45</h3><p>Diseño marfil con ornamentas.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U46.png" alt="U46" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U46.png"></div><h3>Urna U46</h3><p>Modelo con nicho religioso.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U47.png" alt="U47" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U47.png"></div><h3>Urna U47</h3><p>Esférica blanca ceremonial.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U48.png" alt="U48" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U48.png"></div><h3>Urna U48</h3><p>Esférica marfil con cenefa.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                        <div class="tarjeta-urna-item"><div class="tarjeta"><div class="carrusel-tarjeta"><img src="MULTIMEDIA/IMAGENES/URNAS/U49.png" alt="U49" class="carrusel-img" data-galeria="MULTIMEDIA/IMAGENES/URNAS/U49.png"></div><h3>Urna U49</h3><p>Esférica negra con detalles dorados.</p><p class="info-asesoria">Cotización con promotores</p><a href="contactos.html" class="btn-accion">Consultar</a></div></div>
+                                    </div>
+                                </div>
+                                <button class="btn-urnas-fila-next btn-u3-next">&#10095;</button>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> 
 
-        <!-- MODAL LIGHTBOX -->
+
+<!-- MODAL LIGHTBOX -->
         <div id="modalLightbox" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.25); backdrop-filter: blur(6px); z-index: 9999; align-items: center; justify-content: center; overflow: hidden;">
             <div style="position: absolute; width: 85vw; max-width: 1100px; aspect-ratio: 16 / 9; background-image: url('MULTIMEDIA/IMAGENES/fondo_catalogo_ga.png'); background-size: contain; background-position: center; background-repeat: no-repeat; pointer-events: none; z-index: 1;"></div>
             <span class="cerrar-modal" style="position: absolute; top: 20px; right: 40px; font-size: 40px; color: white; cursor: pointer; z-index: 10002; user-select: none;">&times;</span>
-            <button id="modalPrev" style="position: absolute; left: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10094;</button>
-            <button id="modalNext" style="position: absolute; right: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10095;</button>
+            
+            <!-- Botones sin estilos inline fijos para que el JS los maneje correctamente -->
+            <button id="modalPrev" style="display: none; position: absolute; left: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10094;</button>
+            <button id="modalNext" style="display: none; position: absolute; right: 30px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; font-size: 30px; padding: 10px 15px; cursor: pointer; border-radius: 5px; z-index: 10002;">&#10095;</button>
+            
             <div id="modalZoomContainer" style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; overflow: visible; z-index: 2; pointer-events: none;">
                 <img id="imgAmpliada" src="" alt="Imagen ampliada" draggable="false" style="max-width: 85%; max-height: 76%; object-fit: contain; transition: transform 0.15s ease-out; transform-origin: center; user-select: none; cursor: zoom-in; pointer-events: auto;">
             </div>
             <div id="modalIndicadores" style="position: absolute; bottom: 30px; display: flex; gap: 8px; z-index: 10002; pointer-events: none;"></div>
         </div>
 
+
         <!-- PIE DE PÁGINA -->
-        <footer class="footer-disclaimer" style="background-color: rgba(188, 149, 91, 0.95); padding: 30px 20px 20px 20px; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: auto; position: relative; z-index: 2;">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 20px auto;">
+        <footer class="footer-disclaimer">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; width: 100%; max-width: 900px; flex-wrap: wrap; gap: 20px; margin: 0 auto 25px auto;">
                 <div style="text-align: center; flex: 1; min-width: 200px;" class="elemento-copiable" data-valor="vel.imss20@gmail.com" title="Haz clic para copiar correo">
                     <p style="font-weight: bold; color: #ffffff; margin-bottom: 5px;">Correo</p>
                     <p style="color: #ffffff; font-size: 0.95rem; text-align: center;" class="texto-a-copiar">vel.imss20@gmail.com</p>
@@ -1144,12 +962,12 @@
                     <div class="elemento-copiable" data-valor="55 56 99 52 95"><p style="color: #ffffff; font-size: 0.9rem; text-align: center;" class="texto-a-copiar">55 56 99 52 95</p></div>
                 </div>
                 
-                <div style="text-align: center; flex: 1; min-width: 200px; display: flex; justify-content: center; align-items: center;">
-                    <a href="https://www.facebook.com" target="_blank" class="btn-facebook" style="background-color: #1877f2; color: white; padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: bold;">Visitar Facebook</a>
+                <div style="text-align: center; flex: 1; min-width: 200px; display: flex; justify-content: center; align-items: center; padding-top: 10px;">
+                    <a href="https://www.facebook.com" target="_blank" class="btn-facebook" style="background-color: #1877f2; color: white; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: bold; font-size: 1rem;">Visitar Facebook</a>
                 </div>  
             </div>
             
-            <p style="font-size: 0.85rem; color: #ffffff; max-width: 800px; margin: 0 auto; line-height: 1.5; text-align: center;"> Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social. </p>
+            <p style="font-size: 0.85rem; color: #ffffff; max-width: 850px; margin: 0 auto; line-height: 1.5; text-align: center;">Proyecto académico y propuesta de desarrollo para prácticas profesionales. No constituye un sitio oficial del Instituto Mexicano del Seguro Social.</p>
         </footer>
 
         <script src="main.js"></script>     

@@ -434,25 +434,38 @@ body {
     transform: scale(1.2);
 }
 
-/* MODAL Y EXTRAS */
-.modal-lightbox { 
+/* MODAL Y EXTRAS (CORREGIDO PARA MÓVILES) */
+#modalLightbox { 
     display: none; 
     position: fixed; 
-    z-index: 1000; 
+    z-index: 9999; 
     top: 0; 
     left: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0, 0, 0, 0.9); 
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.85); 
+    backdrop-filter: blur(8px);
     justify-content: center; 
     align-items: center; 
+    overflow: hidden;
 }
 
-.modal-lightbox img {
-    max-width: 90%; 
-    max-height: 85vh; 
-    border-radius: 8px; 
-    cursor: zoom-in; 
+#modalZoomContainer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    z-index: 2;
+}
+
+#imgAmpliada {
+    max-width: 90vw; 
+    max-height: 80vh; 
+    object-fit: contain; 
+    user-select: none; 
+    transition: transform 0.15s ease-out;
 }
 
 .cerrar-modal { 
@@ -462,7 +475,7 @@ body {
     color: white; 
     font-size: 2.5rem; 
     cursor: pointer; 
-    z-index: 1002; 
+    z-index: 10002; 
 }
 
 .cerrar-modal:hover { 
@@ -522,7 +535,7 @@ body {
         align-items: center;
         padding: 25px 0;
         gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 0.1);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         display: none;
     }
 
@@ -566,7 +579,6 @@ body {
 /* CORRECCIÓN FINAL DE VIDEO PARA INDEX Y CATÁLOGO */
 /* ======================================================== */
 
-/* En index.html: El video principal mantiene su formato original */
 .video-background { 
     position: absolute; 
     top: 50%; 
@@ -579,7 +591,6 @@ body {
     pointer-events: none; 
 }
 
-/* En catalogo.html: Ocultamos el video frontal para dejar exclusivamente el fondo difuminado estilo contactos */
 body:has(.contenedor-catalogo) #videoFondo {
     display: none !important;
 }

@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
     configurarFiltros('.btn-filtro-cremacion', '.item-urna-slide');
 
-    // FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES
+    // FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES Y SOPORTE TÁCTIL (SWIPE)
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
         if (!track || items.length === 0) return;
 
@@ -126,6 +126,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 actualizarCarrusel();
             });
         }
+
+        // Soporte de deslizamiento con el dedo (Swipe táctil)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        track.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const umbral = 50;
+            if (touchEndX < touchStartX - umbral) {
+                // Siguiente
+                indice = (indice + 1) % total;
+                actualizarCarrusel();
+            }
+            if (touchEndX > touchStartX + umbral) {
+                // Anterior
+                indice = (indice - 1 + total) % total;
+                actualizarCarrusel();
+            }
+        }, { passive: true });
     }
 
     // APLICAR A LOS CARRUSELES PRINCIPALES
@@ -194,6 +217,9 @@ document.addEventListener("DOMContentLoaded", () => {
         let downX = 0;
         let downY = 0;
         let isDragging = false;
+
+        let touchZoomStartX = 0;
+        let touchZoomStartY = 0;
 
         function actualizarTransformacionActiva() {
             if (slideImgs[indiceActual]) {
@@ -272,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     slideImg.alt = 'Imagen ampliada';
                     slideImg.style.cssText = 'max-width: 85%; max-height: 76%; object-fit: contain; user-select: none; pointer-events: auto; cursor: zoom-in; transition: transform 0.15s ease-out; transform-origin: center;';
 
+                    // Control Mouse Desktop
                     slideImg.addEventListener('mousedown', (ev) => {
                         if (ev.button !== 0) return;
                         ev.preventDefault();
@@ -281,6 +308,22 @@ document.addEventListener("DOMContentLoaded", () => {
                         inicioY = ev.clientY - posY;
                         isDragging = false;
                     });
+
+                    // Control Táctil Móvil para Zoom / Desplazamiento
+                    slideImg.addEventListener('touchstart', (ev) => {
+                        if (escala > 1 && ev.touches.length === 1) {
+                            touchZoomStartX = ev.touches[0].clientX - posX;
+                            touchZoomStartY = ev.touches[0].clientY - posY;
+                        }
+                    }, { passive: true });
+
+                    slideImg.addEventListener('touchmove', (ev) => {
+                        if (escala > 1 && ev.touches.length === 1) {
+                            posX = ev.touches[0].clientX - touchZoomStartX;
+                            posY = ev.touches[0].clientY - touchZoomStartY;
+                            actualizarTransformacionActiva();
+                        }
+                    }, { passive: true });
 
                     slideImg.addEventListener('click', (ev) => {
                         ev.stopPropagation();
@@ -382,7 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (videoFondo) {
         if (btnPlayPause) {
-            // En index.html: Inicia pausado y silenciado
             videoFondo.pause();
             videoFondo.muted = true;
             if (videoFondoBlur) {
@@ -392,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             btnPlayPause.addEventListener('click', () => {
                 if (videoFondo.paused) {
-                    videoFondo.muted = false; // Habilita el sonido al reproducir manualmente
+                    videoFondo.muted = false;
                     if (videoFondoBlur) videoFondoBlur.muted = false;
                     
                     videoFondo.play();
@@ -424,7 +466,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         } else {
-            // En páginas secundarias (Catálogo, Contactos): Reproducción automática en silencio
             videoFondo.muted = true;
             videoFondo.play().catch(() => {});
             if (videoFondoBlur) {

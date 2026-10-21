@@ -413,7 +413,7 @@ body {
     width: 100%;
 }
 
-/* INDICADORES */
+/* INDICADORES INTERACTIVOS */
 .carrusel-indicadores {
     display: flex;
     justify-content: center;
@@ -422,10 +422,11 @@ body {
 }
 
 .carrusel-indicadores .punto {
-    width: 10px;
-    height: 10px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
@@ -434,7 +435,7 @@ body {
     transform: scale(1.2);
 }
 
-/* MODAL Y EXTRAS (CORREGIDO PARA MÓVILES) */
+/* MODAL Y EXTRAS (LIGHTBOX OPTIMIZADO PARA MÓVILES) */
 #modalLightbox { 
     display: none; 
     position: fixed; 
@@ -458,6 +459,7 @@ body {
     justify-content: center;
     overflow: auto;
     z-index: 2;
+    -webkit-overflow-scrolling: touch;
 }
 
 #imgAmpliada {
@@ -466,6 +468,7 @@ body {
     object-fit: contain; 
     user-select: none; 
     transition: transform 0.15s ease-out;
+    touch-action: none;
 }
 
 .cerrar-modal { 

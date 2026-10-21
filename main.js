@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
     configurarFiltros('.btn-filtro-cremacion', '.item-urna-slide');
 
-    // FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES Y SOPORTE TÁCTIL (SWIPE)
+    // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES INTERACTIVOS Y SWIPE
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
         if (!track || items.length === 0) return;
 
@@ -88,28 +88,42 @@ document.addEventListener("DOMContentLoaded", () => {
         const total = items.length;
         const indicadoresContainer = document.getElementById(contenedorIndicadores);
 
+        const actualizarCarrusel = () => {
+            track.style.transform = `translateX(-${indice * 100}%)`;
+            if (puntos.length > 0) {
+                puntos.forEach((p, idx) => {
+                    if (idx === indice) {
+                        p.classList.add('activo');
+                        p.style.transform = 'scale(1.2)';
+                        p.style.backgroundColor = '#ffffff';
+                    } else {
+                        p.classList.remove('activo');
+                        p.style.transform = 'scale(1)';
+                        p.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
+                    }
+                });
+            }
+        };
+
         if (indicadoresContainer) {
             indicadoresContainer.innerHTML = '';
             for (let i = 0; i < total; i++) {
                 const punto = document.createElement('div');
                 punto.classList.add('punto');
                 if (i === 0) punto.classList.add('activo');
+                
+                // Permitir clic o toque directo en cada círculo del contador
+                punto.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    indice = i;
+                    actualizarCarrusel();
+                });
+                
                 indicadoresContainer.appendChild(punto);
             }
         }
 
         const puntos = indicadoresContainer ? indicadoresContainer.querySelectorAll('.punto') : [];
-
-        const actualizarCarrusel = () => {
-            track.style.transform = `translateX(-${indice * 100}%)`;
-            puntos.forEach((p, idx) => {
-                if (idx === indice) {
-                    p.classList.add('activo');
-                } else {
-                    p.classList.remove('activo');
-                }
-            });
-        };
 
         if (btnNext) {
             btnNext.addEventListener('click', (e) => {
@@ -127,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Soporte de deslizamiento con el dedo (Swipe táctil)
+        // Soporte de deslizamiento con el dedo (Swipe táctil en el carrusel)
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -139,12 +153,10 @@ document.addEventListener("DOMContentLoaded", () => {
             touchEndX = e.changedTouches[0].screenX;
             const umbral = 50;
             if (touchEndX < touchStartX - umbral) {
-                // Siguiente
                 indice = (indice + 1) % total;
                 actualizarCarrusel();
             }
             if (touchEndX > touchStartX + umbral) {
-                // Anterior
                 indice = (indice - 1 + total) % total;
                 actualizarCarrusel();
             }
@@ -182,6 +194,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('.btn-ga-prev'),
         document.querySelector('.btn-ga-next'),
         'indicadores-gamaalta'
+    );
+
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-tallaspequenas-track'),
+        document.querySelectorAll('.item-tallaspequenas'),
+        document.querySelector('.btn-tp-prev'),
+        document.querySelector('.btn-tp-next'),
+        'indicadores-tallaspequenas'
+    );
+
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-tallasgrandes-track'),
+        document.querySelectorAll('.item-tallasgrandes'),
+        document.querySelector('.btn-tg-prev'),
+        document.querySelector('.btn-tg-next'),
+        'indicadores-tallasgrandes'
     );
 
     // CARRUSEL DE URNAS
@@ -309,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         isDragging = false;
                     });
 
-                    // Control Táctil Móvil para Zoom / Desplazamiento
+                    // Control Táctil Móvil para Paneo / Zoom
                     slideImg.addEventListener('touchstart', (ev) => {
                         if (escala > 1 && ev.touches.length === 1) {
                             touchZoomStartX = ev.touches[0].clientX - posX;
@@ -488,22 +516,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-
-    // APLICAR AL CARRUSEL DE TALLAS PEQUEÑAS
-    inicializarCarruselConPuntos(
-        document.querySelector('.items-tallaspequenas-track'),
-        document.querySelectorAll('.item-tallaspequenas'),
-        document.querySelector('.btn-tp-prev'),
-        document.querySelector('.btn-tp-next'),
-        'indicadores-tallaspequenas'
-    );
-
-    // APLICAR AL CARRUSEL DE TALLAS GRANDES
-    inicializarCarruselConPuntos(
-        document.querySelector('.items-tallasgrandes-track'),
-        document.querySelectorAll('.item-tallasgrandes'),
-        document.querySelector('.btn-tg-prev'),
-        document.querySelector('.btn-tg-next'),
-        'indicadores-tallasgrandes'
-    );
 });

@@ -415,4 +415,22 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // APLICAR AL CARRUSEL DE TALLAS PEQUEÑAS
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-tallaspequenas-track'),
+        document.querySelectorAll('.item-tallaspequenas'),
+        document.querySelector('.btn-tp-prev'),
+        document.querySelector('.btn-tp-next'),
+        'indicadores-tallaspequenas'
+    );
+
+    // APLICAR AL CARRUSEL DE TALLAS GRANDES
+    inicializarCarruselConPuntos(
+        document.querySelector('.items-tallasgrandes-track'),
+        document.querySelectorAll('.item-tallasgrandes'),
+        document.querySelector('.btn-tg-prev'),
+        document.querySelector('.btn-tg-next'),
+        'indicadores-tallasgrandes'
+    );
 });

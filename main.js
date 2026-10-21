@@ -112,7 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 punto.classList.add('punto');
                 if (i === 0) punto.classList.add('activo');
                 
-                // Permitir clic o toque directo en cada círculo del contador
                 punto.addEventListener('click', (e) => {
                     e.stopPropagation();
                     indice = i;
@@ -141,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Soporte de deslizamiento con el dedo (Swipe táctil en el carrusel)
         let touchStartX = 0;
         let touchEndX = 0;
 
@@ -212,7 +210,6 @@ document.addEventListener("DOMContentLoaded", () => {
         'indicadores-tallasgrandes'
     );
 
-    // CARRUSEL DE URNAS
     inicializarCarruselConPuntos(
         document.querySelector('.items-urnas-track'),
         document.querySelectorAll('.item-urna-slide'),
@@ -274,8 +271,9 @@ document.addEventListener("DOMContentLoaded", () => {
             modalTrack.style.transform = `translateX(-${indiceActual * 100}%)`;
 
             if (modalPrev && modalNext) {
-                modalPrev.style.display = galeriaActual.length > 1 ? 'block' : 'none';
-                modalNext.style.display = galeriaActual.length > 1 ? 'block' : 'none';
+                const mostrarControles = galeriaActual.length > 1;
+                modalPrev.style.display = mostrarControles ? 'flex' : 'none';
+                modalNext.style.display = mostrarControles ? 'flex' : 'none';
             }
 
             if (modalIndicadores) {
@@ -319,12 +317,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 galeriaActual.forEach(urlImg => {
                     const slideDiv = document.createElement('div');
-                    slideDiv.style.cssText = 'min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box;';
+                    slideDiv.className = 'modal-slide-item';
 
                     const slideImg = document.createElement('img');
                     slideImg.src = urlImg;
                     slideImg.alt = 'Imagen ampliada';
-                    slideImg.style.cssText = 'max-width: 85%; max-height: 76%; object-fit: contain; user-select: none; pointer-events: auto; cursor: zoom-in; transition: transform 0.15s ease-out; transform-origin: center;';
+                    slideImg.id = 'imgAmpliada';
 
                     // Control Mouse Desktop
                     slideImg.addEventListener('mousedown', (ev) => {

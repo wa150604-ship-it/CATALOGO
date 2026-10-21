@@ -435,16 +435,92 @@ body {
     transform: scale(1.2);
 }
 
-/* MODAL Y EXTRAS (LIGHTBOX OPTIMIZADO PARA MÓVILES) */
+/* ======================================================== */
+/* ESTILO UNIFICADO Y SEPARADO DE BOTONES DE NAVEGACIÓN */
+/* ======================================================== */
+
+/* 1. BOTONES DE LOS CARRUSELES DEL CATÁLOGO (EN LOS LATERALES Y CENTRADOS VERTICALMENTE) */
+.btn-inst-prev, .btn-inst-next,
+.btn-gb-prev, .btn-gb-next,
+.btn-gm-prev, .btn-gm-next,
+.btn-ga-prev, .btn-ga-next,
+.btn-tp-prev, .btn-tp-next,
+.btn-tg-prev, .btn-tg-next,
+.btn-urnas-prev, .btn-urnas-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background-color: rgba(0, 101, 86, 0.85) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    font-size: 1.2rem !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.btn-inst-prev, .btn-gb-prev, .btn-gm-prev, .btn-ga-prev, .btn-tp-prev, .btn-tg-prev, .btn-urnas-prev {
+    left: 2px !important;
+}
+
+.btn-inst-next, .btn-gb-next, .btn-gm-next, .btn-ga-next, .btn-tp-next, .btn-tg-next, .btn-urnas-next {
+    right: 2px !important;
+}
+
+.btn-inst-prev:hover, .btn-inst-next:hover,
+.btn-gb-prev:hover, .btn-gb-next:hover,
+.btn-gm-prev:hover, .btn-gm-next:hover,
+.btn-ga-prev:hover, .btn-ga-next:hover,
+.btn-tp-prev:hover, .btn-tp-next:hover,
+.btn-tg-prev:hover, .btn-tg-next:hover,
+.btn-urnas-prev:hover, .btn-urnas-next:hover {
+    background-color: rgba(0, 101, 86, 1) !important;
+    transform: translateY(-50%) scale(1.08) !important;
+}
+
+/* 2. BOTONES DEL REPRODUCTOR DE VIDEO (INDEX) */
+.boton-sonido {
+    position: static !important;
+    background-color: rgba(0, 101, 86, 0.85) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 46px !important;
+    height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10003 !important;
+    font-size: 1.3rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.boton-sonido:hover {
+    background-color: rgba(0, 101, 86, 1) !important;
+    transform: scale(1.08) !important;
+}
+
+/* ======================================================== */
+/* MODAL Y LIGHTBOX (EXCLUSIVO) */
+/* ======================================================== */
 #modalLightbox { 
     display: none; 
     position: fixed; 
-    z-index: 9999; 
+    z-index: 99999; 
     top: 0; 
     left: 0; 
     width: 100vw; 
     height: 100vh; 
-    background-color: rgba(0, 0, 0, 0.85); 
+    background-color: rgba(0, 0, 0, 0.92); 
     backdrop-filter: blur(8px);
     justify-content: center; 
     align-items: center; 
@@ -457,24 +533,97 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: auto;
+    overflow: hidden;
     z-index: 2;
-    -webkit-overflow-scrolling: touch;
+    width: 100vw;
+    height: 100vh;
 }
 
+#modalZoomContainer > div {
+    display: flex !important;
+    transition: transform 0.35s ease-in-out !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    align-items: center !important;
+}
+
+.modal-slide-item {
+    flex: 0 0 100vw !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    padding: 15px !important;
+    overflow: hidden !important;
+}
+
+.modal-slide-item img,
 #imgAmpliada {
-    max-width: 90vw; 
-    max-height: 80vh; 
-    object-fit: contain; 
+    max-width: 85vw !important; 
+    max-height: 52vh !important; 
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important; 
     user-select: none; 
     transition: transform 0.15s ease-out;
-    touch-action: none;
+    display: block !important;
+    margin: auto !important;
+}
+
+/* 3. BOTONES ESPECÍFICOS DEL MODAL (ÚNICAMENTE ABAJO) */
+#modalPrev, #modalNext {
+    position: absolute !important;
+    bottom: 25px !important;
+    top: auto !important;
+    transform: none !important;
+    background-color: rgba(0, 101, 86, 0.85) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 46px !important;
+    height: 46px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10003 !important;
+    font-size: 1.3rem !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4) !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+#modalPrev:hover, #modalNext:hover {
+    background-color: rgba(0, 101, 86, 1) !important;
+    transform: scale(1.08) !important;
+}
+
+#modalPrev {
+    left: calc(50% - 65px) !important;
+}
+
+#modalNext {
+    right: calc(50% - 65px) !important;
+}
+
+/* PUNTOS INDICADORES ABAJO EN EL MODAL */
+#modalIndicadores {
+    position: absolute !important;
+    bottom: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    display: flex !important;
+    gap: 8px !important;
+    z-index: 10003 !important;
 }
 
 .cerrar-modal { 
     position: absolute; 
     top: 20px; 
-    right: 30px; 
+    right: 25px; 
     color: white; 
     font-size: 2.5rem; 
     cursor: pointer; 

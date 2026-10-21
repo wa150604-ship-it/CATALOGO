@@ -724,12 +724,17 @@ body.modal-abierto .btn-u3-next {
 
 /* PIE DE PÁGINA ANCHO COMPLETO (ESCRITORIO) */
 .footer-disclaimer {
-    width: 100% !important;
-    max-width: 100% !important;
+    width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    max-width: 100vw !important;
     background-color: rgba(188, 149, 91, 0.95) !important;
     padding: 35px 5% 25px 5% !important;
     box-sizing: border-box !important;
     margin-top: auto !important;
+    margin-bottom: 0 !important;
     z-index: 10 !important;
 }
 
@@ -849,7 +854,7 @@ body.modal-abierto .btn-u3-next {
         padding: 0 25px !important;
     }
 
-    /* BOTONES/FLECHAS DE NAVEGACIÓN */
+    /* BOTONES/FLECHAS DE NAVEGACIÓN EN PÁGINA */
     .btn-inst-prev, .btn-gb-prev, .btn-gm-prev, .btn-ga-prev, .btn-tp-prev, .btn-tg-prev,
     .btn-urnas-fila-prev, .btn-u1-prev, .btn-u2-prev, .btn-u3-prev {
         left: -5px !important;
@@ -866,37 +871,67 @@ body.modal-abierto .btn-u3-next {
         font-size: 1rem !important;
     }
 
-    /* MODAL MÓVIL */
-    .modal-slide-item img,
-    #imgAmpliada {
-        max-width: 90vw !important; 
-        max-height: 55vh !important; 
+    /* ======================================================== */
+    /* AJUSTE VERTICAL DEL MODAL MÓVIL (MENSAJE -> BOTONES -> CONTADOR) */
+    /* ======================================================== */
+    
+    /* 1. MENSAJE GUÍA EN EL FONDO (PEGA ABAJO) */
+    .guia-modal {
+        bottom: 15px !important;
+        font-size: 0.78rem !important;
+        padding: 5px 14px !important;
+        z-index: 10003 !important;
     }
 
+    /* 2. BOTONES VERDES DE DIRECCIÓN (POR ENCIMA DEL CARTEL) */
     #modalPrev, #modalNext {
-        bottom: 25px !important;
+        bottom: 65px !important;
         top: auto !important;
         transform: none !important;
         width: 44px !important;
         height: 44px !important;
         font-size: 1.2rem !important;
+        z-index: 10004 !important;
     }
 
-    #modalPrev { left: calc(50% - 60px) !important; right: auto !important; }
-    #modalNext { right: calc(50% - 60px) !important; left: auto !important; }
+    #modalPrev {
+        left: calc(50% - 55px) !important;
+        right: auto !important;
+    }
 
-    #modalIndicadores { bottom: 85px !important; }
-    .guia-modal { bottom: 20px !important; }
+    #modalNext {
+        right: calc(50% - 55px) !important;
+        left: auto !important;
+    }
 
-    /* FOOTER MÓVIL (BORDE A BORDE SIN ESPACIOS LATERALES) */
+    /* 3. PUNTOS INDICADORES DE PÁGINA (POR ENCIMA DE LOS BOTONES) */
+    #modalIndicadores {
+        bottom: 125px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 10003 !important;
+    }
+
+    /* TAMAÑO MÁXIMO DE LA IMAGEN EN MODAL MÓVIL PARA EVITAR APRIETOS */
+    .modal-slide-item img,
+    #imgAmpliada {
+        max-width: 90vw !important; 
+        max-height: 50vh !important; 
+    }
+
+    /* FOOTER EN MÓVIL */
     .footer-disclaimer {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
+        width: 100vw !important;
+        position: relative !important;
+        left: 50% !important;
+        right: auto !important;
+        transform: translateX(-50%) !important;
+        max-width: 100vw !important;
         padding: 30px 20px 25px 20px !important;
         box-sizing: border-box !important;
         border-radius: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
     }
 }
 

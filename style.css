@@ -504,7 +504,7 @@ body {
     font-size: 1.2rem !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.35) !important;
     transition: background-color 0.3s ease, transform 0.2s ease !important;
-    -webkit-tap-highlight-color: transparent; /* Evita destellos al tocar en móviles */
+    -webkit-tap-highlight-color: transparent; 
 }
 
 .btn-inst-prev, .btn-gb-prev, .btn-gm-prev, .btn-ga-prev, .btn-tp-prev, .btn-tg-prev,
@@ -872,7 +872,7 @@ body.modal-abierto .btn-u3-next {
         font-size: 1rem !important;
     }
 
-    /* Corrección para que los botones de navegación NO se queden alzados o escalados al tocarlos en móvil */
+    /* Evitar que se queden escalados al presionar en móvil */
     .btn-inst-prev:active, .btn-inst-next:active,
     .btn-gb-prev:active, .btn-gb-next:active,
     .btn-gm-prev:active, .btn-gm-next:active,
@@ -887,10 +887,34 @@ body.modal-abierto .btn-u3-next {
         background-color: #004d40 !important;
     }
 
+    /* CORRECCIÓN DEFINITIVA DE STICKY HOVER/FOCUS EN MÓVIL */
+    .btn-inst-prev:hover, .btn-inst-next:hover,
+    .btn-gb-prev:hover, .btn-gb-next:hover,
+    .btn-gm-prev:hover, .btn-gm-next:hover,
+    .btn-ga-prev:hover, .btn-ga-next:hover,
+    .btn-tp-prev:hover, .btn-tp-next:hover,
+    .btn-tg-prev:hover, .btn-tg-next:hover,
+    .btn-urnas-fila-prev:hover, .btn-urnas-fila-next:hover,
+    .btn-u1-prev:hover, .btn-u1-next:hover,
+    .btn-u2-prev:hover, .btn-u2-next:hover,
+    .btn-u3-prev:hover, .btn-u3-next:hover,
+    .btn-inst-prev:focus, .btn-inst-next:focus,
+    .btn-gb-prev:focus, .btn-gb-next:focus,
+    .btn-gm-prev:focus, .btn-gm-next:focus,
+    .btn-ga-prev:focus, .btn-ga-next:focus,
+    .btn-tp-prev:focus, .btn-tp-next:focus,
+    .btn-tg-prev:focus, .btn-tg-next:focus,
+    .btn-urnas-fila-prev:focus, .btn-urnas-fila-next:focus,
+    .btn-u1-prev:focus, .btn-u1-next:focus,
+    .btn-u2-prev:focus, .btn-u2-next:focus,
+    .btn-u3-prev:focus, .btn-u3-next:focus {
+        transform: translateY(-50%) scale(1) !important;
+        background-color: rgba(0, 101, 86, 0.9) !important;
+    }
+
     /* ======================================================== */
     /* AJUSTE VERTICAL DEL MODAL MÓVIL (MENSAJE -> BOTONES -> CONTADOR) */
     /* ======================================================== */
-    
     .guia-modal {
         bottom: 15px !important;
         font-size: 0.78rem !important;

@@ -474,13 +474,15 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     }, { passive: true });
 
+                    // Corrección táctil para evitar scroll de la página al arrastrar la imagen con zoom
                     slideImg.addEventListener('touchmove', (ev) => {
                         if (escala > 1 && ev.touches.length === 1) {
+                            ev.preventDefault(); 
                             posX = ev.touches[0].clientX - touchZoomStartX;
                             posY = ev.touches[0].clientY - touchZoomStartY;
                             actualizarTransformacionActiva();
                         }
-                    }, { passive: true });
+                    }, { passive: false });
 
                     slideImg.addEventListener('click', (ev) => {
                         ev.stopPropagation();

@@ -504,6 +504,7 @@ body {
     font-size: 1.2rem !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.35) !important;
     transition: background-color 0.3s ease, transform 0.2s ease !important;
+    -webkit-tap-highlight-color: transparent; /* Evita destellos al tocar en móviles */
 }
 
 .btn-inst-prev, .btn-gb-prev, .btn-gm-prev, .btn-ga-prev, .btn-tp-prev, .btn-tg-prev,
@@ -784,7 +785,7 @@ body.modal-abierto .btn-u3-next {
 
     /* CONTENEDOR PRINCIPAL Y ESPACIO SUPERIOR PARA MENÚ FIJO */
     .contenedor-catalogo {
-        padding-top: 125px !important; /* Espacio exacto para que los filtros bajen de la barra verde */
+        padding-top: 125px !important;
         padding-left: 0 !important;
         padding-right: 0 !important;
         width: 100% !important;
@@ -871,11 +872,25 @@ body.modal-abierto .btn-u3-next {
         font-size: 1rem !important;
     }
 
+    /* Corrección para que los botones de navegación NO se queden alzados o escalados al tocarlos en móvil */
+    .btn-inst-prev:active, .btn-inst-next:active,
+    .btn-gb-prev:active, .btn-gb-next:active,
+    .btn-gm-prev:active, .btn-gm-next:active,
+    .btn-ga-prev:active, .btn-ga-next:active,
+    .btn-tp-prev:active, .btn-tp-next:active,
+    .btn-tg-prev:active, .btn-tg-next:active,
+    .btn-urnas-fila-prev:active, .btn-urnas-fila-next:active,
+    .btn-u1-prev:active, .btn-u1-next:active,
+    .btn-u2-prev:active, .btn-u2-next:active,
+    .btn-u3-prev:active, .btn-u3-next:active {
+        transform: translateY(-50%) scale(1) !important;
+        background-color: #004d40 !important;
+    }
+
     /* ======================================================== */
     /* AJUSTE VERTICAL DEL MODAL MÓVIL (MENSAJE -> BOTONES -> CONTADOR) */
     /* ======================================================== */
     
-    /* 1. MENSAJE GUÍA EN EL FONDO (PEGA ABAJO) */
     .guia-modal {
         bottom: 15px !important;
         font-size: 0.78rem !important;
@@ -883,7 +898,6 @@ body.modal-abierto .btn-u3-next {
         z-index: 10003 !important;
     }
 
-    /* 2. BOTONES VERDES DE DIRECCIÓN (POR ENCIMA DEL CARTEL) */
     #modalPrev, #modalNext {
         bottom: 65px !important;
         top: auto !important;
@@ -904,7 +918,6 @@ body.modal-abierto .btn-u3-next {
         left: auto !important;
     }
 
-    /* 3. PUNTOS INDICADORES DE PÁGINA (POR ENCIMA DE LOS BOTONES) */
     #modalIndicadores {
         bottom: 125px !important;
         left: 50% !important;
@@ -912,14 +925,12 @@ body.modal-abierto .btn-u3-next {
         z-index: 10003 !important;
     }
 
-    /* TAMAÑO MÁXIMO DE LA IMAGEN EN MODAL MÓVIL PARA EVITAR APRIETOS */
     .modal-slide-item img,
     #imgAmpliada {
         max-width: 90vw !important; 
         max-height: 50vh !important; 
     }
 
-    /* FOOTER EN MÓVIL */
     .footer-disclaimer {
         width: 100vw !important;
         position: relative !important;
@@ -968,7 +979,7 @@ body.modal-abierto .btn-u3-next {
 .img-icono-boceto {
     width: 60px;
     height: 60px;
-    object-type: contain;
+    object-fit: contain;
     margin-bottom: 10px;
 }
 
@@ -992,7 +1003,6 @@ body.modal-abierto .btn-u3-next {
     position: relative;
 }
 
-/* Responsivo para celulares: cambia de horizontal a vertical */
 @media (max-width: 768px) {
     .tarjeta-promotor-boceto {
         flex-direction: column;

@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Inyectar mensaje guía debajo de cada imagen de carrusel
     document.querySelectorAll('.carrusel-tarjeta').forEach(carrusel => {
         const guia = document.createElement('div');
         guia.className = 'guia-carrusel';
@@ -92,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     configurarFiltros('.btn-filtro-ataud', '.seccion-ataud-item');
 
-    // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES (INSTALACIONES Y ATAÚDES)
+    // 3. FUNCIÓN PARA CARRUSELES CON PUNTOS INDICADORES
     function inicializarCarruselConPuntos(track, items, btnPrev, btnNext, contenedorIndicadores) {
         if (!track || items.length === 0) return;
 
@@ -221,7 +220,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'indicadores-tallasgrandes'
     );
 
-    // 4. LÓGICA DE LOS 3 CARRUSELES DE URNAS (DESPLAZAMIENTO AFUERA EN LA PÁGINA)
+    // 4. LÓGICA DE LOS 3 CARRUSELES DE URNAS
     function inicializarCarruselFilaUrnas(trackId, btnPrevSel, btnNextSel, contenedorIndicadoresId) {
         const track = document.getElementById(trackId);
         const btnPrev = document.querySelector(btnPrevSel);
@@ -265,31 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const visibles = obtenerVisibles();
             const totalGrupos = calcularTotalGrupos();
 
-            if (indiceGrupo >= totalGrupos) {
-                indiceGrupo = totalGrupos - 1;
-            }
-            if (indiceGrupo < 0) {
-                indiceGrupo = 0;
-            }
+            if (indiceGrupo >= totalGrupos) indiceGrupo = totalGrupos - 1;
+            if (indiceGrupo < 0) indiceGrupo = 0;
 
             const anchoItem = items[0].getBoundingClientRect().width + 15; 
             const desplazamiento = indiceGrupo * visibles * anchoItem;
             track.style.transform = `translateX(-${desplazamiento}px)`;
-
-            if (indicadoresContainer) {
-                const puntos = indicadoresContainer.querySelectorAll('.punto');
-                puntos.forEach((p, idx) => {
-                    if (idx === indiceGrupo) {
-                        p.classList.add('activo');
-                        p.style.transform = 'scale(1.2)';
-                        p.style.backgroundColor = '#ffffff';
-                    } else {
-                        p.classList.remove('activo');
-                        p.style.transform = 'scale(1)';
-                        p.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-                    }
-                });
-            }
         }
 
         if (btnNext) {
@@ -310,33 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        track.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        }, { passive: true });
-
-        track.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const umbral = 40;
-            const totalGrupos = calcularTotalGrupos();
-
-            if (touchEndX < touchStartX - umbral) {
-                indiceGrupo = (indiceGrupo + 1) % totalGrupos;
-                actualizarPosicion();
-            }
-            if (touchEndX > touchStartX + umbral) {
-                indiceGrupo = (indiceGrupo - 1 + totalGrupos) % totalGrupos;
-                actualizarPosicion();
-            }
-        }, { passive: true });
-
-        window.addEventListener('resize', () => {
-            actualizarPuntos();
-            actualizarPosicion();
-        });
-
         actualizarPuntos();
         actualizarPosicion();
     }
@@ -345,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarCarruselFilaUrnas('track-urnas-2', '.btn-u2-prev', '.btn-u2-next', 'indicadores-urnas-2');
     inicializarCarruselFilaUrnas('track-urnas-3', '.btn-u3-prev', '.btn-u3-next', 'indicadores-urnas-3');
 
-    // 5. LIGHTBOX / ZOOM DE IMÁGENES (FLECHAS OCULTAS DENTRO DEL MODAL SI ES URNA)
+    // 5. LIGHTBOX / ZOOM DE IMÁGENES Y CARRUSEL INTERNO RESTAURADO
     const modalLightbox = document.getElementById('modalLightbox');
     const modalZoomContainer = document.getElementById('modalZoomContainer');
     const cerrarModal = document.querySelector('.cerrar-modal');
@@ -371,9 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let downY = 0;
         let isDragging = false;
 
-        let touchZoomStartX = 0;
-        let touchZoomStartY = 0;
-
         function actualizarTransformacionActiva() {
             if (slideImgs[indiceActual]) {
                 slideImgs[indiceActual].style.transform = `translate(${posX}px, ${posY}px) scale(${escala})`;
@@ -398,7 +348,6 @@ document.addEventListener("DOMContentLoaded", () => {
             resetZoom();
             modalTrack.style.transform = `translateX(-${indiceActual * 100}%)`;
 
-            // Ocultar las flechas INTERNAS del modal si es urna o solo hay 1 foto
             if (modalPrev && modalNext) {
                 const mostrarControles = galeriaActual.length > 1 && !esSeccionUrnas;
                 modalPrev.style.setProperty('display', mostrarControles ? 'flex' : 'none', 'important');
@@ -440,17 +389,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 }
 
+                const esMovilReal = /Mobi|Android|iPhone/i.test(navigator.userAgent) || window.innerWidth <= 768;
+                if (esMovilReal) {
+                    modalLightbox.style.backgroundImage = "url('MULTIMEDIA/IMAGENES/FONDOS/fondo_catalogo_mov.png')";
+                } else {
+                    modalLightbox.style.backgroundImage = "url('MULTIMEDIA/IMAGENES/FONDOS/fondo_catalogo_pc.png')";
+                }
+
                 modalZoomContainer.innerHTML = '';
                 modalZoomContainer.style.overflow = 'hidden';
 
                 modalTrack = document.createElement('div');
-                modalTrack.style.cssText = 'display: flex; transition: transform 0.35s ease-in-out; width: 100%; height: 100%; pointer-events: auto;';
+                modalTrack.style.cssText = 'display: flex; transition: transform 0.35s ease-in-out; width: 100%; height: 100%; pointer-events: auto; align-items: center;';
 
                 slideImgs = [];
 
                 galeriaActual.forEach(urlImg => {
                     const slideDiv = document.createElement('div');
                     slideDiv.className = 'modal-slide-item';
+                    slideDiv.style.cssText = 'flex: 0 0 100%; min-width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;';
 
                     const slideImg = document.createElement('img');
                     slideImg.src = urlImg;
@@ -466,23 +423,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         inicioY = ev.clientY - posY;
                         isDragging = false;
                     });
-
-                    slideImg.addEventListener('touchstart', (ev) => {
-                        if (escala > 1 && ev.touches.length === 1) {
-                            touchZoomStartX = ev.touches[0].clientX - posX;
-                            touchZoomStartY = ev.touches[0].clientY - posY;
-                        }
-                    }, { passive: true });
-
-                    // Corrección táctil para evitar scroll de la página al arrastrar la imagen con zoom
-                    slideImg.addEventListener('touchmove', (ev) => {
-                        if (escala > 1 && ev.touches.length === 1) {
-                            ev.preventDefault(); 
-                            posX = ev.touches[0].clientX - touchZoomStartX;
-                            posY = ev.touches[0].clientY - touchZoomStartY;
-                            actualizarTransformacionActiva();
-                        }
-                    }, { passive: false });
 
                     slideImg.addEventListener('click', (ev) => {
                         ev.stopPropagation();
@@ -574,10 +514,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (guiaModalEl) guiaModalEl.remove();
         };
 
-        if (cerrarModal) {
-            cerrarModal.addEventListener('click', cerrarModalFunc);
-        }
-
+        if (cerrarModal) cerrarModal.addEventListener('click', cerrarModalFunc);
         modalLightbox.addEventListener('click', (e) => {
             if (e.target === modalLightbox) cerrarModalFunc();
         });
@@ -591,55 +528,50 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. VIDEO DE FONDO Y CONTROLES
+    // 6. VIDEO DE FONDO (COMPORTAMIENTO INTELIGENTE INDEX VS CATÁLOGO)
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
     const btnPlayPause = document.getElementById('btnPlayPause');
     const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        if (btnPlayPause) {
+        // Detectar si estamos en el Index buscando el botón de Play/Pause
+        const esIndex = btnPlayPause !== null;
+
+        if (esIndex) {
+            // EXCLUSIVO DEL INDEX: Inicia pausado y con sonido habilitado
+            videoFondo.muted = false; 
             videoFondo.pause();
-            videoFondo.muted = true;
             if (videoFondoBlur) {
+                videoFondoBlur.muted = true; // El blur siempre silenciado por estética
                 videoFondoBlur.pause();
-                videoFondoBlur.muted = true;
             }
 
             btnPlayPause.addEventListener('click', () => {
                 if (videoFondo.paused) {
-                    videoFondo.muted = false;
-                    if (videoFondoBlur) videoFondoBlur.muted = false;
-                    
                     videoFondo.play();
                     if (videoFondoBlur) videoFondoBlur.play();
-                    
                     btnPlayPause.textContent = '❚❚';
-                    btnPlayPause.title = "Pausar video";
                 } else {
                     videoFondo.pause();
                     if (videoFondoBlur) videoFondoBlur.pause();
-                    
                     btnPlayPause.textContent = '►';
-                    btnPlayPause.title = "Reproducir video";
                 }
             });
 
             if (btnReiniciar) {
                 btnReiniciar.addEventListener('click', () => {
                     videoFondo.currentTime = 0;
-                    videoFondo.pause();
+                    videoFondo.play();
                     if (videoFondoBlur) {
                         videoFondoBlur.currentTime = 0;
-                        videoFondoBlur.pause();
+                        videoFondoBlur.play();
                     }
-                    if (btnPlayPause) {
-                        btnPlayPause.textContent = '►';
-                        btnPlayPause.title = "Reproducir video";
-                    }
+                    if (btnPlayPause) btnPlayPause.textContent = '❚❚';
                 });
             }
         } else {
+            // EN TODO LO DEMÁS (CATÁLOGO, CONTACTOS): Reproducción automática sin sonido
             videoFondo.muted = true;
             videoFondo.play().catch(() => {});
             if (videoFondoBlur) {
@@ -656,7 +588,7 @@ document.addEventListener("DOMContentLoaded", () => {
             navigator.clipboard.writeText(textoACopiar).then(() => {
                 const aviso = document.createElement('div');
                 aviso.textContent = '¡Copiado al portapapeles!';
-                aviso.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 10000; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.3);';
+                aviso.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 10000; font-weight: bold;';
                 document.body.appendChild(aviso);
                 setTimeout(() => aviso.remove(), 2000);
             });

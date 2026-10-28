@@ -408,21 +408,23 @@ body {
 }
 
 .guia-modal {
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #dddddd;
-    font-size: 0.82rem;
-    text-align: center;
-    z-index: 10003;
-    pointer-events: none;
-    font-style: italic;
-    background: rgba(0, 0, 0, 0.6);
-    padding: 6px 16px;
-    border-radius: 20px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    position: absolute !important;
+    bottom: 25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    color: #ffffff !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
+    z-index: 100006 !important;
+    pointer-events: none !important;
+    font-style: italic !important;
+    background: rgba(0, 0, 0, 0.75) !important;
+    padding: 8px 18px !important;
+    border-radius: 20px !important;
+    backdrop-filter: blur(4px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    white-space: nowrap !important;
+    display: block !important;
 }
 
 /* TRACKS DE CARRUSELES (INSTALACIONES Y ATAÚDES) */

@@ -298,7 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarCarruselFilaUrnas('track-urnas-2', '.btn-u2-prev', '.btn-u2-next', 'indicadores-urnas-2');
     inicializarCarruselFilaUrnas('track-urnas-3', '.btn-u3-prev', '.btn-u3-next', 'indicadores-urnas-3');
 
-    // 5. LIGHTBOX / ZOOM DE IMÁGENES Y CARRUSEL INTERNO RESTAURADO
+    // 5. LIGHTBOX / ZOOM DE IMÁGENES Y ARRASTRE MÓVIL/PC RESTAURADO
     const modalLightbox = document.getElementById('modalLightbox');
     const modalZoomContainer = document.getElementById('modalZoomContainer');
     const cerrarModal = document.querySelector('.cerrar-modal');
@@ -414,6 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     slideImg.alt = 'Imagen ampliada';
                     slideImg.id = 'imgAmpliada';
 
+                    // EVENTOS MOUSE (PC)
                     slideImg.addEventListener('mousedown', (ev) => {
                         if (ev.button !== 0) return;
                         ev.preventDefault();
@@ -424,7 +425,50 @@ document.addEventListener("DOMContentLoaded", () => {
                         isDragging = false;
                     });
 
+                    // EVENTOS TÁCTILES (MÓVIL) CON { passive: false } PARA PERMITIR PREVENTDEFAULT
+                    slideImg.addEventListener('touchstart', (ev) => {
+                        if (ev.touches.length === 1) {
+                            downX = ev.touches[0].clientX;
+                            downY = ev.touches[0].clientY;
+                            inicioX = downX - posX;
+                            inicioY = downY - posY;
+                            isDragging = false;
+                        }
+                    }, { passive: true });
+
+                    slideImg.addEventListener('touchmove', (ev) => {
+                        if (escala > 1 && ev.touches.length === 1) {
+                            const currentX = ev.touches[0].clientX;
+                            const currentY = ev.touches[0].clientY;
+                            const dist = Math.hypot(currentX - downX, currentY - downY);
+                            if (dist > 5) {
+                                isDragging = true;
+                                arrastrando = true;
+                                posX = currentX - inicioX;
+                                posY = currentY - inicioY;
+                                actualizarTransformacionActiva();
+                                ev.preventDefault(); // Evita que la pantalla se mueva por detrás
+                            }
+                        }
+                    }, { passive: false });
+
+                    slideImg.addEventListener('touchend', (ev) => {
+                        if (!isDragging && escala === 1) {
+                            // Si fue un toque simple sin arrastre, hacemos zoom in
+                            escala = 2.5;
+                            actualizarTransformacionActiva();
+                        } else if (!isDragging && escala > 1) {
+                            // Si ya tenía zoom y fue toque simple, regresamos a normal
+                            escala = 1;
+                            posX = 0;
+                            posY = 0;
+                            actualizarTransformacionActiva();
+                        }
+                        arrastrando = false;
+                    });
+
                     slideImg.addEventListener('click', (ev) => {
+                        if (esMovilReal) return; // En móvil manejamos el toque con touchend para evitar conflictos
                         ev.stopPropagation();
                         const dist = Math.hypot(ev.clientX - downX, ev.clientY - downY);
                         if (isDragging || dist > 5) return;
@@ -528,22 +572,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 6. VIDEO DE FONDO (COMPORTAMIENTO INTELIGENTE INDEX VS CATÁLOGO)
+    // 6. VIDEO DE FONDO (INDEX: PAUSADO CON AUDIO / CATÁLOGO Y CONTACTOS: AUTOMÁTICO Y SILENCIADO)
     const videoFondo = document.getElementById('videoFondo');
     const videoFondoBlur = document.getElementById('videoFondoBlur');
     const btnPlayPause = document.getElementById('btnPlayPause');
     const btnReiniciar = document.getElementById('btnReiniciar');
 
     if (videoFondo) {
-        // Detectar si estamos en el Index buscando el botón de Play/Pause
         const esIndex = btnPlayPause !== null;
 
         if (esIndex) {
-            // EXCLUSIVO DEL INDEX: Inicia pausado y con sonido habilitado
+            // Exclusivo del INDEX: Inicia pausado, con audio disponible
             videoFondo.muted = false; 
             videoFondo.pause();
             if (videoFondoBlur) {
-                videoFondoBlur.muted = true; // El blur siempre silenciado por estética
+                videoFondoBlur.muted = true;
                 videoFondoBlur.pause();
             }
 
@@ -571,7 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         } else {
-            // EN TODO LO DEMÁS (CATÁLOGO, CONTACTOS): Reproducción automática sin sonido
+            // Catálogo, Contactos, etc.: Automático y silenciado
             videoFondo.muted = true;
             videoFondo.play().catch(() => {});
             if (videoFondoBlur) {

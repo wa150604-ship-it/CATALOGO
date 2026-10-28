@@ -493,6 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     modalLightbox.appendChild(guiaModalEl);
                 }
                 guiaModalEl.textContent = textoGuiaModal;
+                guiaModalEl.style.display = 'block';
 
                 actualizarImagenModal();
                 document.body.classList.add('modal-abierto');
@@ -616,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Catálogo, Contactos, etc.: Automático y silenciado
             videoFondo.muted = true;
-            videoFondo.play().catch(() => {});
+            videoFono.play().catch(() => {});
             if (videoFondoBlur) {
                 videoFondoBlur.muted = true;
                 videoFondoBlur.play().catch(() => {});

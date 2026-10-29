@@ -3,12 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
         <title> Inicio | Velatorios IMSS N° 20 </title>
-
         <link rel="stylesheet" href="style.css">
     </head>
-    
 
     <body>
         <header class="header-fijo">
@@ -29,13 +26,13 @@
             </div>
         </header>
 
+        <!-- Video de fondo -->
         <div class="video-container-bg">
-            <!-- Video de fondo difuminado (siempre silenciado) -->
+            <!-- Difuminado -->
             <video id="videoFondoBlur" loop muted playsinline class="video-background-blur">
                 <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
             </video>
-
-            <!-- Video principal (CON SONIDO HABILITADO, inicia pausado) -->
+            <!-- Principal -->
             <video id="videoFondo" loop playsinline class="video-background">
                 <source src="MULTIMEDIA/VIDEO/VelatorioEcatepec.mp4" type="video/mp4">
             </video>
@@ -43,7 +40,7 @@
     
         <div class="overlay"></div>
     
-        <!-- Botones para control de video estilizados con el verde institucional -->
+        <!-- Botones del video -->
         <div style="position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; gap: 15px;">
             <!-- Reproducir / Pausar -->
             <button id="btnPlayPause" style="position: static; width: 50px; height: 50px; border-radius: 50%; padding: 0; font-size: 1.4rem; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 101, 86, 0.9); color: white; border: 2px solid rgba(255, 255, 255, 0.3); cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.35); transition: background-color 0.3s ease, transform 0.2s ease;" title="Reproducir / Pausar">►</button>
@@ -58,7 +55,7 @@
             </div>
         </div>
 
-        <!-- Ubicación ----------------------------------------------------------------------------------------------------------------->
+        <!-- Ubicación -->
         <div id="ubicacion" class="seccion-contenido" style="min-height: auto; height: auto; padding: 40px 20px; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px);">
         <h2 class="titulo-seccion" style="margin-top: 0; margin-bottom: 20px; color: #006556;">Nuestra Ubicación</h2>
         

@@ -617,7 +617,7 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             // Catálogo, Contactos, etc.: Automático y silenciado
             videoFondo.muted = true;
-            videoFono.play().catch(() => {});
+            videoFondo.play().catch(() => {});
             if (videoFondoBlur) {
                 videoFondoBlur.muted = true;
                 videoFondoBlur.play().catch(() => {});
@@ -638,4 +638,40 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // 8. MODAL DE WHATSAPP DE PROMOTORES PARA BOTONES CONSULTAR
+    const modalPromotores = document.getElementById('modalPromotores');
+    const cerrarModalPromotores = document.getElementById('cerrarModalPromotores');
+    const botonesConsultar = document.querySelectorAll('.btn-accion');
+
+    if (modalPromotores) {
+        botonesConsultar.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que abra contactos.html
+                modalPromotores.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const cerrarPromotoresFunc = () => {
+            modalPromotores.style.display = 'none';
+            document.body.style.overflow = '';
+        };
+
+        if (cerrarModalPromotores) {
+            cerrarModalPromotores.addEventListener('click', cerrarPromotoresFunc);
+        }
+
+        modalPromotores.addEventListener('click', (e) => {
+            if (e.target === modalPromotores) {
+                cerrarPromotoresFunc();
+            }
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalPromotores.style.display === 'flex') {
+                cerrarPromotoresFunc();
+            }
+        });
+    }
 });
